@@ -18,8 +18,9 @@ export const STRINGS = {
     dataAttr: 'Schedule data: City of Montreal',
     mapAttr: 'Map: © OpenStreetMap, © CARTO',
     builtBy: 'Built by Claude (Opus 4.8) · plans & prompts by',
-    // Transparency: rough, manually-maintained estimate for the build session.
-    transparency: '≈ 2M tokens · ≈ US$7 · ≈ 5 Wh to build (rough est.)',
+    // Transparency: actual build-session metering (tokens incl. cache reads,
+    // billed cost) + a rough energy estimate.
+    transparency: 'Build: 15.6M tokens (mostly cached) · US$14.22 · ~40 Wh (est.)',
     days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
     adult: 'Adult swim',
     lane: 'Adult lane swim',
@@ -42,7 +43,7 @@ export const STRINGS = {
     dataAttr: 'Horaires : Ville de Montréal',
     mapAttr: 'Carte : © OpenStreetMap, © CARTO',
     builtBy: 'Réalisé par Claude (Opus 4.8) · plans et prompts par',
-    transparency: '≈ 2 M jetons · ≈ 7 $US · ≈ 5 Wh pour bâtir (est. approx.)',
+    transparency: 'Construction : 15,6 M jetons (surtout en cache) · 14,22 $US · ~40 Wh (est.)',
     days: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
     adult: 'Bain libre adulte',
     lane: 'Nage en couloir (adulte)',
