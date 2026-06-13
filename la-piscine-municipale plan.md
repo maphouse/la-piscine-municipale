@@ -1,0 +1,63 @@
+- Build a simple full-screen webmap zoomed on the city of montreal that displays the opening hours of the city of montreal's municipal pools
+	- stack should be maplibre, vanilla js, html, minimize use of css unless structural requirements for it
+	- backend scripts to update map data should be minimal and run rarely
+	- deployed as a gh page. scripts for updating data should be run rarely and use free gh infrastructure only (e.g. gh actions). 
+		- municipal pool websites are only updated every couple of months at seasonal shifts. the goal here is only to display the main schedules as they evolve seasonally. users will need to navigate to the source to see if more punctuated events (closures) are currently in effect.
+- the website title is 'FREE ADULT SWIM'
+- characteristics:
+	- clicking a pool marker on map should open a popup with two options:
+		- "visit pool page" opens as new tab to city's own pool schedule page
+		- "download .ics" downloads the free adult swim schedule for that pool in ics format for personal use in digital calendars
+	- map markers should behave as follows:
+		- markers are circular proportional symbol/simple svgs
+		- size is proportional to the number of free adult swim minutes remaining at that pool on the current day.
+		- opacity represents nearness in time looking forward: a pool whose free adult swim hours begin in an hour has more opacity than a pool whose hours begin in 6 hours. this visual scaling only applies to same-day hours (the rule cuts off at upcoming midnight).
+		- colours:
+			- pools that have no remaining hours in the current day are coloured grey and with low opacity
+			- pools that have remaining hours on the current day but are not open yet appear blue
+			- pools that are currently open appear green
+		- there is a simple, concise map legend that describes how to read the map
+		- the legend can be toggled between english and french
+		- the legend contains the map attribution and data attribution (city of montreal), and author credits (link to my github).
+		- use the [libre franklin](https://github.com/uswds/public-sans) typeface on all text 
+- data sources:
+	- the city lists all adult free swim hours on their various public pool pages
+	- these are basic html pages with only somewhat consistent structures, see notes about how adult free swim hours are identified across various schedule pages:
+		- https://montreal.ca/lieux/piscine-saint-charles
+			- *Pour les adultes (18 ans et plus)*
+			- *Pour toutes et tous*
+		- https://montreal.ca/lieux/piscine-du-cegep-du-vieux-montreal
+			- *Pour les adultes*
+			- *Pour toutes et tous*
+		- https://montreal.ca/lieux/piscine-levesque
+			- *Pour les adultes (16 ans et plus)*
+			- *Pour la nage en couloir (16 ans et plus)*
+			- Pour toutes et tous
+			- these all have
+				- Baignade libre
+				- Commodités
+				- but they have divergent subsections as seen above...
+		- in the above examples, prioritize adult-designated hours, not hours for all, since that includes children and is not for lane swimming
+
+
+# follow-up/revisions
+
+- in attribution under legend, credit Claude first, then my gh, e.g.: "built by Claude (Model), plans & prompts by @myghpage"
+- indicate estimated number of tokens used & estimated dollar value & energy use of those tokens today. the aim here is transparency. as such, also commit the original prompt doc (this one).
+- the transparency guide in legend says ○ → ● but should say  ○ → ⬤ (if not rendering properly in this doc, the point is to keep circles same large size in the transparency guide)
+- in the popup, add "Directions" above 2 other button options, which opens a new tab with directions to the pool in google maps in walk mode
+- move week div to below ics dl button and hide (might bring back in future commit)
+- use the cartocdn voyager theme instead of the greyscale basemap
+- create a favicon from this tangram map icon and make it the title icon https://github.com/tangrams/icons/blob/master/sprite/bubble-wrap-style/16x/swimming_pool.png
+- add thicker white outline around each pool to have more figure-ground effect for all markers
+- titlebar h1 in french should be "BAINS LIBRES ADULTES"
+- remove the subtitle in titlebar
+- make the legend completely round, and the lang toggle too. nor square or rounded square corners.
+- replace the zoom buttons with a round geolocation button
+- use this font instead of franklin libre: https://www.fontsquirrel.com/fonts/museo-slab
+
+# revisions 2
+
+- rm box-shadows everywhere
+- increase legend min-width 150% (text is much too compressed) and decrease padding
+- make popups circles too

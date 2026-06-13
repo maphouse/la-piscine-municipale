@@ -1,0 +1,1185 @@
+{
+  "generated": "2026-06-12T22:55:02.463Z",
+  "source": "https://montreal.ca (City of Montreal pool pages)",
+  "timezone": "America/Toronto",
+  "count": 17,
+  "pools": [
+    {
+      "slug": "bain-emard",
+      "name": "Bain Émard",
+      "url": "https://montreal.ca/lieux/bain-emard",
+      "lat": 45.457854199708,
+      "lng": -73.58887732029,
+      "schedule": {
+        "sun": [],
+        "mon": [
+          [
+            "20:00",
+            "22:00",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "13:00",
+            "14:00",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "13:00",
+            "14:00",
+            "adult"
+          ],
+          [
+            "20:30",
+            "22:00",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "13:00",
+            "14:00",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "20:00",
+            "21:00",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "16:00",
+            "17:00",
+            "adult"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "bain-morgan",
+      "name": "Bain Morgan",
+      "url": "https://montreal.ca/lieux/bain-morgan",
+      "lat": 45.553457,
+      "lng": -73.538288,
+      "schedule": {
+        "sun": [
+          [
+            "15:00",
+            "15:55",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "14:00",
+            "15:55",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "11:00",
+            "11:55",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "14:00",
+            "15:55",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "11:00",
+            "11:55",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "14:00",
+            "15:55",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "15:00",
+            "15:55",
+            "adult"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "complexe-aquatique-de-rosemont",
+      "name": "Complexe aquatique de Rosemont",
+      "url": "https://montreal.ca/lieux/complexe-aquatique-de-rosemont",
+      "lat": 45.55239,
+      "lng": -73.58232,
+      "schedule": {
+        "sun": [
+          [
+            "14:00",
+            "15:25",
+            "adult"
+          ],
+          [
+            "15:30",
+            "16:55",
+            "lane"
+          ]
+        ],
+        "mon": [
+          [
+            "07:00",
+            "11:55",
+            "lane"
+          ],
+          [
+            "13:00",
+            "15:55",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "10:00",
+            "11:55",
+            "lane"
+          ],
+          [
+            "13:00",
+            "15:55",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "07:00",
+            "11:55",
+            "lane"
+          ],
+          [
+            "13:00",
+            "15:55",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "10:00",
+            "11:55",
+            "lane"
+          ],
+          [
+            "13:00",
+            "15:55",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "07:00",
+            "11:55",
+            "lane"
+          ],
+          [
+            "13:00",
+            "15:55",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "14:00",
+            "15:25",
+            "adult"
+          ],
+          [
+            "15:30",
+            "16:55",
+            "lane"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "piscine-annie-pelletier",
+      "name": "Piscine Annie-Pelletier",
+      "url": "https://montreal.ca/lieux/piscine-annie-pelletier",
+      "lat": 45.602298840057,
+      "lng": -73.51544380188,
+      "schedule": {
+        "sun": [
+          [
+            "08:00",
+            "08:55",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "07:00",
+            "07:55",
+            "adult"
+          ],
+          [
+            "12:00",
+            "13:25",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "13:00",
+            "13:55",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "12:00",
+            "13:25",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "13:00",
+            "13:55",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "07:00",
+            "07:55",
+            "adult"
+          ],
+          [
+            "12:00",
+            "13:25",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "08:00",
+            "08:55",
+            "adult"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "piscine-du-complexe-sportif-marie-victorin",
+      "name": "Piscine du Complexe sportif Marie-Victorin",
+      "url": "https://montreal.ca/lieux/piscine-du-complexe-sportif-marie-victorin",
+      "lat": 45.619547954978,
+      "lng": -73.608935336737,
+      "schedule": {
+        "sun": [],
+        "mon": [
+          [
+            "12:00",
+            "13:15",
+            "adult"
+          ]
+        ],
+        "tue": [],
+        "wed": [],
+        "thu": [
+          [
+            "12:00",
+            "13:15",
+            "adult"
+          ]
+        ],
+        "fri": [],
+        "sat": []
+      }
+    },
+    {
+      "slug": "piscine-edouard-montpetit",
+      "name": "Piscine Édouard-Montpetit",
+      "url": "https://montreal.ca/lieux/piscine-edouard-montpetit",
+      "lat": 45.575585,
+      "lng": -73.537389,
+      "schedule": {
+        "sun": [
+          [
+            "12:00",
+            "12:55",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "17:00",
+            "17:55",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "17:00",
+            "17:55",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "16:00",
+            "16:55",
+            "adult"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "piscine-joseph-charbonneau",
+      "name": "Piscine Joseph-Charbonneau",
+      "url": "https://montreal.ca/lieux/piscine-joseph-charbonneau",
+      "lat": 45.55121,
+      "lng": -73.622632,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [
+          [
+            "18:00",
+            "18:55",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "14:00",
+            "14:55",
+            "adult"
+          ],
+          [
+            "17:30",
+            "18:55",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "18:00",
+            "18:55",
+            "adult"
+          ]
+        ],
+        "fri": [],
+        "sat": [
+          [
+            "17:00",
+            "17:55",
+            "adult"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "piscine-levesque",
+      "name": "Piscine Lévesque",
+      "url": "https://montreal.ca/lieux/piscine-levesque",
+      "lat": 45.526249,
+      "lng": -73.577898,
+      "schedule": {
+        "sun": [
+          [
+            "18:45",
+            "20:00",
+            "adult"
+          ],
+          [
+            "20:00",
+            "21:30",
+            "lane"
+          ]
+        ],
+        "mon": [
+          [
+            "14:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ],
+          [
+            "18:05",
+            "19:25",
+            "lane"
+          ]
+        ],
+        "tue": [
+          [
+            "13:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ],
+          [
+            "20:15",
+            "21:30",
+            "lane"
+          ]
+        ],
+        "wed": [
+          [
+            "12:00",
+            "13:00",
+            "lane"
+          ],
+          [
+            "13:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ],
+          [
+            "18:05",
+            "19:25",
+            "lane"
+          ]
+        ],
+        "thu": [
+          [
+            "13:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ],
+          [
+            "20:15",
+            "21:30",
+            "lane"
+          ]
+        ],
+        "fri": [
+          [
+            "13:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ]
+        ],
+        "sat": [
+          [
+            "13:30",
+            "14:30",
+            "lane"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "piscine-pere-marquette",
+      "name": "Piscine Père-Marquette",
+      "url": "https://montreal.ca/lieux/piscine-pere-marquette",
+      "lat": 45.541125,
+      "lng": -73.595401,
+      "schedule": {
+        "sun": [
+          [
+            "15:30",
+            "16:55",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "15:00",
+            "16:30",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "15:00",
+            "16:30",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "15:00",
+            "16:30",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "15:00",
+            "16:30",
+            "adult"
+          ],
+          [
+            "19:35",
+            "20:30",
+            "lane"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "15:00",
+            "16:30",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "15:30",
+            "16:55",
+            "adult"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "piscine-quintal",
+      "name": "Piscine Quintal",
+      "url": "https://montreal.ca/lieux/piscine-quintal",
+      "lat": 45.528937240499,
+      "lng": -73.548730015755,
+      "schedule": {
+        "sun": [
+          [
+            "12:00",
+            "13:25",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "07:00",
+            "08:55",
+            "adult"
+          ],
+          [
+            "11:00",
+            "15:55",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "11:00",
+            "12:55",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "07:00",
+            "08:55",
+            "adult"
+          ],
+          [
+            "11:00",
+            "15:55",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "11:00",
+            "15:55",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "07:00",
+            "08:55",
+            "adult"
+          ],
+          [
+            "11:00",
+            "12:55",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "12:00",
+            "13:55",
+            "adult"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "piscine-rene-goupil",
+      "name": "Piscine René-Goupil",
+      "url": "https://montreal.ca/lieux/piscine-rene-goupil",
+      "lat": 45.577962003542,
+      "lng": -73.611402511597,
+      "schedule": {
+        "sun": [
+          [
+            "18:00",
+            "19:30",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "16:00",
+            "17:00",
+            "adult"
+          ]
+        ],
+        "tue": [],
+        "wed": [
+          [
+            "16:00",
+            "17:00",
+            "adult"
+          ]
+        ],
+        "thu": [],
+        "fri": [
+          [
+            "16:00",
+            "17:00",
+            "adult"
+          ]
+        ],
+        "sat": []
+      }
+    },
+    {
+      "slug": "piscine-saint-charles",
+      "name": "Piscine Saint-Charles",
+      "url": "https://montreal.ca/lieux/piscine-saint-charles",
+      "lat": 45.479387915098,
+      "lng": -73.563361929067,
+      "schedule": {
+        "sun": [],
+        "mon": [
+          [
+            "12:00",
+            "14:00",
+            "adult"
+          ],
+          [
+            "20:30",
+            "22:00",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "20:30",
+            "22:00",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "12:00",
+            "14:00",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "20:30",
+            "22:00",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "12:00",
+            "14:00",
+            "adult"
+          ],
+          [
+            "20:30",
+            "22:00",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "14:30",
+            "15:30",
+            "adult"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "piscine-saint-henri",
+      "name": "Piscine Saint-Henri",
+      "url": "https://montreal.ca/lieux/piscine-saint-henri",
+      "lat": 45.477763335319,
+      "lng": -73.58574450016,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [
+          [
+            "20:00",
+            "22:00",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "20:30",
+            "22:00",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "20:30",
+            "22:00",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "20:00",
+            "21:00",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "13:00",
+            "14:00",
+            "adult"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "piscine-saint-roch",
+      "name": "Piscine Saint-Roch",
+      "url": "https://montreal.ca/lieux/piscine-saint-roch",
+      "lat": 45.531984926263,
+      "lng": -73.63075196743,
+      "schedule": {
+        "sun": [
+          [
+            "16:00",
+            "16:55",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "20:00",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "tue": [],
+        "wed": [
+          [
+            "07:00",
+            "10:00",
+            "adult"
+          ]
+        ],
+        "thu": [],
+        "fri": [
+          [
+            "20:00",
+            "20:55",
+            "adult"
+          ]
+        ],
+        "sat": []
+      }
+    },
+    {
+      "slug": "piscine-schubert",
+      "name": "Piscine Schubert",
+      "url": "https://montreal.ca/lieux/piscine-schubert",
+      "lat": 45.516453,
+      "lng": -73.578789,
+      "schedule": {
+        "sun": [
+          [
+            "12:00",
+            "13:00",
+            "lane"
+          ]
+        ],
+        "mon": [
+          [
+            "14:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ],
+          [
+            "20:00",
+            "21:00",
+            "lane"
+          ]
+        ],
+        "tue": [
+          [
+            "20:00",
+            "21:00",
+            "lane"
+          ]
+        ],
+        "wed": [
+          [
+            "14:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ]
+        ],
+        "thu": [
+          [
+            "14:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ],
+          [
+            "19:00",
+            "21:00",
+            "lane"
+          ]
+        ],
+        "fri": [
+          [
+            "14:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ],
+          [
+            "19:00",
+            "20:00",
+            "lane"
+          ]
+        ],
+        "sat": [
+          [
+            "16:00",
+            "17:00",
+            "lane"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "piscine-sophie-barat",
+      "name": "Piscine Sophie-Barat",
+      "url": "https://montreal.ca/lieux/piscine-sophie-barat",
+      "lat": 45.561243,
+      "lng": -73.668061,
+      "schedule": {
+        "sun": [
+          [
+            "16:30",
+            "17:25",
+            "lane"
+          ]
+        ],
+        "mon": [],
+        "tue": [
+          [
+            "21:00",
+            "21:55",
+            "lane"
+          ]
+        ],
+        "wed": [
+          [
+            "16:45",
+            "18:00",
+            "lane"
+          ],
+          [
+            "19:30",
+            "20:25",
+            "lane"
+          ]
+        ],
+        "thu": [
+          [
+            "21:00",
+            "21:55",
+            "lane"
+          ]
+        ],
+        "fri": [
+          [
+            "21:00",
+            "21:55",
+            "lane"
+          ]
+        ],
+        "sat": [
+          [
+            "17:00",
+            "17:55",
+            "lane"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "piscines-du-complexe-sportif-de-saint-laurent",
+      "name": "Piscines du Complexe sportif de Saint-Laurent",
+      "url": "https://montreal.ca/lieux/piscines-du-complexe-sportif-de-saint-laurent",
+      "lat": 45.507608,
+      "lng": -73.703017,
+      "schedule": {
+        "sun": [
+          [
+            "13:00",
+            "14:30",
+            "lane"
+          ],
+          [
+            "14:30",
+            "18:30",
+            "lane"
+          ]
+        ],
+        "mon": [
+          [
+            "06:00",
+            "09:00",
+            "lane"
+          ],
+          [
+            "10:00",
+            "13:00",
+            "lane"
+          ]
+        ],
+        "tue": [
+          [
+            "07:35",
+            "08:40",
+            "lane"
+          ],
+          [
+            "09:45",
+            "10:25",
+            "lane"
+          ],
+          [
+            "11:30",
+            "12:00",
+            "lane"
+          ],
+          [
+            "12:00",
+            "17:00",
+            "lane"
+          ],
+          [
+            "18:30",
+            "21:00",
+            "lane"
+          ]
+        ],
+        "wed": [
+          [
+            "06:00",
+            "09:00",
+            "lane"
+          ],
+          [
+            "10:00",
+            "13:00",
+            "lane"
+          ]
+        ],
+        "thu": [
+          [
+            "07:35",
+            "08:40",
+            "lane"
+          ],
+          [
+            "09:45",
+            "10:10",
+            "lane"
+          ],
+          [
+            "11:05",
+            "11:55",
+            "lane"
+          ],
+          [
+            "11:55",
+            "12:45",
+            "lane"
+          ],
+          [
+            "17:00",
+            "19:50",
+            "lane"
+          ]
+        ],
+        "fri": [
+          [
+            "06:00",
+            "08:40",
+            "lane"
+          ],
+          [
+            "09:45",
+            "11:55",
+            "lane"
+          ]
+        ],
+        "sat": [
+          [
+            "13:45",
+            "17:30",
+            "lane"
+          ],
+          [
+            "17:30",
+            "19:30",
+            "lane"
+          ]
+        ]
+      }
+    }
+  ]
+}

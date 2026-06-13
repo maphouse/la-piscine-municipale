@@ -1,0 +1,52 @@
+# Candidate montreal.ca /lieux/ slugs to scrape.
+# Harvested once from montreal.ca place search; the scraper fetches each page,
+# extracts coords + adult/lane-swim schedule, and keeps ONLY those that match an
+# indoor pool in the City open-data dataset (joined by coordinate proximity).
+# Non-pools / outdoor pools harvested here are harmless: they get filtered out.
+# To add a pool: append its /lieux/<slug> slug below, one per line. Lines starting with # are ignored.
+bain-emard
+bain-morgan
+centre-jean-claude-malepart
+centre-pere-marquette
+centre-saint-charles
+centre-sportif-cote-des-neiges
+centre-sportif-de-la-petite-bourgogne
+complexe-aquatique-de-rosemont
+complexe-aquatique-de-saint-leonard
+complexe-aquatique-michel-leduc-aquadome
+complexe-sportif-claude-robillard
+complexe-sportif-de-saint-laurent
+complexe-sportif-marie-victorin
+piscine-annie-pelletier
+piscine-communautaire-notre-dame-de-grace
+piscine-de-lacademie-beurling
+piscine-du-cegep-du-vieux-montreal
+piscine-du-centre-du-plateau
+piscine-du-centre-gadbois
+piscine-du-centre-jean-claude-malepart
+piscine-du-centre-sportif-cote-des-neiges
+piscine-du-centre-sportif-de-la-petite-bourgogne
+piscine-du-centre-sportif-de-notre-dame-de-grace
+piscine-du-centre-yvon-deschamps-asccs
+piscine-du-complexe-sportif-claude-robillard
+piscine-du-complexe-sportif-de-lecole-secondaire-danjou
+piscine-du-complexe-sportif-du-college-de-bois-de-boulogne
+piscine-du-complexe-sportif-du-college-sainte-anne
+piscine-du-complexe-sportif-marie-victorin
+piscine-edouard-montpetit
+piscine-interieure-calixa-lavallee
+piscine-interieure-henri-bourassa
+piscine-joseph-charbonneau
+piscine-levesque
+piscine-pere-marquette
+piscine-quintal
+piscine-rene-goupil
+piscine-roussin
+piscine-saint-charles
+piscine-saint-henri
+piscine-saint-roch
+piscine-schubert
+piscine-sophie-barat
+piscine-villeray
+piscines-du-complexe-sportif-de-saint-laurent
+ymca-cartierville
