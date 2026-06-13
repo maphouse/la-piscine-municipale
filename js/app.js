@@ -105,10 +105,13 @@ function onMarkerClick(e) {
     <div class="week" hidden>${weekSummary(pool)}</div>`;
   el.querySelector('.btn-ics').addEventListener('click', () => downloadICS(pool, t()));
 
-  new maplibregl.Popup({ offset: 14, maxWidth: '300px' })
+  const popup = new maplibregl.Popup({ offset: 14, maxWidth: '380px', className: 'fas-popup' })
     .setLngLat(e.lngLat)
     .setDOMContent(el)
     .addTo(map);
+  // Outline the circular popup in the pool's own status colour.
+  const content = popup.getElement().querySelector('.maplibregl-popup-content');
+  if (content) content.style.borderColor = st.color;
 }
 
 function fmtMinutes(min) {
@@ -146,36 +149,48 @@ function renderChrome() {
   renderLegend();
 }
 
+let legendCollapsed = false;
+
 function renderLegend() {
   const tr = t();
   const sw = (c, o, label) =>
     `<div class="lg-row"><span class="lg-dot" style="background:${c};opacity:${o}"></span>${label}</div>`;
+  const body = legendCollapsed ? '' : `
+      <div class="lg-body">
+        <div class="lg-heading">${tr.legendHeading}</div>
+        ${sw(COLORS.open, 0.95, tr.open)}
+        ${sw(COLORS.upcoming, 0.9, tr.upcoming)}
+        ${sw(COLORS.none, 0.28, tr.none)}
+        <div class="lg-note">
+          <span class="g-dot g-sm"></span><span class="g-arrow">→</span><span class="g-dot g-lg"></span>
+          <span class="g-txt">${tr.size}</span>
+        </div>
+        <div class="lg-note">
+          <span class="g-dot g-lg g-faint"></span><span class="g-arrow">→</span><span class="g-dot g-lg"></span>
+          <span class="g-txt">${tr.opacity}</span>
+        </div>
+        <div class="lg-attr">
+          ${tr.builtBy} <a href="https://github.com/maphouse" target="_blank" rel="noopener">@maphouse</a><br>
+          ${tr.dataAttr}<br>${tr.mapAttr}<br>
+          <span class="lg-transp">${tr.transparency}</span>
+        </div>
+      </div>`;
   document.getElementById('legend').innerHTML = `
     <div class="lg-inner">
       <div class="lg-head">
         <h1 class="lg-title">${tr.title}</h1>
-        <button id="langtoggle" type="button" title="${tr.other}">${tr.other}</button>
-      </div>
-      <div class="lg-heading">${tr.legendHeading}</div>
-      ${sw(COLORS.open, 0.95, tr.open)}
-      ${sw(COLORS.upcoming, 0.9, tr.upcoming)}
-      ${sw(COLORS.none, 0.28, tr.none)}
-      <div class="lg-note">
-        <span class="g-dot g-sm"></span><span class="g-arrow">→</span><span class="g-dot g-lg"></span>
-        <span class="g-txt">${tr.size}</span>
-      </div>
-      <div class="lg-note">
-        <span class="g-dot g-lg g-faint"></span><span class="g-arrow">→</span><span class="g-dot g-lg"></span>
-        <span class="g-txt">${tr.opacity}</span>
-      </div>
-      <div class="lg-attr">
-        ${tr.builtBy} <a href="https://github.com/maphouse" target="_blank" rel="noopener">@maphouse</a><br>
-        ${tr.dataAttr}<br>${tr.mapAttr}<br>
-        <span class="lg-transp">${tr.transparency}</span>
-      </div>
+        <div class="lg-btns">
+          <button id="mintoggle" type="button" title="${legendCollapsed ? '+' : '–'}">${legendCollapsed ? '+' : '–'}</button>
+          <button id="langtoggle" type="button" title="${tr.other}">${tr.other}</button>
+        </div>
+      </div>${body}
     </div>`;
   document.getElementById('langtoggle').addEventListener('click', () => {
     lang = lang === 'en' ? 'fr' : 'en';
+    renderLegend();
+  });
+  document.getElementById('mintoggle').addEventListener('click', () => {
+    legendCollapsed = !legendCollapsed;
     renderLegend();
   });
 }

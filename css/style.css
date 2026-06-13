@@ -33,24 +33,17 @@ html, body {
 
 #app, #map { position: absolute; inset: 0; }
 
-/* Legend — a round panel, top-left, with the title inside it */
+/* Legend — plain text over the map (no panel), top-left, with title + minimize */
 #legend {
   position: absolute;
-  top: 16px;
+  top: 14px;
   left: 16px;
   z-index: 2;
-  width: min(92vw, 500px);
-  aspect-ratio: 1 / 1;
-  background: var(--paper);
-  border: 1px solid var(--hair);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6%;
-  overflow: hidden;
+  width: min(92vw, 340px);
+  font-size: 13px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 0 3px rgba(255, 255, 255, 0.9);
 }
-.lg-inner { width: 100%; font-size: 13.5px; line-height: 1.45; }
+.lg-inner { width: 100%; line-height: 1.45; }
 .lg-head {
   display: flex;
   justify-content: space-between;
@@ -58,6 +51,8 @@ html, body {
   gap: 10px;
   margin-bottom: 6px;
 }
+.lg-btns { display: flex; gap: 6px; flex: none; }
+.lg-body { margin-top: 2px; }
 .lg-title {
   margin: 0;
   font-weight: 700;
@@ -66,20 +61,22 @@ html, body {
   line-height: 1.05;
 }
 .lg-heading { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
-#langtoggle {
+#langtoggle, #mintoggle {
   font-family: inherit;
   font-weight: 700;
-  font-size: 10.5px;
-  width: 30px;
-  height: 30px;
+  font-size: 11px;
+  line-height: 1;
+  width: 28px;
+  height: 28px;
   border: 1px solid var(--hair);
   background: #f4f4f5;
   border-radius: 50%;
   padding: 0;
   cursor: pointer;
   flex: none;
+  text-shadow: none;
 }
-#langtoggle:hover { background: #e9e9eb; }
+#langtoggle:hover, #mintoggle:hover { background: #e9e9eb; }
 .lg-row { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
 .lg-dot {
   width: 14px; height: 14px;
@@ -128,9 +125,9 @@ html, body {
 /* Popup — circular, matching the legend */
 .maplibregl-popup-content {
   border-radius: 50%;
-  width: 280px;
-  height: 280px;
-  padding: 28px;
+  width: 340px;
+  height: 340px;
+  padding: 38px;
   border: 3px solid #000;
   display: flex;
   align-items: center;
