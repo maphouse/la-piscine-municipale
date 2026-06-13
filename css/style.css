@@ -56,19 +56,18 @@ html, body {
   bottom: 16px;
   left: 16px;
   z-index: 2;
-  width: min(82vw, 330px);
+  width: min(92vw, 500px);
   aspect-ratio: 1 / 1;
   background: var(--paper);
   border: 1px solid var(--hair);
   border-radius: 50%;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 9%;
+  padding: 6%;
   overflow: hidden;
 }
-.lg-inner { width: 100%; font-size: 12px; line-height: 1.4; }
+.lg-inner { width: 100%; font-size: 13.5px; line-height: 1.45; }
 .lg-head {
   display: flex;
   justify-content: space-between;
@@ -94,8 +93,7 @@ html, body {
 .lg-dot {
   width: 14px; height: 14px;
   border-radius: 50%;
-  border: 1.5px solid #fff;
-  box-shadow: 0 0 0 1px var(--hair);
+  border: 1px solid var(--hair);
   flex: none;
 }
 
@@ -105,8 +103,7 @@ html, body {
   display: inline-block;
   border-radius: 50%;
   background: #444;
-  border: 1.5px solid #fff;
-  box-shadow: 0 0 0 1px var(--hair);
+  border: 1px solid var(--hair);
   flex: none;
 }
 .g-sm { width: 9px; height: 9px; }
@@ -130,7 +127,6 @@ html, body {
 .maplibregl-ctrl-top-right .maplibregl-ctrl-group {
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
 }
 .maplibregl-ctrl-top-right .maplibregl-ctrl-group button {
   width: 40px;
@@ -138,10 +134,24 @@ html, body {
   border-radius: 50%;
 }
 
-/* Popup */
-.popup { font-family: var(--font); min-width: 220px; }
-.popup h2 { margin: 0 0 6px; font-size: 15px; font-weight: 700; }
-.popup .status { display: flex; align-items: center; gap: 7px; font-weight: 600; font-size: 12.5px; margin-bottom: 10px; }
+/* Popup — circular, matching the legend */
+.maplibregl-popup-content {
+  border-radius: 50%;
+  width: 280px;
+  height: 280px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  overflow: hidden;
+}
+.maplibregl-popup-tip { display: none; }
+.maplibregl-popup-close-button { z-index: 1; }
+
+.popup { font-family: var(--font); width: 100%; text-align: center; }
+.popup h2 { margin: 0 0 6px; font-size: 14.5px; font-weight: 700; line-height: 1.2; }
+.popup .status { display: flex; align-items: center; justify-content: center; gap: 7px; font-weight: 600; font-size: 12px; margin-bottom: 10px; }
 .popup .dot { width: 11px; height: 11px; border-radius: 50%; flex: none; }
 .popup .actions { display: flex; flex-direction: column; gap: 6px; }
 .popup .btn {
@@ -165,8 +175,6 @@ html, body {
 .popup .day.today { font-weight: 700; color: var(--ink); }
 .popup .day .dname { display: inline-block; width: 30px; color: #888; font-weight: 600; }
 .popup .day.today .dname { color: var(--ink); }
-
-.maplibregl-popup-content { border-radius: 12px; padding: 14px; }
 
 #loaderr {
   position: absolute; inset: 0; display: grid; place-content: center;

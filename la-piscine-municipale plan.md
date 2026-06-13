@@ -55,3 +55,9 @@
 - make the legend completely round, and the lang toggle too. nor square or rounded square corners.
 - replace the zoom buttons with a round geolocation button
 - use this font instead of franklin libre: https://www.fontsquirrel.com/fonts/museo-slab
+
+# revisions 2
+
+- rm box-shadows everywhere
+- increase legend min-width 150% (text is much too compressed) and decrease padding
+- make popups circles too
