@@ -69,3 +69,6 @@ before heading out.
 
 Built by [github.com/maphouse](https://github.com/maphouse). Schedule data ©
 City of Montreal. Basemap © OpenStreetMap contributors, © CARTO.
+
+Privacy-friendly, cookie-free analytics via
+[GoatCounter](https://la-piscine-municipale.goatcounter.com).
