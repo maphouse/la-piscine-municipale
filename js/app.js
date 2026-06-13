@@ -114,7 +114,7 @@ function buildPopupEl(pool) {
   } else if (st.status === 'open') {
     line = `${tr.open} · ${fmtMinutes(st.closesInMin)} ${tr.tillClose}`;
   } else if (st.status === 'upcoming') {
-    line = `${tr.nextLabel}: ${nextSessionLabel(pool)}`;
+    line = `${tr.nextIn} ${fmtCountdown(st.minutesUntilNext)} ${tr.at} ${nextSessionLabel(pool)}`;
   } else {
     line = `${tr.noToday}`;
   }
@@ -177,6 +177,12 @@ function onMarkerHover(e) {
 function fmtMinutes(min) {
   const h = Math.floor(min / 60), m = min % 60;
   return h ? `${h} h ${m ? String(m).padStart(2, '0') : ''}`.trim() : `${m} min`;
+}
+
+// Compact countdown for the popup: "2h 05m" / "45m".
+function fmtCountdown(min) {
+  const h = Math.floor(min / 60), m = min % 60;
+  return h ? `${h}h ${String(m).padStart(2, '0')}m` : `${m}m`;
 }
 
 function nextSessionLabel(pool) {
