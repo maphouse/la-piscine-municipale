@@ -33,27 +33,10 @@ html, body {
 
 #app, #map { position: absolute; inset: 0; }
 
-/* Title bar */
-#titlebar {
-  position: absolute;
-  top: 14px;
-  left: 18px;
-  z-index: 2;
-  pointer-events: none;
-}
-#titlebar h1 {
-  margin: 0;
-  font-weight: 700;
-  font-size: clamp(20px, 4.5vw, 30px);
-  letter-spacing: 0.02em;
-  line-height: 1.05;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85), 0 0 14px rgba(255, 255, 255, 0.9);
-}
-
-/* Legend — a round panel */
+/* Legend — a round panel, top-left, with the title inside it */
 #legend {
   position: absolute;
-  bottom: 16px;
+  top: 16px;
   left: 16px;
   z-index: 2;
   width: min(92vw, 500px);
@@ -71,10 +54,18 @@ html, body {
 .lg-head {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 7px;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
 }
-.lg-head strong { font-weight: 700; font-size: 13px; }
+.lg-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(18px, 2.6vw, 24px);
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+}
+.lg-heading { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
 #langtoggle {
   font-family: inherit;
   font-weight: 700;
@@ -139,7 +130,8 @@ html, body {
   border-radius: 50%;
   width: 280px;
   height: 280px;
-  padding: 30px;
+  padding: 28px;
+  border: 3px solid #000;
   display: flex;
   align-items: center;
   justify-content: center;

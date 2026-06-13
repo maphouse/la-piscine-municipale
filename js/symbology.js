@@ -49,9 +49,10 @@ export function poolState(pool, now = montrealNow()) {
 
   let remainingMin = 0;
   let openNow = false;
+  let closesInMin = null;          // minutes until the currently-open session ends
   let minutesUntilNext = Infinity; // until the next not-yet-started session today
   for (const [s, e] of intervals) {
-    if (now.minutes >= s && now.minutes < e) { openNow = true; remainingMin += e - now.minutes; }
+    if (now.minutes >= s && now.minutes < e) { openNow = true; remainingMin += e - now.minutes; closesInMin = e - now.minutes; }
     else if (s > now.minutes) { remainingMin += e - s; minutesUntilNext = Math.min(minutesUntilNext, s - now.minutes); }
   }
 
@@ -63,6 +64,7 @@ export function poolState(pool, now = montrealNow()) {
     status,
     color: COLORS[status],
     remainingMin,
+    closesInMin,
     minutesUntilNext: isFinite(minutesUntilNext) ? minutesUntilNext : null,
     radius: radiusFor(status, remainingMin),
     opacity: opacityFor(status, minutesUntilNext),

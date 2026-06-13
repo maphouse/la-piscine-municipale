@@ -84,7 +84,7 @@ function onMarkerClick(e) {
 
   let line;
   if (st.status === 'open') {
-    line = `<span class="dot" style="background:${COLORS.open}"></span>${tr.open} · ${fmtMinutes(st.remainingMin)}`;
+    line = `<span class="dot" style="background:${COLORS.open}"></span>${tr.open} · ${fmtMinutes(st.closesInMin)} ${tr.tillClose}`;
   } else if (st.status === 'upcoming') {
     line = `<span class="dot" style="background:${COLORS.upcoming}"></span>${tr.nextLabel}: ${nextSessionLabel(pool)}`;
   } else {
@@ -140,11 +140,9 @@ function weekSummary(pool) {
   }).join('');
 }
 
-// --- Chrome: title, legend, language toggle ---
+// --- Chrome: legend (with title inside), language toggle ---
 function renderChrome() {
-  document.getElementById('app').insertAdjacentHTML('beforeend', `
-    <header id="titlebar"><h1>${t().title}</h1></header>
-    <div id="legend"></div>`);
+  document.getElementById('app').insertAdjacentHTML('beforeend', `<div id="legend"></div>`);
   renderLegend();
 }
 
@@ -155,9 +153,10 @@ function renderLegend() {
   document.getElementById('legend').innerHTML = `
     <div class="lg-inner">
       <div class="lg-head">
-        <strong>${tr.legendHeading}</strong>
+        <h1 class="lg-title">${tr.title}</h1>
         <button id="langtoggle" type="button" title="${tr.other}">${tr.other}</button>
       </div>
+      <div class="lg-heading">${tr.legendHeading}</div>
       ${sw(COLORS.open, 0.95, tr.open)}
       ${sw(COLORS.upcoming, 0.9, tr.upcoming)}
       ${sw(COLORS.none, 0.28, tr.none)}
@@ -177,7 +176,6 @@ function renderLegend() {
     </div>`;
   document.getElementById('langtoggle').addEventListener('click', () => {
     lang = lang === 'en' ? 'fr' : 'en';
-    document.querySelector('#titlebar h1').textContent = t().title;
     renderLegend();
   });
 }
