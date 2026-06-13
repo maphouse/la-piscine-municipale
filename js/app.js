@@ -4,7 +4,7 @@ import { STRINGS } from './i18n.js';
 import { downloadICS } from './ics.js';
 
 const MONTREAL = { center: [-73.61, 45.53], zoom: 11 };
-const BASEMAP = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json';
+const BASEMAP = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
 
 let lang = (navigator.language || 'en').toLowerCase().startsWith('fr') ? 'fr' : 'en';
 let pools = [];
@@ -24,7 +24,11 @@ async function init() {
     zoom: MONTREAL.zoom,
     attributionControl: false,
   });
-  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+  map.addControl(new maplibregl.GeolocateControl({
+    positionOptions: { enableHighAccuracy: true },
+    trackUserLocation: true,
+    showUserHeading: true,
+  }), 'top-right');
 
   map.on('load', () => {
     map.addSource('pools', { type: 'geojson', data: featureCollection() });
@@ -36,9 +40,11 @@ async function init() {
         'circle-radius': ['get', 'radius'],
         'circle-color': ['get', 'color'],
         'circle-opacity': ['get', 'opacity'],
-        'circle-stroke-width': 1.25,
+        // Thick, fully-opaque white ring for figure-ground on every marker,
+        // including the faint grey ones.
+        'circle-stroke-width': 3,
         'circle-stroke-color': '#ffffff',
-        'circle-stroke-opacity': ['*', ['get', 'opacity'], 0.9],
+        'circle-stroke-opacity': 1,
       },
     });
 
@@ -85,16 +91,18 @@ function onMarkerClick(e) {
     line = `<span class="dot" style="background:${COLORS.none}"></span>${tr.noToday}`;
   }
 
+  const directions = `https://www.google.com/maps/dir/?api=1&destination=${pool.lat},${pool.lng}&travelmode=walking`;
   const el = document.createElement('div');
   el.className = 'popup';
   el.innerHTML = `
     <h2>${escapeHtml(pool.name)}</h2>
     <div class="status">${line}</div>
-    <div class="week">${weekSummary(pool)}</div>
     <div class="actions">
+      <a class="btn" href="${directions}" target="_blank" rel="noopener">${tr.popupDirections}</a>
       <a class="btn" href="${pool.url}" target="_blank" rel="noopener">${tr.popupVisit}</a>
       <button class="btn btn-ics" type="button">${tr.popupIcs}</button>
-    </div>`;
+    </div>
+    <div class="week" hidden>${weekSummary(pool)}</div>`;
   el.querySelector('.btn-ics').addEventListener('click', () => downloadICS(pool, t()));
 
   new maplibregl.Popup({ offset: 14, maxWidth: '300px' })
@@ -135,7 +143,7 @@ function weekSummary(pool) {
 // --- Chrome: title, legend, language toggle ---
 function renderChrome() {
   document.getElementById('app').insertAdjacentHTML('beforeend', `
-    <header id="titlebar"><h1>${t().title}</h1><p>${t().subtitle}</p></header>
+    <header id="titlebar"><h1>${t().title}</h1></header>
     <div id="legend"></div>`);
   renderLegend();
 }
@@ -145,22 +153,31 @@ function renderLegend() {
   const sw = (c, o, label) =>
     `<div class="lg-row"><span class="lg-dot" style="background:${c};opacity:${o}"></span>${label}</div>`;
   document.getElementById('legend').innerHTML = `
-    <div class="lg-head">
-      <strong>${tr.legendHeading}</strong>
-      <button id="langtoggle" type="button" title="${tr.other}">${tr.other}</button>
-    </div>
-    ${sw(COLORS.open, 0.95, tr.open)}
-    ${sw(COLORS.upcoming, 0.9, tr.upcoming)}
-    ${sw(COLORS.none, 0.28, tr.none)}
-    <div class="lg-note">● → ⬤ &nbsp; ${tr.size}</div>
-    <div class="lg-note">○ → ● &nbsp; ${tr.opacity}</div>
-    <div class="lg-attr">
-      ${tr.dataAttr}<br>${tr.mapAttr}<br>
-      ${tr.author} <a href="https://github.com/maphouse" target="_blank" rel="noopener">github.com/maphouse</a>
+    <div class="lg-inner">
+      <div class="lg-head">
+        <strong>${tr.legendHeading}</strong>
+        <button id="langtoggle" type="button" title="${tr.other}">${tr.other}</button>
+      </div>
+      ${sw(COLORS.open, 0.95, tr.open)}
+      ${sw(COLORS.upcoming, 0.9, tr.upcoming)}
+      ${sw(COLORS.none, 0.28, tr.none)}
+      <div class="lg-note">
+        <span class="g-dot g-sm"></span><span class="g-arrow">→</span><span class="g-dot g-lg"></span>
+        <span class="g-txt">${tr.size}</span>
+      </div>
+      <div class="lg-note">
+        <span class="g-dot g-lg g-faint"></span><span class="g-arrow">→</span><span class="g-dot g-lg"></span>
+        <span class="g-txt">${tr.opacity}</span>
+      </div>
+      <div class="lg-attr">
+        ${tr.builtBy} <a href="https://github.com/maphouse" target="_blank" rel="noopener">@maphouse</a><br>
+        ${tr.dataAttr}<br>${tr.mapAttr}<br>
+        <span class="lg-transp">${tr.transparency}</span>
+      </div>
     </div>`;
   document.getElementById('langtoggle').addEventListener('click', () => {
     lang = lang === 'en' ? 'fr' : 'en';
-    document.querySelector('#titlebar p').textContent = t().subtitle;
+    document.querySelector('#titlebar h1').textContent = t().title;
     renderLegend();
   });
 }

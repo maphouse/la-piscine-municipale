@@ -1,7 +1,15 @@
+/* Museo Slab — 500 (regular) and 700 (bold), self-hosted. */
 @font-face {
-  font-family: 'Libre Franklin';
-  src: url('../fonts/LibreFranklin-variable.woff2') format('woff2');
-  font-weight: 100 900;
+  font-family: 'Museo Slab';
+  src: url('../fonts/MuseoSlab-500.woff2') format('woff2');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Museo Slab';
+  src: url('../fonts/MuseoSlab-700.woff2') format('woff2');
+  font-weight: 600 800;
   font-style: normal;
   font-display: swap;
 }
@@ -10,6 +18,7 @@
   --ink: #1a1a1a;
   --paper: #ffffff;
   --hair: rgba(0, 0, 0, 0.12);
+  --font: 'Museo Slab', Georgia, serif;
 }
 
 * { box-sizing: border-box; }
@@ -17,7 +26,8 @@
 html, body {
   margin: 0;
   height: 100%;
-  font-family: 'Libre Franklin', system-ui, sans-serif;
+  font-family: var(--font);
+  font-weight: 500;
   color: var(--ink);
 }
 
@@ -27,7 +37,7 @@ html, body {
 #titlebar {
   position: absolute;
   top: 14px;
-  left: 14px;
+  left: 18px;
   z-index: 2;
   pointer-events: none;
 }
@@ -35,80 +45,104 @@ html, body {
   margin: 0;
   font-weight: 700;
   font-size: clamp(20px, 4.5vw, 30px);
-  letter-spacing: 0.04em;
-  line-height: 1;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85), 0 0 14px rgba(255, 255, 255, 0.9);
 }
-#titlebar p {
-  margin: 4px 0 0;
-  font-weight: 600;
-  font-size: 13px;
-  color: #444;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
-}
 
-/* Legend */
+/* Legend — a round panel */
 #legend {
   position: absolute;
-  bottom: 14px;
-  left: 14px;
+  bottom: 16px;
+  left: 16px;
   z-index: 2;
-  width: 280px;
-  max-width: calc(100vw - 28px);
+  width: min(82vw, 330px);
+  aspect-ratio: 1 / 1;
   background: var(--paper);
   border: 1px solid var(--hair);
-  border-radius: 10px;
-  padding: 12px 14px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-  font-size: 12.5px;
-  line-height: 1.45;
+  border-radius: 50%;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9%;
+  overflow: hidden;
 }
+.lg-inner { width: 100%; font-size: 12px; line-height: 1.4; }
 .lg-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 }
-.lg-head strong { font-weight: 700; font-size: 13.5px; }
+.lg-head strong { font-weight: 700; font-size: 13px; }
 #langtoggle {
   font-family: inherit;
   font-weight: 700;
-  font-size: 11px;
+  font-size: 10.5px;
+  width: 30px;
+  height: 30px;
   border: 1px solid var(--hair);
   background: #f4f4f5;
-  border-radius: 6px;
-  padding: 3px 9px;
+  border-radius: 50%;
+  padding: 0;
   cursor: pointer;
+  flex: none;
 }
 #langtoggle:hover { background: #e9e9eb; }
 .lg-row { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
 .lg-dot {
   width: 14px; height: 14px;
   border-radius: 50%;
-  border: 1.25px solid #fff;
+  border: 1.5px solid #fff;
   box-shadow: 0 0 0 1px var(--hair);
   flex: none;
 }
-.lg-note { color: #555; margin-top: 6px; }
+
+/* Encoding guides: size = different-sized circles; opacity = same-size circles */
+.lg-note { display: flex; align-items: center; margin-top: 7px; font-size: 11.5px; color: #555; }
+.g-dot {
+  display: inline-block;
+  border-radius: 50%;
+  background: #444;
+  border: 1.5px solid #fff;
+  box-shadow: 0 0 0 1px var(--hair);
+  flex: none;
+}
+.g-sm { width: 9px; height: 9px; }
+.g-lg { width: 17px; height: 17px; }
+.g-faint { opacity: 0.3; }
+.g-arrow { margin: 0 6px; color: #999; }
+.g-txt { margin-left: 8px; }
+
 .lg-attr {
-  margin-top: 10px;
+  margin-top: 9px;
   padding-top: 8px;
   border-top: 1px solid var(--hair);
-  font-size: 11px;
+  font-size: 10.5px;
   color: #666;
+  line-height: 1.45;
 }
 .lg-attr a { color: #2c7fb8; }
+.lg-transp { color: #888; }
+
+/* Round geolocation control */
+.maplibregl-ctrl-top-right .maplibregl-ctrl-group {
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+.maplibregl-ctrl-top-right .maplibregl-ctrl-group button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
 
 /* Popup */
-.popup { font-family: 'Libre Franklin', sans-serif; min-width: 220px; }
+.popup { font-family: var(--font); min-width: 220px; }
 .popup h2 { margin: 0 0 6px; font-size: 15px; font-weight: 700; }
-.popup .status { display: flex; align-items: center; gap: 7px; font-weight: 600; font-size: 12.5px; margin-bottom: 8px; }
+.popup .status { display: flex; align-items: center; gap: 7px; font-weight: 600; font-size: 12.5px; margin-bottom: 10px; }
 .popup .dot { width: 11px; height: 11px; border-radius: 50%; flex: none; }
-.popup .week { font-size: 11.5px; color: #444; margin-bottom: 10px; max-height: 130px; overflow: auto; }
-.popup .day { padding: 1px 0; }
-.popup .day.today { font-weight: 700; color: var(--ink); }
-.popup .day .dname { display: inline-block; width: 30px; color: #888; font-weight: 600; }
-.popup .day.today .dname { color: var(--ink); }
 .popup .actions { display: flex; flex-direction: column; gap: 6px; }
 .popup .btn {
   font-family: inherit;
@@ -126,6 +160,11 @@ html, body {
 .popup .btn:hover { background: #e9e9eb; }
 .popup .btn-ics { background: #2c7fb8; color: #fff; border-color: #2c7fb8; }
 .popup .btn-ics:hover { background: #24689a; }
+.popup .week { font-size: 11.5px; color: #444; margin-top: 10px; max-height: 130px; overflow: auto; }
+.popup .day { padding: 1px 0; }
+.popup .day.today { font-weight: 700; color: var(--ink); }
+.popup .day .dname { display: inline-block; width: 30px; color: #888; font-weight: 600; }
+.popup .day.today .dname { color: var(--ink); }
 
 .maplibregl-popup-content { border-radius: 12px; padding: 14px; }
 
