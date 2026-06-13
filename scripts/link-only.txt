@@ -1,0 +1,7 @@
+# Indoor pools that DO offer free adult swim but don't publish a structured,
+# parsable schedule on their montreal.ca page (independent operators that post
+# hours as images/PDFs on their own sites). These are shown as grey "link-only"
+# markers: located on the map, popup links out to the pool page, no .ics.
+# One slug per line; must also be (or get added to) candidates.txt.
+piscine-du-centre-yvon-deschamps-asccs
+piscine-du-centre-sportif-de-la-petite-bourgogne

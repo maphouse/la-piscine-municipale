@@ -108,37 +108,47 @@ function parseScheduleTable(tableHtml) {
 // Pool pages render several schedule "periods" (e.g. a spring-break week and the
 // regular season), each with its own adult tables. Each period header carries a
 // machine-readable range: <time datetime="2026-03-07…">…</time> au <time
-// datetime="2026-06-19…">. We keep only the period whose range contains today, so
-// the map shows the schedule actually in effect.
-const ymd = (y, m, d) => y * 10000 + m * 100 + d;
+// datetime="2026-06-19…">. We keep the period in effect today; when today falls in
+// a gap between posted periods (common at seasonal transitions, e.g. the regular
+// schedule has ended but the summer one hasn't started), we fall back to the
+// nearest period, preferring the next upcoming one, so the pool still appears.
+const toDays = (y, m, d) => Math.floor(Date.UTC(y, m - 1, d) / 86400000);
 
-function montrealTodayYmd() {
+function montrealTodayDays() {
   const p = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit',
   }).formatToParts(new Date());
   const g = (t) => +p.find((x) => x.type === t).value;
-  return ymd(g('year'), g('month'), g('day'));
+  return toDays(g('year'), g('month'), g('day'));
 }
 
-// Returns the HTML segment(s) for the period in effect today, or the whole page
-// if it has no period selector.
+// Returns the HTML segment(s) for the period to display, or the whole page if it
+// has no period selector.
 function selectScheduleHtml(html) {
   const re = /<time datetime="(\d{4})-(\d{2})-(\d{2})[^"]*">[\s\S]*?<\/time>\s*au\s*<time datetime="(\d{4})-(\d{2})-(\d{2})/gi;
   const labels = [];
   let m;
   while ((m = re.exec(html))) {
-    labels.push({ pos: m.index, start: ymd(+m[1], +m[2], +m[3]), end: ymd(+m[4], +m[5], +m[6]) });
+    labels.push({ pos: m.index, start: toDays(+m[1], +m[2], +m[3]), end: toDays(+m[4], +m[5], +m[6]) });
   }
   if (!labels.length) return html; // simple page, no period selector
 
-  const today = montrealTodayYmd();
-  const segments = [];
-  for (let i = 0; i < labels.length; i++) {
-    if (today < labels[i].start || today > labels[i].end) continue;
-    const end = i + 1 < labels.length ? labels[i + 1].pos : labels[i].pos + 6000;
-    segments.push(html.slice(labels[i].pos, end));
-  }
-  return segments.length ? segments.join('\n') : '';
+  const seg = (i) => html.slice(labels[i].pos, i + 1 < labels.length ? labels[i + 1].pos : labels[i].pos + 6000);
+  const today = montrealTodayDays();
+
+  // Periods that actually contain today.
+  const current = labels.map((l, i) => i).filter((i) => today >= labels[i].start && today <= labels[i].end);
+  if (current.length) return current.map(seg).join('\n');
+
+  // Gap fallback: nearest period by day distance, upcoming preferred on a tie.
+  let best = -1, bestKey = Infinity;
+  labels.forEach((l, i) => {
+    const upcoming = l.start > today;
+    const gap = upcoming ? l.start - today : today - l.end;
+    const key = gap * 2 + (upcoming ? 0 : 1);
+    if (key < bestKey) { bestKey = key; best = i; }
+  });
+  return best >= 0 ? seg(best) : '';
 }
 
 // Pull every <h3>heading</h3> … <table>…</table> pair from the page and keep the
@@ -192,10 +202,17 @@ function extractName(html) {
   return t ? t[1].trim() : null;
 }
 
-async function main() {
-  const candidatesPath = join(__dirname, 'candidates.txt');
-  const slugs = (await readFile(candidatesPath, 'utf-8'))
+const readList = async (file) =>
+  (await readFile(join(__dirname, file), 'utf-8'))
     .split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('#'));
+
+const emptyWeek = () => Object.fromEntries(DAY_KEYS.map((k) => [k, []]));
+
+async function main() {
+  const slugs = await readList('candidates.txt');
+  // Pools known to offer free adult swim but without a parsable schedule on their
+  // City page — shown as grey "link-only" markers.
+  const linkOnly = new Set(await readList('link-only.txt'));
 
   const pools = [];
   for (const slug of slugs) {
@@ -211,7 +228,15 @@ async function main() {
 
     const scheduleHtml = selectScheduleHtml(html);
     const schedule = scheduleHtml ? extractSchedule(scheduleHtml) : null;
-    if (!schedule) { console.log(`  skip ${slug}: no adult/lane free-swim schedule in effect (closed/off-season?)`); continue; }
+    if (!schedule) {
+      if (linkOnly.has(slug)) {
+        pools.push({ slug, name: extractName(html), url, lat: coords.lat, lng: coords.lng, schedule: emptyWeek(), scheduleUnavailable: true });
+        console.log(`  ◐ ${slug}: link-only grey marker (no parsable schedule)`);
+      } else {
+        console.log(`  skip ${slug}: no adult/lane free-swim schedule in effect (closed/off-season?)`);
+      }
+      continue;
+    }
 
     const total = Object.values(schedule).reduce((n, day) => n + day.length, 0);
     pools.push({ slug, name: extractName(html), url, lat: coords.lat, lng: coords.lng, schedule });

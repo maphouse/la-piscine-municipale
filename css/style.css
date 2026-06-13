@@ -1,15 +1,7 @@
-/* Museo Slab — 500 (regular) and 700 (bold), self-hosted. */
 @font-face {
-  font-family: 'Museo Slab';
-  src: url('../fonts/MuseoSlab-500.woff2') format('woff2');
-  font-weight: 400 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Museo Slab';
-  src: url('../fonts/MuseoSlab-700.woff2') format('woff2');
-  font-weight: 600 800;
+  font-family: 'Libre Franklin';
+  src: url('../fonts/LibreFranklin-variable.woff2') format('woff2');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
@@ -18,7 +10,7 @@
   --ink: #1a1a1a;
   --paper: #ffffff;
   --hair: rgba(0, 0, 0, 0.12);
-  --font: 'Museo Slab', Georgia, serif;
+  --font: 'Libre Franklin', system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -27,7 +19,6 @@ html, body {
   margin: 0;
   height: 100%;
   font-family: var(--font);
-  font-weight: 500;
   color: var(--ink);
 }
 
@@ -61,7 +52,14 @@ html, body {
   line-height: 1.05;
 }
 .lg-heading { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
-#langtoggle, #mintoggle {
+.lg-heading .title-swimmer {
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.18em;
+  margin-left: 0.15em;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.95));
+}
+#langtoggle, #geoloc, #mintoggle {
   font-family: inherit;
   font-weight: 700;
   font-size: 11px;
@@ -70,13 +68,19 @@ html, body {
   height: 28px;
   border: 1px solid var(--hair);
   background: #f4f4f5;
-  border-radius: 50%;
+  border-radius: 0;
   padding: 0;
   cursor: pointer;
   flex: none;
   text-shadow: none;
 }
-#langtoggle:hover, #mintoggle:hover { background: #e9e9eb; }
+#geoloc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+#langtoggle:hover, #geoloc:hover, #mintoggle:hover { background: #e9e9eb; }
 .lg-row { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
 .lg-dot {
   width: 14px; height: 14px;
@@ -84,21 +88,6 @@ html, body {
   border: 1px solid var(--hair);
   flex: none;
 }
-
-/* Encoding guides: size = different-sized circles; opacity = same-size circles */
-.lg-note { display: flex; align-items: center; margin-top: 7px; font-size: 11.5px; color: #555; }
-.g-dot {
-  display: inline-block;
-  border-radius: 50%;
-  background: #444;
-  border: 1px solid var(--hair);
-  flex: none;
-}
-.g-sm { width: 9px; height: 9px; }
-.g-lg { width: 17px; height: 17px; }
-.g-faint { opacity: 0.3; }
-.g-arrow { margin: 0 6px; color: #999; }
-.g-txt { margin-left: 8px; }
 
 .lg-attr {
   margin-top: 9px;
@@ -111,55 +100,63 @@ html, body {
 .lg-attr a { color: #2c7fb8; }
 .lg-transp { color: #888; }
 
-/* Round geolocation control */
-.maplibregl-ctrl-top-right .maplibregl-ctrl-group {
-  border-radius: 50%;
-  overflow: hidden;
-}
-.maplibregl-ctrl-top-right .maplibregl-ctrl-group button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
+/* Default geolocate control is hidden — triggered from the legend button. */
+.maplibregl-ctrl-bottom-right { display: none; }
 
 /* Popup — circular, matching the legend */
+/* Popups — bare, square, tight */
 .maplibregl-popup-content {
-  border-radius: 50%;
-  width: 340px;
-  height: 340px;
-  padding: 38px;
-  border: 3px solid #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 0;
+  border: none;
   box-shadow: none;
-  overflow: hidden;
+  padding: 8px 10px;
 }
 .maplibregl-popup-tip { display: none; }
 .maplibregl-popup-close-button { z-index: 1; }
 
-.popup { font-family: var(--font); width: 100%; text-align: center; }
-.popup h2 { margin: 0 0 6px; font-size: 14.5px; font-weight: 700; line-height: 1.2; }
-.popup .status { display: flex; align-items: center; justify-content: center; gap: 7px; font-weight: 600; font-size: 12px; margin-bottom: 10px; }
-.popup .dot { width: 11px; height: 11px; border-radius: 50%; flex: none; }
-.popup .actions { display: flex; flex-direction: column; gap: 6px; }
+.popup { font-family: var(--font); min-width: 160px; }
+.popup h2 { margin: 0 0 3px; font-size: 13.5px; font-weight: 700; line-height: 1.15; }
+.popup h2 .pool-link { color: inherit; text-decoration: none; }
+.popup h2 .pool-link:hover { text-decoration: underline; }
+.popup .status { font-weight: 600; font-size: 12px; margin-bottom: 6px; }
+.popup .actions { display: flex; flex-direction: column; gap: 3px; }
 .popup .btn {
   font-family: inherit;
   font-weight: 600;
-  font-size: 12.5px;
-  text-align: center;
+  font-size: 12px;
+  text-align: left;
   text-decoration: none;
-  padding: 7px 10px;
-  border-radius: 7px;
-  border: 1px solid var(--hair);
-  background: #f4f4f5;
-  color: var(--ink);
+  padding: 2px 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: #2c7fb8;
   cursor: pointer;
 }
-.popup .btn:hover { background: #e9e9eb; }
-.popup .btn-ics { background: #2c7fb8; color: #fff; border-color: #2c7fb8; }
-.popup .btn-ics:hover { background: #24689a; }
-.popup .week { font-size: 11.5px; color: #444; margin-top: 10px; max-height: 130px; overflow: auto; }
+.popup .btn:hover { text-decoration: underline; }
+.popup .btn-ics { color: #2c7fb8; }
+.popup .week-dd { margin-top: 0; }
+.popup .week-dd summary {
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 12px;
+  color: #2c7fb8;
+  cursor: pointer;
+  padding: 2px 0;
+  list-style: none;
+}
+.popup .week-dd summary::-webkit-details-marker { display: none; }
+.popup .week-dd summary::marker { content: ''; }
+.popup .week-dd summary:hover { text-decoration: underline; }
+.popup .week-dd summary::after {
+  content: '⌄';
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 11px;
+  line-height: 1;
+}
+.popup .week-dd[open] summary::after { transform: rotate(180deg); }
+.popup .week { font-size: 11.5px; color: #444; margin: 6px 0; max-height: 130px; overflow: auto; }
 .popup .day { padding: 1px 0; }
 .popup .day.today { font-weight: 700; color: var(--ink); }
 .popup .day .dname { display: inline-block; width: 30px; color: #888; font-weight: 600; }

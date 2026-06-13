@@ -1,8 +1,8 @@
 {
-  "generated": "2026-06-12T22:55:02.463Z",
+  "generated": "2026-06-13T02:21:54.407Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "count": 17,
+  "count": 24,
   "pools": [
     {
       "slug": "bain-emard",
@@ -321,6 +321,256 @@
       }
     },
     {
+      "slug": "piscine-de-lacademie-beurling",
+      "name": "Piscine de l'Académie Beurling",
+      "url": "https://montreal.ca/lieux/piscine-de-lacademie-beurling",
+      "lat": 45.448186779684,
+      "lng": -73.586382865906,
+      "schedule": {
+        "sun": [
+          [
+            "08:30",
+            "09:25",
+            "lane"
+          ],
+          [
+            "17:15",
+            "18:10",
+            "lane"
+          ]
+        ],
+        "mon": [
+          [
+            "20:35",
+            "21:30",
+            "lane"
+          ]
+        ],
+        "tue": [
+          [
+            "20:40",
+            "21:30",
+            "lane"
+          ]
+        ],
+        "wed": [
+          [
+            "19:35",
+            "21:30",
+            "lane"
+          ]
+        ],
+        "thu": [
+          [
+            "20:15",
+            "21:30",
+            "lane"
+          ]
+        ],
+        "fri": [
+          [
+            "19:30",
+            "21:30",
+            "lane"
+          ]
+        ],
+        "sat": [
+          [
+            "08:30",
+            "09:25",
+            "lane"
+          ]
+        ]
+      }
+    },
+    {
+      "slug": "piscine-du-cegep-du-vieux-montreal",
+      "name": "Piscine du cégep du Vieux Montréal",
+      "url": "https://montreal.ca/lieux/piscine-du-cegep-du-vieux-montreal",
+      "lat": 45.514598500625,
+      "lng": -73.566368222237,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [
+          [
+            "13:00",
+            "19:00",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "13:00",
+            "19:00",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "13:00",
+            "19:00",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "13:00",
+            "19:00",
+            "adult"
+          ]
+        ],
+        "sat": []
+      }
+    },
+    {
+      "slug": "piscine-du-centre-jean-claude-malepart",
+      "name": "Piscine du centre Jean-Claude-Malépart",
+      "url": "https://montreal.ca/lieux/piscine-du-centre-jean-claude-malepart",
+      "lat": 45.534002846799,
+      "lng": -73.552098870277,
+      "schedule": {
+        "sun": [
+          [
+            "12:00",
+            "13:00",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "07:00",
+            "08:55",
+            "adult"
+          ],
+          [
+            "12:00",
+            "13:25",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "12:00",
+            "13:25",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "07:00",
+            "08:55",
+            "adult"
+          ],
+          [
+            "12:00",
+            "13:25",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "12:00",
+            "13:25",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "07:00",
+            "08:55",
+            "adult"
+          ],
+          [
+            "12:00",
+            "13:25",
+            "adult"
+          ]
+        ],
+        "sat": []
+      }
+    },
+    {
+      "slug": "piscine-du-centre-sportif-de-la-petite-bourgogne",
+      "name": "Piscine du centre sportif de la Petite-Bourgogne",
+      "url": "https://montreal.ca/lieux/piscine-du-centre-sportif-de-la-petite-bourgogne",
+      "lat": 45.488222970601,
+      "lng": -73.569152355194,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true
+    },
+    {
+      "slug": "piscine-du-centre-yvon-deschamps-asccs",
+      "name": "Piscine du centre Yvon Deschamps (ASCCS)",
+      "url": "https://montreal.ca/lieux/piscine-du-centre-yvon-deschamps-asccs",
+      "lat": 45.522792513738,
+      "lng": -73.562672138214,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true
+    },
+    {
+      "slug": "piscine-du-complexe-sportif-du-college-sainte-anne",
+      "name": "Piscine du complexe sportif du Collège Sainte-Anne",
+      "url": "https://montreal.ca/lieux/piscine-du-complexe-sportif-du-college-sainte-anne",
+      "lat": 45.4322365646,
+      "lng": -73.674253830427,
+      "schedule": {
+        "sun": [
+          [
+            "18:30",
+            "20:45",
+            "lane"
+          ]
+        ],
+        "mon": [],
+        "tue": [
+          [
+            "20:30",
+            "21:45",
+            "lane"
+          ]
+        ],
+        "wed": [
+          [
+            "20:30",
+            "21:45",
+            "lane"
+          ]
+        ],
+        "thu": [
+          [
+            "20:30",
+            "21:45",
+            "lane"
+          ]
+        ],
+        "fri": [
+          [
+            "20:30",
+            "21:45",
+            "lane"
+          ]
+        ],
+        "sat": []
+      }
+    },
+    {
       "slug": "piscine-du-complexe-sportif-marie-victorin",
       "name": "Piscine du Complexe sportif Marie-Victorin",
       "url": "https://montreal.ca/lieux/piscine-du-complexe-sportif-marie-victorin",
@@ -404,6 +654,40 @@
             "adult"
           ]
         ]
+      }
+    },
+    {
+      "slug": "piscine-interieure-henri-bourassa",
+      "name": "Piscine intérieure Henri-Bourassa",
+      "url": "https://montreal.ca/lieux/piscine-interieure-henri-bourassa",
+      "lat": 45.614010721791,
+      "lng": -73.622956627306,
+      "schedule": {
+        "sun": [],
+        "mon": [
+          [
+            "20:30",
+            "22:30",
+            "adult"
+          ]
+        ],
+        "tue": [],
+        "wed": [
+          [
+            "20:30",
+            "22:30",
+            "adult"
+          ]
+        ],
+        "thu": [],
+        "fri": [
+          [
+            "20:30",
+            "22:30",
+            "adult"
+          ]
+        ],
+        "sat": []
       }
     },
     {
