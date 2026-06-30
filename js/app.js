@@ -237,7 +237,7 @@ function renderLegend() {
         <div class="lg-heading">${tr.legendHeading} ${SWIMMER_ICON}</div>
         ${sw(COLORS.open, 0.95, tr.open)}
         ${sw(COLORS.upcoming, 0.7, tr.upcoming)}
-        ${sw(COLORS.none, 0.28, tr.none)}
+        ${sw(COLORS.none, 0.45, tr.none)}
         <div class="lg-attr">
           ${tr.creditBy} <a href="https://github.com/maphouse" target="_blank" rel="noopener">@maphouse</a><br>
           ${tr.builtBy} · <span class="lg-transp">${tr.transparency}</span><br>

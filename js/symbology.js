@@ -91,7 +91,7 @@ export function poolState(pool, now = montrealNow()) {
 // Size ∝ minutes of free adult swim remaining today. sqrt keeps it area-proportional
 // (a true proportional-symbol map). Grey pools get a small fixed dot.
 function radiusFor(status, remainingMin) {
-  if (status === 'none') return 5;
+  if (status === 'none') return 7;
   return Math.min(26, 7 + 1.05 * Math.sqrt(remainingMin));
 }
 
@@ -101,7 +101,7 @@ function radiusFor(status, remainingMin) {
 //  - none (link-only grey pools): low fixed.
 function opacityFor(status, minutesUntilNext) {
   if (status === 'open') return 0.95;
-  if (status === 'none') return 0.28;
+  if (status === 'none') return 0.45;
   const near = 60, far = 1200, hi = 0.95, lo = 0.08;
   const m = Math.max(near, Math.min(far, minutesUntilNext));
   return hi - ((m - near) / (far - near)) * (hi - lo);

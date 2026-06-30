@@ -85,7 +85,7 @@ html, body {
 .lg-dot {
   width: 14px; height: 14px;
   border-radius: 50%;
-  border: 1px solid var(--hair);
+  box-shadow: 0 0 0 3px white;
   flex: none;
 }
 
