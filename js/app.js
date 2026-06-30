@@ -127,23 +127,23 @@ function buildPopupEl(pool) {
         <div class="week">${weekSummary(pool)}</div>
       </details>
       <button class="btn btn-ics" type="button">${tr.popupIcs}</button>`;
-  // Scheduled pools: the page link rides on the title (with ↗). Link-only pools
-  // keep the explicit "Visit pool page ↗" action since it's their main CTA.
+  // Scheduled pools: the page link rides on the title (with ↗). Greyed link-only
+  // pools have no title link — instead their status line ("Schedule on the
+  // pool's page ↗") is itself the link out.
   const title = pool.scheduleUnavailable
     ? `<h2 style="color:${st.color}">${escapeHtml(pool.name)}</h2>`
-    : `<h2 style="color:${st.color}">${escapeHtml(pool.name)} <a class="pool-link" href="${pool.url}" target="_blank" rel="noopener" title="${tr.popupVisit}">↗</a></h2>`;
-  const visitBtn = pool.scheduleUnavailable
-    ? `<a class="btn" href="${pool.url}" target="_blank" rel="noopener">${tr.popupVisit}</a>`
-    : '';
+    : `<h2 style="color:${st.color}"><a class="pool-link" href="${pool.url}" target="_blank" rel="noopener" title="${tr.popupVisit}">${escapeHtml(pool.name)} ↗</a></h2>`;
+  const statusHtml = pool.scheduleUnavailable
+    ? `<a class="status-link" href="${pool.url}" target="_blank" rel="noopener">${line} ↗</a>`
+    : line;
   const el = document.createElement('div');
   el.className = 'popup';
   el.innerHTML = `
     ${title}
-    <div class="status">${line}</div>
+    <div class="status">${statusHtml}</div>
     <div class="actions">
       <a class="btn" href="${directions}" target="_blank" rel="noopener">${tr.popupDirections}</a>
       ${schedule}
-      ${visitBtn}
     </div>`;
   const ics = el.querySelector('.btn-ics');
   if (ics) ics.addEventListener('click', () => downloadICS(pool, t()));
@@ -187,11 +187,22 @@ function fmtCountdown(min) {
 
 function nextSessionLabel(pool) {
   const now = montrealNow();
-  const today = (pool.schedule[now.dayKey] || [])
+  const tr = t();
+  const todayRemaining = (pool.schedule[now.dayKey] || [])
     .map((r) => ({ s: toMin(r[0]), txt: `${r[0]}–${r[1]}` }))
     .filter((x) => x.s > now.minutes)
     .sort((a, b) => a.s - b.s);
-  return today.length ? today[0].txt : '—';
+  if (todayRemaining.length) return todayRemaining[0].txt;
+  const todayIndex = DAY_KEYS.indexOf(now.dayKey);
+  for (let d = 1; d <= 6; d++) {
+    const nextDayIndex = (todayIndex + d) % 7;
+    const nextKey = DAY_KEYS[nextDayIndex];
+    const nextSessions = (pool.schedule[nextKey] || [])
+      .map((r) => ({ s: toMin(r[0]), txt: `${r[0]}–${r[1]}` }))
+      .sort((a, b) => a.s - b.s);
+    if (nextSessions.length) return `${tr.days[nextDayIndex]} ${nextSessions[0].txt}`;
+  }
+  return '—';
 }
 
 const toMin = (hhmm) => { const [h, m] = hhmm.split(':').map(Number); return h * 60 + m; };

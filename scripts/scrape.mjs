@@ -122,23 +122,36 @@ function montrealTodayDays() {
   return toDays(g('year'), g('month'), g('day'));
 }
 
-// Returns the HTML segment(s) for the period to display, or the whole page if it
-// has no period selector.
+// Returns { html, periodStart, periodEnd } where html is the relevant schedule
+// segment and periodStart/periodEnd are "YYYY-MM-DD" strings (null if the page
+// has no machine-readable date ranges).
 function selectScheduleHtml(html) {
   const re = /<time datetime="(\d{4})-(\d{2})-(\d{2})[^"]*">[\s\S]*?<\/time>\s*au\s*<time datetime="(\d{4})-(\d{2})-(\d{2})/gi;
   const labels = [];
   let m;
   while ((m = re.exec(html))) {
-    labels.push({ pos: m.index, start: toDays(+m[1], +m[2], +m[3]), end: toDays(+m[4], +m[5], +m[6]) });
+    labels.push({
+      pos: m.index,
+      start: toDays(+m[1], +m[2], +m[3]),
+      end: toDays(+m[4], +m[5], +m[6]),
+      startStr: `${m[1]}-${m[2]}-${m[3]}`,
+      endStr: `${m[4]}-${m[5]}-${m[6]}`,
+    });
   }
-  if (!labels.length) return html; // simple page, no period selector
+  if (!labels.length) return { html, periodStart: null, periodEnd: null };
 
   const seg = (i) => html.slice(labels[i].pos, i + 1 < labels.length ? labels[i + 1].pos : labels[i].pos + 6000);
   const today = montrealTodayDays();
 
   // Periods that actually contain today.
   const current = labels.map((l, i) => i).filter((i) => today >= labels[i].start && today <= labels[i].end);
-  if (current.length) return current.map(seg).join('\n');
+  if (current.length) {
+    return {
+      html: current.map(seg).join('\n'),
+      periodStart: labels[current[0]].startStr,
+      periodEnd: labels[current[current.length - 1]].endStr,
+    };
+  }
 
   // Gap fallback: nearest period by day distance, upcoming preferred on a tie.
   let best = -1, bestKey = Infinity;
@@ -148,7 +161,9 @@ function selectScheduleHtml(html) {
     const key = gap * 2 + (upcoming ? 0 : 1);
     if (key < bestKey) { bestKey = key; best = i; }
   });
-  return best >= 0 ? seg(best) : '';
+  return best >= 0
+    ? { html: seg(best), periodStart: labels[best].startStr, periodEnd: labels[best].endStr }
+    : { html: '', periodStart: null, periodEnd: null };
 }
 
 // Pull every <h3>heading</h3> … <table>…</table> pair from the page and keep the
@@ -226,7 +241,7 @@ async function main() {
     const coords = extractCoords(html);
     if (!coords) { console.log(`  skip ${slug}: no coordinates`); continue; }
 
-    const scheduleHtml = selectScheduleHtml(html);
+    const { html: scheduleHtml, periodStart, periodEnd } = selectScheduleHtml(html);
     const schedule = scheduleHtml ? extractSchedule(scheduleHtml) : null;
     if (!schedule) {
       if (linkOnly.has(slug)) {
@@ -239,8 +254,12 @@ async function main() {
     }
 
     const total = Object.values(schedule).reduce((n, day) => n + day.length, 0);
-    pools.push({ slug, name: extractName(html), url, lat: coords.lat, lng: coords.lng, schedule });
-    console.log(`  ✓ ${slug} (${total} weekly sessions — ${extractName(html)})`);
+    const poolEntry = { slug, name: extractName(html), url, lat: coords.lat, lng: coords.lng, schedule };
+    if (periodStart) poolEntry.periodStart = periodStart;
+    if (periodEnd) poolEntry.periodEnd = periodEnd;
+    pools.push(poolEntry);
+    const range = periodStart ? ` [${periodStart} → ${periodEnd}]` : '';
+    console.log(`  ✓ ${slug} (${total} sessions${range} — ${extractName(html)})`);
   }
 
   // De-duplicate pools that resolved to the same physical location (some pools
@@ -251,10 +270,26 @@ async function main() {
     deduped.push(p);
   }
 
+  // nextScrapeDate: the day after the earliest future period end across all pools.
+  // The daily workflow uses this to skip unnecessary scrapes.
+  const todayStr = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto' }).format(new Date());
+  const nextDay = (dateStr) => {
+    const d = new Date(dateStr + 'T12:00:00Z');
+    d.setUTCDate(d.getUTCDate() + 1);
+    return d.toISOString().slice(0, 10);
+  };
+  const futurePeriodEnds = deduped
+    .filter((p) => p.periodEnd && p.periodEnd >= todayStr)
+    .map((p) => p.periodEnd)
+    .sort();
+  const nextScrapeDate = futurePeriodEnds.length ? nextDay(futurePeriodEnds[0]) : null;
+  if (nextScrapeDate) console.log(`\nNext scheduled refresh: ${nextScrapeDate} (after earliest period end ${futurePeriodEnds[0]})`);
+
   const out = {
     generated: new Date().toISOString(),
     source: 'https://montreal.ca (City of Montreal pool pages)',
     timezone: 'America/Toronto',
+    nextScrapeDate,
     count: deduped.length,
     pools: deduped,
   };

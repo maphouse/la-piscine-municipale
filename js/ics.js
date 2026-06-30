@@ -30,8 +30,10 @@ const VTIMEZONE = [
 const pad = (n) => String(n).padStart(2, '0');
 const hhmmToParts = (hhmm) => hhmm.split(':').map(Number);
 
-// Date (Y/M/D in Montreal) of the next occurrence of weekday `targetDow`.
-function nextDateForDow(targetDow) {
+// Date (Y/M/D in Montreal) of the next occurrence of weekday `targetDow`, no
+// earlier than `periodStart` (YYYY-MM-DD). Advances by weeks if needed so that
+// DTSTART never lands before the schedule's published start date.
+function nextDateForDow(targetDow, periodStart) {
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short',
   }).formatToParts(new Date());
@@ -39,6 +41,11 @@ function nextDateForDow(targetDow) {
   const dow = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[g('weekday')];
   const base = new Date(Date.UTC(+g('year'), +g('month') - 1, +g('day')));
   base.setUTCDate(base.getUTCDate() + ((targetDow - dow + 7) % 7));
+  if (periodStart) {
+    const [py, pm, pd] = periodStart.split('-').map(Number);
+    const floor = new Date(Date.UTC(py, pm - 1, pd));
+    while (base < floor) base.setUTCDate(base.getUTCDate() + 7);
+  }
   return { y: base.getUTCFullYear(), m: base.getUTCMonth() + 1, d: base.getUTCDate() };
 }
 
@@ -67,11 +74,16 @@ export function buildICS(pool, t) {
     ...VTIMEZONE,
   ];
 
+  // Only set UNTIL for future/current periods; gap-fallback pools (periodEnd in
+  // the past) keep infinite recurrence so their ICS doesn't show zero events.
+  const todayStr = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto' }).format(new Date());
+  const until = (pool.periodEnd && pool.periodEnd >= todayStr) ? `;UNTIL=${pool.periodEnd.replace(/-/g, '')}T235959Z` : '';
+
   let seq = 0;
   for (let dow = 0; dow < 7; dow++) {
     const sessions = pool.schedule[DAY_KEYS[dow]] || [];
     if (!sessions.length) continue;
-    const { y, m, d } = nextDateForDow(dow);
+    const { y, m, d } = nextDateForDow(dow, pool.periodStart);
     const dateStr = `${y}${pad(m)}${pad(d)}`;
     for (const [start, end, type] of sessions) {
       const [sh, sm] = hhmmToParts(start);
@@ -84,9 +96,9 @@ export function buildICS(pool, t) {
         `SUMMARY:${esc(label + ' — ' + pool.name)}`,
         `DTSTART;TZID=America/Toronto:${dateStr}T${pad(sh)}${pad(sm)}00`,
         `DTEND;TZID=America/Toronto:${dateStr}T${pad(eh)}${pad(em)}00`,
-        'RRULE:FREQ=WEEKLY',
+        `RRULE:FREQ=WEEKLY${until}`,
         `LOCATION:${esc(pool.name)}`,
-        `DESCRIPTION:${esc('Free adult swim at ' + pool.name + '.\nSchedule changes seasonally — confirm at ' + pool.url)}`,
+        `DESCRIPTION:${esc((t.icsDescription || 'Downloaded from {siteUrl}\nSchedule changes seasonally.\nMore info at {poolUrl}').replace('{siteUrl}', 'https://maphouse.github.io/la-piscine-municipale/').replace('{poolUrl}', pool.url))}`,
         `URL:${pool.url}`,
         'END:VEVENT',
       );
