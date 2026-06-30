@@ -85,7 +85,7 @@ html, body {
 .lg-dot {
   width: 14px; height: 14px;
   border-radius: 50%;
-  border: 1px solid var(--hair);
+  box-shadow: 0 0 0 3px white;
   flex: none;
 }
 
@@ -119,6 +119,8 @@ html, body {
 .popup h2 .pool-link { color: inherit; text-decoration: none; }
 .popup h2 .pool-link:hover { text-decoration: underline; }
 .popup .status { font-weight: 600; font-size: 12px; margin-bottom: 6px; }
+.popup .status-link { color: #2c7fb8; text-decoration: none; }
+.popup .status-link:hover { text-decoration: underline; }
 .popup .actions { display: flex; flex-direction: column; gap: 3px; }
 .popup .btn {
   font-family: inherit;

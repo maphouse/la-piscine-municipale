@@ -5,3 +5,8 @@
 # One slug per line; must also be (or get added to) candidates.txt.
 piscine-du-centre-yvon-deschamps-asccs
 piscine-du-centre-sportif-de-la-petite-bourgogne
+# Loisirs Sportifs CDN-NDG (NPOs running city pools): free year-round, but post
+# their bain-libre hours only on lscdndg.org, not in the montreal.ca page table.
+# (Piscine communautaire NDG / Décarie omitted — closed for renovations to 2026.)
+piscine-du-centre-sportif-cote-des-neiges
+piscine-du-centre-sportif-de-notre-dame-de-grace

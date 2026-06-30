@@ -6,8 +6,8 @@ export const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
 export const COLORS = {
   open: '#1a9850',     // currently open — green
-  upcoming: '#2c7fb8', // free hours later today, not open yet — blue
-  none: '#9aa0a6',     // nothing left today — grey
+  upcoming: '#2c7fb8', // free hours coming up (today or next occurrence) — blue
+  none: '#6b7280',     // no parsable schedule (link-only pools only) — grey
 };
 
 // "HH:MM" -> minutes since midnight.
@@ -60,6 +60,23 @@ export function poolState(pool, now = montrealNow()) {
   if (openNow) status = 'open';
   else if (remainingMin > 0) status = 'upcoming';
 
+  // When today's hours are all past and the pool has a real schedule, look
+  // ahead up to 6 days to find the next session and stay blue rather than
+  // going grey. remainingMin is set to the next day's total so circle size
+  // encodes available time for that day.
+  if (status === 'none' && !pool.scheduleUnavailable) {
+    const todayIndex = DAY_KEYS.indexOf(now.dayKey);
+    for (let d = 1; d <= 6; d++) {
+      const nextKey = DAY_KEYS[(todayIndex + d) % 7];
+      const nextIntervals = mergeIntervals((pool.schedule[nextKey] || []).map((r) => [toMin(r[0]), toMin(r[1])]));
+      if (!nextIntervals.length) continue;
+      minutesUntilNext = nextIntervals[0][0] + d * 1440 - now.minutes;
+      remainingMin = nextIntervals.reduce((sum, [s, e]) => sum + (e - s), 0);
+      status = 'upcoming';
+      break;
+    }
+  }
+
   return {
     status,
     color: COLORS[status],
@@ -74,18 +91,18 @@ export function poolState(pool, now = montrealNow()) {
 // Size ∝ minutes of free adult swim remaining today. sqrt keeps it area-proportional
 // (a true proportional-symbol map). Grey pools get a small fixed dot.
 function radiusFor(status, remainingMin) {
-  if (status === 'none') return 5;
+  if (status === 'none') return 7;
   return Math.min(26, 7 + 1.05 * Math.sqrt(remainingMin));
 }
 
-// Opacity ∝ nearness in time, looking forward, capped at upcoming midnight.
+// Opacity ∝ nearness in time, looking forward across days.
 //  - open now: full.
-//  - upcoming: starts within ~1 h → near-full; ~6 h away → faint; linear between.
-//  - none left today: low.
+//  - upcoming: starts within 1 h → near-full; 18 h away → faintest; linear.
+//  - none (link-only grey pools): low fixed.
 function opacityFor(status, minutesUntilNext) {
   if (status === 'open') return 0.95;
-  if (status === 'none') return 0.28;
-  const near = 60, far = 360, hi = 0.95, lo = 0.35;
+  if (status === 'none') return 0.45;
+  const near = 60, far = 1200, hi = 0.95, lo = 0.08;
   const m = Math.max(near, Math.min(far, minutesUntilNext));
   return hi - ((m - near) / (far - near)) * (hi - lo);
 }

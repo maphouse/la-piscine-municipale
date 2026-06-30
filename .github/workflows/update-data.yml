@@ -1,11 +1,13 @@
 name: Update pool data
 
 # Scrapes montreal.ca for the current free adult-swim schedules and commits
-# data/pools.json when it changes. Runs rarely — the City updates pool schedules
-# only at seasonal shifts — plus on demand.
+# data/pools.json when it changes. Runs daily; the "Check if refresh is due"
+# step exits early unless today >= nextScrapeDate (the day after the earliest
+# period end stored in pools.json), so the full scrape only runs at period
+# boundaries. workflow_dispatch always runs the scraper regardless.
 on:
   schedule:
-    - cron: '0 9 1,15 * *' # 09:00 UTC on the 1st and 15th of each month
+    - cron: '0 9 * * *' # 09:00 UTC daily ≈ 05:00 EDT, before any pool opens
   workflow_dispatch:
 
 permissions:
@@ -25,10 +27,24 @@ jobs:
         with:
           node-version: 20
 
+      - name: Check if refresh is due
+        id: due
+        run: |
+          NEXT=$(node -e "try{const d=require('./data/pools.json');process.stdout.write(d.nextScrapeDate||'')}catch(e){process.stdout.write('')}")
+          TODAY=$(date -u +%Y-%m-%d)
+          if [ -z "$NEXT" ] || [ "$TODAY" \>= "$NEXT" ]; then
+            echo "needed=true" >> $GITHUB_OUTPUT
+          else
+            echo "needed=false" >> $GITHUB_OUTPUT
+            echo "Next refresh due $NEXT — skipping today ($TODAY)."
+          fi
+
       - name: Scrape schedules
+        if: steps.due.outputs.needed == 'true' || github.event_name == 'workflow_dispatch'
         run: node scripts/scrape.mjs
 
       - name: Commit if changed
+        if: steps.due.outputs.needed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           if git diff --quiet -- data/pools.json; then
             echo "No schedule changes."
