@@ -1,9 +1,9 @@
 {
-  "generated": "2026-06-30T03:06:51.613Z",
+  "generated": "2026-07-10T21:04:27.040Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
   "nextScrapeDate": "2026-07-20",
-  "count": 26,
+  "count": 28,
   "pools": [
     {
       "slug": "bain-emard",
@@ -166,6 +166,86 @@
       "periodEnd": "2026-06-19"
     },
     {
+      "slug": "centre-aquatique-de-riviere-des-prairies",
+      "name": "Centre aquatique de Rivière-des-Prairies",
+      "url": "https://montreal.ca/lieux/centre-aquatique-de-riviere-des-prairies",
+      "lat": 45.651076762963,
+      "lng": -73.579088029757,
+      "schedule": {
+        "sun": [
+          [
+            "16:00",
+            "17:00",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "16:00",
+            "17:00",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "16:00",
+            "17:00",
+            "adult"
+          ],
+          [
+            "20:00",
+            "21:00",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "16:00",
+            "17:00",
+            "adult"
+          ],
+          [
+            "20:00",
+            "21:00",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "16:00",
+            "17:00",
+            "adult"
+          ],
+          [
+            "20:00",
+            "21:00",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "16:00",
+            "17:00",
+            "adult"
+          ],
+          [
+            "20:00",
+            "21:00",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "16:00",
+            "17:00",
+            "adult"
+          ]
+        ]
+      },
+      "periodStart": "2026-06-20",
+      "periodEnd": "2026-08-16"
+    },
+    {
       "slug": "complexe-aquatique-de-rosemont",
       "name": "Complexe aquatique de Rosemont",
       "url": "https://montreal.ca/lieux/complexe-aquatique-de-rosemont",
@@ -174,6 +254,16 @@
       "schedule": {
         "sun": [
           [
+            "08:00",
+            "10:55",
+            "lane"
+          ],
+          [
+            "12:00",
+            "14:55",
+            "lane"
+          ],
+          [
             "15:00",
             "16:55",
             "adult"
@@ -181,9 +271,24 @@
         ],
         "mon": [
           [
+            "07:00",
+            "10:55",
+            "lane"
+          ],
+          [
+            "12:00",
+            "14:55",
+            "lane"
+          ],
+          [
             "15:00",
             "16:55",
             "adult"
+          ],
+          [
+            "19:00",
+            "20:25",
+            "lane"
           ],
           [
             "20:30",
@@ -193,9 +298,19 @@
         ],
         "tue": [
           [
+            "10:00",
+            "14:55",
+            "lane"
+          ],
+          [
             "15:00",
             "16:55",
             "adult"
+          ],
+          [
+            "19:00",
+            "20:25",
+            "lane"
           ],
           [
             "20:30",
@@ -205,9 +320,24 @@
         ],
         "wed": [
           [
+            "07:00",
+            "10:55",
+            "lane"
+          ],
+          [
+            "12:00",
+            "14:55",
+            "lane"
+          ],
+          [
             "15:00",
             "16:55",
             "adult"
+          ],
+          [
+            "19:00",
+            "20:25",
+            "lane"
           ],
           [
             "20:30",
@@ -217,9 +347,19 @@
         ],
         "thu": [
           [
+            "10:00",
+            "14:55",
+            "lane"
+          ],
+          [
             "15:00",
             "16:55",
             "adult"
+          ],
+          [
+            "19:00",
+            "20:25",
+            "lane"
           ],
           [
             "20:30",
@@ -229,9 +369,24 @@
         ],
         "fri": [
           [
+            "07:00",
+            "10:55",
+            "lane"
+          ],
+          [
+            "12:00",
+            "14:55",
+            "lane"
+          ],
+          [
             "15:00",
             "16:55",
             "adult"
+          ],
+          [
+            "19:00",
+            "20:25",
+            "lane"
           ],
           [
             "20:30",
@@ -240,6 +395,16 @@
           ]
         ],
         "sat": [
+          [
+            "08:00",
+            "09:55",
+            "lane"
+          ],
+          [
+            "12:00",
+            "14:55",
+            "lane"
+          ],
           [
             "15:00",
             "16:55",
@@ -963,6 +1128,66 @@
       },
       "periodStart": "2026-06-19",
       "periodEnd": "2026-08-28"
+    },
+    {
+      "slug": "piscine-pierre-lorange",
+      "name": "Piscine Pierre-Lorange",
+      "url": "https://montreal.ca/lieux/piscine-pierre-lorange",
+      "lat": 45.542153,
+      "lng": -73.544566,
+      "schedule": {
+        "sun": [
+          [
+            "12:00",
+            "12:55",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "16:00",
+            "16:55",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "12:00",
+            "12:55",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "16:00",
+            "16:55",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "12:00",
+            "12:55",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "16:00",
+            "16:55",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "12:00",
+            "12:55",
+            "adult"
+          ]
+        ]
+      },
+      "periodStart": "2026-06-20",
+      "periodEnd": "2026-08-21"
     },
     {
       "slug": "piscine-quintal",
