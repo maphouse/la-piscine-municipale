@@ -5,9 +5,21 @@ import { downloadICS } from './ics.js';
 
 const MONTREAL = { center: [-73.61, 45.53], zoom: 11 };
 const BASEMAP = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
+const GAP_WIDTH = 2; // px width of the transparent gap carved between a pool's ring bands
+
+// Build-session metering shown in the legend. BUILD_TOKENS is the one figure
+// kept by hand — Claude usage isn't visible to the data-refresh Action, so
+// (unlike the "last updated" date, which tracks data/pools.json's `generated`
+// timestamp) it can't self-update. The billed cost and energy are estimated
+// from it via these blended per-million-token rates, calibrated to the original
+// 41.8M tokens ≈ US$30 ≈ 90 Wh metering.
+const BUILD_TOKENS = 41_800_000;
+const USD_PER_MTOK = 0.72; // blended, incl. cheap cache reads
+const WH_PER_MTOK = 2.15; // rough energy estimate
 
 let lang = (navigator.language || 'en').toLowerCase().startsWith('fr') ? 'fr' : 'en';
 let pools = [];
+let generated = null; // ISO timestamp of the last data refresh, from pools.json
 let map;
 let hoverPopup = null;
 let hoverSlug = null;
@@ -25,6 +37,7 @@ async function init() {
   const res = await fetch('data/pools.json', { cache: 'no-cache' });
   const data = await res.json();
   pools = data.pools;
+  generated = data.generated;
 
   // Keep the viewport on the pools' extent (Montreal island) — derive a padded
   // bounding box from the data so users can't wander off to the rest of the world.
@@ -55,25 +68,42 @@ async function init() {
 
   map.on('load', () => {
     map.addSource('pools', { type: 'geojson', data: featureCollection() });
+
+    // Each pool is drawn as two kinds of feature (see featureCollection): an invisible
+    // full-size 'hit' disc for interaction, and one 'band' per session. Bands are
+    // translucent so nearness reads through; they're drawn as non-overlapping annuli
+    // pulled apart by a small unpainted gap, so the basemap shows through between rings
+    // and the per-ring opacities never compound. Layer order bottom→top: hit, bands.
     map.addLayer({
-      id: 'pools',
+      id: 'pools-hit',
       type: 'circle',
       source: 'pools',
+      filter: ['==', ['get', 'role'], 'hit'],
+      paint: { 'circle-radius': ['get', 'radius'], 'circle-color': '#000', 'circle-opacity': 0 },
+    });
+    map.addLayer({
+      id: 'pools-bands',
+      type: 'circle',
+      source: 'pools',
+      filter: ['==', ['get', 'role'], 'band'],
       paint: {
+        // Innermost session is a filled disc; each outer session is a ring, drawn as
+        // an outward stroke (circle-stroke-width = band thickness, anchored at the
+        // band's inner radius) with no fill. Adjacent bands are pulled apart by a small
+        // gap (see featureCollection) so neither overlap nor a white overlay is needed —
+        // the basemap shows through. Both fill and stroke carry the session's opacity.
         'circle-radius': ['get', 'radius'],
         'circle-color': ['get', 'color'],
-        'circle-opacity': ['get', 'opacity'],
-        // Thick, fully-opaque white ring for figure-ground on every marker,
-        // including the faint grey ones.
-        'circle-stroke-width': 3,
-        'circle-stroke-color': '#ffffff',
-        'circle-stroke-opacity': 1,
+        'circle-opacity': ['get', 'fillOpacity'],
+        'circle-stroke-width': ['get', 'strokeWidth'],
+        'circle-stroke-color': ['get', 'strokeColor'],
+        'circle-stroke-opacity': ['get', 'strokeOpacity'],
       },
     });
 
-    map.on('click', 'pools', onMarkerClick);
-    map.on('mousemove', 'pools', onMarkerHover);
-    map.on('mouseleave', 'pools', () => {
+    map.on('click', 'pools-hit', onMarkerClick);
+    map.on('mousemove', 'pools-hit', onMarkerHover);
+    map.on('mouseleave', 'pools-hit', () => {
       map.getCanvas().style.cursor = '';
       hoverSlug = null;
       if (hoverPopup) hoverPopup.remove();
@@ -86,17 +116,40 @@ async function init() {
 }
 
 function featureCollection() {
-  return {
-    type: 'FeatureCollection',
-    features: pools.map((p) => {
-      const st = poolState(p);
-      return {
-        type: 'Feature',
-        geometry: { type: 'Point', coordinates: [p.lng, p.lat] },
-        properties: { slug: p.slug, radius: st.radius, color: st.color, opacity: st.opacity },
-      };
-    }),
-  };
+  const features = [];
+  for (const p of pools) {
+    const st = poolState(p);
+    const rings = st.rings; // outer (soonest) → inner (latest); radius descending
+    const geometry = { type: 'Point', coordinates: [p.lng, p.lat] };
+    // Invisible full-size disc: the interaction target for the whole symbol.
+    features.push({ type: 'Feature', geometry, properties: { role: 'hit', slug: p.slug, radius: rings[0].radius } });
+    rings.forEach((ring, i) => {
+      const outer = ring.radius;
+      const inner = i < rings.length - 1 ? rings[i + 1].radius : 0;
+      // Carve a see-through gap at each *internal* boundary by pulling the band edge
+      // back by GAP_WIDTH/2, so the basemap shows between bands (no white overlay). The
+      // symbol's outer edge (i === 0) and its centre (innermost) border nothing, so
+      // they're left untrimmed.
+      const outerDraw = i === 0 ? outer : outer - GAP_WIDTH / 2;
+      const innerDraw = inner <= 0 ? 0 : inner + GAP_WIDTH / 2;
+      if (innerDraw <= 0) {
+        // Innermost (or only) session — a filled disc [0, outerDraw].
+        features.push({ type: 'Feature', geometry, properties: {
+          role: 'band', slug: p.slug, radius: outerDraw,
+          color: ring.color, fillOpacity: ring.opacity, strokeColor: ring.color, strokeWidth: 0, strokeOpacity: 0,
+        } });
+      } else {
+        // Outer session — a ring. MapLibre strokes grow OUTWARD from circle-radius, so
+        // radius = innerDraw with strokeWidth = (outerDraw - innerDraw) fills exactly
+        // [innerDraw, outerDraw]; the trimmed gaps above and below reveal the basemap.
+        features.push({ type: 'Feature', geometry, properties: {
+          role: 'band', slug: p.slug, radius: innerDraw,
+          color: ring.color, fillOpacity: 0, strokeColor: ring.color, strokeWidth: Math.max(0.5, outerDraw - innerDraw), strokeOpacity: ring.opacity,
+        } });
+      }
+    });
+  }
+  return { type: 'FeatureCollection', features };
 }
 
 function refresh() {
@@ -108,14 +161,12 @@ function buildPopupEl(pool) {
   const st = poolState(pool);
   const tr = t();
 
-  let line;
-  if (pool.scheduleUnavailable) {
-    line = `${tr.seeSource}`;
-  } else if (st.status === 'open') {
+  let line = '';
+  if (st.status === 'open') {
     line = `${tr.open} · ${fmtMinutes(st.closesInMin)} ${tr.tillClose}`;
   } else if (st.status === 'upcoming') {
-    line = `${tr.nextIn} ${fmtCountdown(st.minutesUntilNext)} ${tr.at} ${nextSessionLabel(pool)}`;
-  } else {
+    line = `${tr.nextIn} ${fmtCountdown(st.minutesUntilNext)}<br><span class="status-when">${nextSessionLabel(pool)}</span>`;
+  } else if (!pool.scheduleUnavailable) {
     line = `${tr.noToday}`;
   }
 
@@ -127,20 +178,15 @@ function buildPopupEl(pool) {
         <div class="week">${weekSummary(pool)}</div>
       </details>
       <button class="btn btn-ics" type="button">${tr.popupIcs}</button>`;
-  // Scheduled pools: the page link rides on the title (with ↗). Greyed link-only
-  // pools have no title link — instead their status line ("Schedule on the
-  // pool's page ↗") is itself the link out.
-  const title = pool.scheduleUnavailable
-    ? `<h2 style="color:${st.color}">${escapeHtml(pool.name)}</h2>`
-    : `<h2 style="color:${st.color}"><a class="pool-link" href="${pool.url}" target="_blank" rel="noopener" title="${tr.popupVisit}">${escapeHtml(pool.name)} ↗</a></h2>`;
-  const statusHtml = pool.scheduleUnavailable
-    ? `<a class="status-link" href="${pool.url}" target="_blank" rel="noopener">${line} ↗</a>`
-    : line;
+  // Every pool's title links out to its montreal.ca page (with ↗). Link-only pools
+  // (no parsable schedule) simply omit the status line.
+  const title = `<h2 style="color:${st.color}"><a class="pool-link" href="${pool.url}" target="_blank" rel="noopener" title="${tr.popupVisit}">${escapeHtml(pool.name)} ↗</a></h2>`;
+  const status = pool.scheduleUnavailable ? '' : `<div class="status">${line}</div>`;
   const el = document.createElement('div');
   el.className = 'popup';
   el.innerHTML = `
     ${title}
-    <div class="status">${statusHtml}</div>
+    ${status}
     <div class="actions">
       <a class="btn" href="${directions}" target="_blank" rel="noopener">${tr.popupDirections}</a>
       ${schedule}
@@ -230,6 +276,15 @@ let legendCollapsed = false;
 
 function renderLegend() {
   const tr = t();
+  // Build-metering figures: one token total drives the estimated cost + energy.
+  const tokM = new Intl.NumberFormat(lang, { maximumFractionDigits: 1 }).format(BUILD_TOKENS / 1e6);
+  const usd = Math.round((BUILD_TOKENS / 1e6) * USD_PER_MTOK);
+  const wh = Math.round((BUILD_TOKENS / 1e6) * WH_PER_MTOK);
+  // Last-updated date, from the data fetch's `generated` timestamp — ISO YYYY-MM-DD
+  // (en-CA gives that format) in Montreal time, language-neutral.
+  const updated = generated
+    ? new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(generated))
+    : null;
   const sw = (c, o, label) =>
     `<div class="lg-row"><span class="lg-dot" style="background:${c};opacity:${o}"></span>${label}</div>`;
   const body = legendCollapsed ? '' : `
@@ -239,8 +294,8 @@ function renderLegend() {
         ${sw(COLORS.upcoming, 0.7, tr.upcoming)}
         ${sw(COLORS.none, 0.45, tr.none)}
         <div class="lg-attr">
-          ${tr.creditBy} <a href="https://github.com/maphouse" target="_blank" rel="noopener">@maphouse</a><br>
-          ${tr.builtBy} · <span class="lg-transp">${tr.transparency}</span><br>
+          ${updated ? `<span class="lg-updated">${tr.lastUpdated(updated)}</span><br>` : ''}${tr.creditBy} <a href="https://github.com/maphouse" target="_blank" rel="noopener">@maphouse</a><br>
+          ${tr.builtBy} · <span class="lg-transp">${tr.transparency(tokM, usd, wh)}</span><br>
           ${tr.dataAttr}<br>${tr.mapAttr}<br>
           <a href="https://github.com/maphouse/la-piscine-municipale/issues" target="_blank" rel="noopener">${tr.reportIssue}</a>
         </div>

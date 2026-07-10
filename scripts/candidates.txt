@@ -6,6 +6,7 @@
 # To add a pool: append its /lieux/<slug> slug below, one per line. Lines starting with # are ignored.
 bain-emard
 bain-morgan
+centre-aquatique-de-riviere-des-prairies
 centre-jean-claude-malepart
 centre-pere-marquette
 centre-saint-charles
@@ -39,6 +40,7 @@ piscine-interieure-henri-bourassa
 piscine-joseph-charbonneau
 piscine-levesque
 piscine-pere-marquette
+piscine-pierre-lorange
 piscine-quintal
 piscine-rene-goupil
 piscine-roussin
