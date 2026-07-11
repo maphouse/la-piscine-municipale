@@ -82,6 +82,8 @@ html, body {
 }
 #langtoggle:hover, #geoloc:hover, #mintoggle:hover { background: #e9e9eb; }
 .lg-row { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
+.lg-toggle { display: flex; align-items: center; gap: 8px; margin: 6px 0 2px; cursor: pointer; }
+.lg-toggle input { cursor: pointer; margin: 0; }
 .lg-dot {
   width: 14px; height: 14px;
   border-radius: 50%;
@@ -89,17 +91,39 @@ html, body {
   flex: none;
 }
 
-.lg-attr {
-  margin-top: 9px;
-  padding-top: 8px;
-  border-top: 1px solid var(--hair);
+.lg-transp { color: #888; }
+.lg-updated { display: inline-block; margin-bottom: 3px; color: #444; }
+
+/* Standalone credits box, bottom-left; minimizes to a single "Credits" word. */
+#credits {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  z-index: 2;
+  max-width: min(92vw, 340px);
   font-size: 10.5px;
   color: #666;
   line-height: 1.45;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 0 3px rgba(255, 255, 255, 0.9);
 }
-.lg-attr a { color: #2c7fb8; }
-.lg-transp { color: #888; }
-.lg-updated { display: inline-block; margin-bottom: 3px; color: #444; }
+#credits a { color: #2c7fb8; }
+.cr-body { margin-bottom: 4px; }
+.cr-chip {
+  display: inline-block;
+  font-family: inherit; font-weight: 700; font-size: 12px; color: #333;
+  background: none; border: none; padding: 0; cursor: pointer;
+  text-decoration: underline;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 0 3px rgba(255, 255, 255, 0.9);
+}
+
+/* "Share 📋" link, bottom-right, same style as the credits chip. */
+#share { position: absolute; bottom: 14px; right: 16px; z-index: 2; }
+.share-link {
+  font-family: inherit; font-weight: 700; font-size: 12px; color: #333;
+  background: none; border: none; padding: 0; cursor: pointer;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 0 3px rgba(255, 255, 255, 0.9);
+}
+.share-link .u { text-decoration: underline; }
 
 /* Default geolocate control is hidden — triggered from the legend button. */
 .maplibregl-ctrl-bottom-right { display: none; }
@@ -112,8 +136,20 @@ html, body {
   box-shadow: none;
   padding: 8px 10px;
 }
-.maplibregl-popup-tip { display: none; }
+/* Faint thin grey outline hugging the whole bubble + nib. A drop-shadow on the
+   popup follows the combined content+tip silhouette (no seam at the nib) and works
+   for both above/below anchors; stacked twice to read as a crisp line, not a blur. */
+.maplibregl-popup {
+  filter: drop-shadow(0 0 0.4px rgba(107, 114, 128, 0.85)) drop-shadow(0 0 0.4px rgba(107, 114, 128, 0.85));
+}
+/* Small downward tip so a popup clearly stems from the point beneath it (all our
+   popups anchor 'bottom', i.e. sit above the point). */
+.maplibregl-popup-tip { display: block; border: 7px solid transparent; }
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-top-color: #fff; border-bottom: none; }
+.maplibregl-popup-anchor-top .maplibregl-popup-tip { border-bottom-color: #fff; border-top: none; }
 .maplibregl-popup-close-button { z-index: 1; }
+/* Ambient centre preview: read-only, so pointer events pass through to the map. */
+.maplibregl-popup.popup-preview { pointer-events: none; }
 
 .popup { font-family: var(--font); min-width: 160px; }
 .popup h2 { margin: 0 0 3px; font-size: 13.5px; font-weight: 700; line-height: 1.15; }

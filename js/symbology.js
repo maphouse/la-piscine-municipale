@@ -43,8 +43,11 @@ function mergeIntervals(intervals) {
 
 // Compute the visual state for one pool right now.
 // Returns { status, color, remainingMin, minutesUntilNext, radius, opacity, rings }.
-export function poolState(pool, now = montrealNow()) {
-  const today = (pool.schedule[now.dayKey] || []).map((r) => [toMin(r[0]), toMin(r[1])]);
+export function poolState(pool, now = montrealNow(), includePublic = false) {
+  // "Open for all" (type 'public') sessions are only counted when the "adult swim
+  // only" toggle is off; otherwise the state reflects adult/lane sessions alone.
+  const keep = (r) => includePublic || r[2] !== 'public';
+  const today = (pool.schedule[now.dayKey] || []).filter(keep).map((r) => [toMin(r[0]), toMin(r[1])]);
   const intervals = mergeIntervals(today);
 
   // The day's *remaining* segments — the currently-open session's leftover plus every
@@ -71,7 +74,7 @@ export function poolState(pool, now = montrealNow()) {
     const todayIndex = DAY_KEYS.indexOf(now.dayKey);
     for (let d = 1; d <= 6; d++) {
       const nextKey = DAY_KEYS[(todayIndex + d) % 7];
-      const nextIntervals = mergeIntervals((pool.schedule[nextKey] || []).map((r) => [toMin(r[0]), toMin(r[1])]));
+      const nextIntervals = mergeIntervals((pool.schedule[nextKey] || []).filter(keep).map((r) => [toMin(r[0]), toMin(r[1])]));
       if (!nextIntervals.length) continue;
       minutesUntilNext = nextIntervals[0][0] + d * 1440 - now.minutes;
       segments = nextIntervals.map(([s, e]) => ({ start: s, remaining: e - s, open: false, minutesUntil: s + d * 1440 - now.minutes }));
