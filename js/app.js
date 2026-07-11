@@ -17,14 +17,23 @@ const BUILD_TOKENS = 41_800_000;
 const USD_PER_MTOK = 0.72; // blended, incl. cheap cache reads
 const WH_PER_MTOK = 2.15; // rough energy estimate
 
+// Touch devices (phones/tablets): start the credits collapsed, and place popups BELOW
+// their point (anchor 'top') instead of above — a thumb is less likely to hide them.
+const IS_TOUCH = window.matchMedia('(pointer: coarse)').matches;
+const POPUP_ANCHOR = IS_TOUCH ? 'top' : 'bottom';
+
 let lang = (navigator.language || 'en').toLowerCase().startsWith('fr') ? 'fr' : 'en';
 let pools = [];
 let generated = null; // ISO timestamp of the last data refresh, from pools.json
 let adultOnly = true; // experimental toggle: false also counts "open for all" hours
 let map;
-let hoverPopup = null;
-let hoverSlug = null;
 let geolocate = null;
+// Ambient "centre preview": the pool nearest the viewport centre pops its popup as
+// the user pans, so these abstract rings preview their contents (esp. on touch).
+let centerPopup = null;
+let centerSlug = null;
+let clickPopup = null;  // a user-clicked popup takes precedence over the preview
+let hasPanned = false;  // the preview stays hidden until the user's first pan
 
 const t = () => STRINGS[lang];
 
@@ -103,12 +112,15 @@ async function init() {
     });
 
     map.on('click', 'pools-hit', onMarkerClick);
-    map.on('mousemove', 'pools-hit', onMarkerHover);
-    map.on('mouseleave', 'pools-hit', () => {
-      map.getCanvas().style.cursor = '';
-      hoverSlug = null;
-      if (hoverPopup) hoverPopup.remove();
-    });
+    // Pointer affordance only — the marker preview is driven by panning, not hover.
+    map.on('mouseenter', 'pools-hit', () => { map.getCanvas().style.cursor = 'pointer'; });
+    map.on('mouseleave', 'pools-hit', () => { map.getCanvas().style.cursor = ''; });
+
+    // Centre preview: the pool nearest the viewport centre pops its popup, but only
+    // once the user has started panning (nothing pops on load). 'move' also fires on
+    // zoom/programmatic moves; the `hasPanned` gate keeps those quiet until a pan.
+    map.on('move', updateCenterPreview);
+    map.on('dragstart', () => { hasPanned = true; });
   });
 
   renderChrome();
@@ -155,6 +167,8 @@ function featureCollection() {
 
 function refresh() {
   if (map && map.getSource('pools')) map.getSource('pools').setData(featureCollection());
+  centerSlug = null;        // force the centre preview to re-read state + ring size
+  updateCenterPreview();
 }
 
 // Build the popup DOM for a pool (shared by hover preview and click).
@@ -164,7 +178,7 @@ function buildPopupEl(pool) {
 
   let line = '';
   if (st.status === 'open') {
-    line = `${tr.open} · ${fmtMinutes(st.closesInMin)} ${tr.tillClose}`;
+    line = `${tr.open} · ${tr.closesIn} ${fmtMinutes(st.closesInMin)}`;
   } else if (st.status === 'upcoming') {
     line = `${tr.nextIn} ${fmtCountdown(st.minutesUntilNext)}<br><span class="status-when">${nextSessionLabel(pool)}</span>`;
   } else if (!pool.scheduleUnavailable) {
@@ -199,26 +213,64 @@ function buildPopupEl(pool) {
 
 function onMarkerClick(e) {
   const pool = pools.find((p) => p.slug === e.features[0].properties.slug);
-  if (hoverPopup) hoverPopup.remove();
-  hoverSlug = null;
-  new maplibregl.Popup({ closeButton: false, offset: 8, maxWidth: '240px' })
-    .setLngLat(e.lngLat)
+  hideCenterPopup();
+  clickPopup = new maplibregl.Popup({ closeButton: false, anchor: POPUP_ANCHOR, offset: popupOffsetFor(pool), maxWidth: '240px' })
+    .setLngLat([pool.lng, pool.lat])
     .setDOMContent(buildPopupEl(pool))
     .addTo(map);
+  // When dismissed (tap elsewhere), hand the screen back to the centre preview.
+  clickPopup.on('close', () => { clickPopup = null; updateCenterPreview(); });
 }
 
-// Hover preview: a transient popup that follows the marker under the cursor.
-function onMarkerHover(e) {
-  map.getCanvas().style.cursor = 'pointer';
-  const slug = e.features[0].properties.slug;
-  if (!hoverPopup) {
-    hoverPopup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 8, maxWidth: '240px' });
+// The on-screen pool nearest the viewport centre (pixel space), or null if the
+// current view holds no pool.
+function nearestPoolToCenter() {
+  if (!map || !pools.length) return null;
+  const canvas = map.getCanvas();
+  const cx = canvas.clientWidth / 2, cy = canvas.clientHeight / 2;
+  let best = null, bestPt = null, bestD = Infinity;
+  for (const p of pools) {
+    const pt = map.project([p.lng, p.lat]);
+    const d = (pt.x - cx) ** 2 + (pt.y - cy) ** 2;
+    if (d < bestD) { bestD = d; best = p; bestPt = pt; }
   }
-  if (slug !== hoverSlug) {
-    hoverSlug = slug;
-    hoverPopup.setDOMContent(buildPopupEl(pools.find((p) => p.slug === slug)));
+  if (!best) return null;
+  // Skip when the nearest pool is off-screen (view is over empty area).
+  if (bestPt.x < 0 || bestPt.y < 0 || bestPt.x > canvas.clientWidth || bestPt.y > canvas.clientHeight) return null;
+  return best;
+}
+
+// Pixels the popup tip should sit above the point so it clears the pool's ring.
+function popupOffsetFor(pool) {
+  const r = poolState(pool, undefined, !adultOnly).radius || 8;
+  return Math.round(r) + 10;
+}
+
+function hideCenterPopup() {
+  if (!centerPopup) return;
+  centerPopup.remove();
+  centerPopup = null;
+  centerSlug = null;
+}
+
+// Ambient preview: pop the pool nearest the viewport centre, anchored above its ring
+// so the popup never overlaps a large ring. Hidden until the first pan; a clicked
+// popup takes precedence.
+function updateCenterPreview() {
+  if (!hasPanned || clickPopup) return;
+  const pool = nearestPoolToCenter();
+  if (!pool) { hideCenterPopup(); return; }
+  if (!centerPopup) {
+    // 'popup-preview' makes it pointer-events:none (see CSS) so drags/clicks pass
+    // through to the map and the marker beneath — it's a preview, click to interact.
+    centerPopup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, anchor: POPUP_ANCHOR, maxWidth: '240px', className: 'popup-preview' });
   }
-  hoverPopup.setLngLat(e.lngLat).addTo(map);
+  if (pool.slug !== centerSlug) {
+    centerSlug = pool.slug;
+    centerPopup.setDOMContent(buildPopupEl(pool));
+  }
+  centerPopup.setOffset(popupOffsetFor(pool));
+  centerPopup.setLngLat([pool.lng, pool.lat]).addTo(map);
 }
 
 function fmtMinutes(min) {
@@ -269,38 +321,26 @@ function weekSummary(pool) {
 
 // --- Chrome: legend (with title inside), language toggle ---
 function renderChrome() {
-  document.getElementById('app').insertAdjacentHTML('beforeend', `<div id="legend"></div>`);
+  document.getElementById('app').insertAdjacentHTML('beforeend', `<div id="legend"></div><div id="credits"></div>`);
   renderLegend();
+  renderCredits();
 }
 
 let legendCollapsed = false;
+// Start the credits collapsed on touch devices (limited room), expanded otherwise.
+let creditsCollapsed = IS_TOUCH;
 
 function renderLegend() {
   const tr = t();
-  // Build-metering figures: one token total drives the estimated cost + energy.
-  const tokM = new Intl.NumberFormat(lang, { maximumFractionDigits: 1 }).format(BUILD_TOKENS / 1e6);
-  const usd = Math.round((BUILD_TOKENS / 1e6) * USD_PER_MTOK);
-  const wh = Math.round((BUILD_TOKENS / 1e6) * WH_PER_MTOK);
-  // Last-updated date, from the data fetch's `generated` timestamp — ISO YYYY-MM-DD
-  // (en-CA gives that format) in Montreal time, language-neutral.
-  const updated = generated
-    ? new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(generated))
-    : null;
   const sw = (c, o, label) =>
     `<div class="lg-row"><span class="lg-dot" style="background:${c};opacity:${o}"></span>${label}</div>`;
   const body = legendCollapsed ? '' : `
       <div class="lg-body">
         <div class="lg-heading">${tr.legendHeading} ${SWIMMER_ICON}</div>
         ${sw(COLORS.open, 0.95, tr.open)}
-        ${sw(COLORS.upcoming, 0.7, tr.upcoming)}
+        ${sw(COLORS.upcoming, 1, tr.upcoming)}
         ${sw(COLORS.none, 0.45, tr.none)}
         <label class="lg-toggle" title="${tr.adultOnlyHint}"><input type="checkbox" id="adultonly"${adultOnly ? ' checked' : ''}> ${tr.adultOnly}</label>
-        <div class="lg-attr">
-          ${updated ? `<span class="lg-updated">${tr.lastUpdated(updated)}</span><br>` : ''}${tr.creditBy} <a href="https://github.com/maphouse" target="_blank" rel="noopener">@maphouse</a><br>
-          ${tr.builtBy} · <span class="lg-transp">${tr.transparency(tokM, usd, wh)}</span><br>
-          ${tr.dataAttr}<br>${tr.mapAttr}<br>
-          <a href="https://github.com/maphouse/la-piscine-municipale/issues" target="_blank" rel="noopener">${tr.reportIssue}</a>
-        </div>
       </div>`;
   document.getElementById('legend').innerHTML = `
     <div class="lg-inner">
@@ -316,6 +356,7 @@ function renderLegend() {
   document.getElementById('langtoggle').addEventListener('click', () => {
     lang = lang === 'en' ? 'fr' : 'en';
     renderLegend();
+    renderCredits();
   });
   document.getElementById('geoloc').addEventListener('click', () => {
     if (geolocate) geolocate.trigger();
@@ -327,9 +368,37 @@ function renderLegend() {
   const adultOnlyBox = document.getElementById('adultonly');
   if (adultOnlyBox) adultOnlyBox.addEventListener('change', (e) => {
     adultOnly = e.target.checked;
-    refresh();               // redraw the ring symbols with the new filter
-    if (hoverPopup) hoverPopup.remove(); // drop any open hover popup so it re-reads on next hover
+    refresh();               // redraw the ring symbols + centre preview with the new filter
   });
+}
+
+// Standalone credits box, bottom-left. A single "Credits" toggle stays pinned at the
+// bottom; when expanded the content grows ABOVE it (the box is anchored to the
+// viewport bottom, so the button doesn't move).
+function renderCredits() {
+  const tr = t();
+  const el = document.getElementById('credits');
+  let bodyHtml = '';
+  if (!creditsCollapsed) {
+    // Build-metering figures: one token total drives the estimated cost + energy.
+    const tokM = new Intl.NumberFormat(lang, { maximumFractionDigits: 1 }).format(BUILD_TOKENS / 1e6);
+    const usd = Math.round((BUILD_TOKENS / 1e6) * USD_PER_MTOK);
+    const wh = Math.round((BUILD_TOKENS / 1e6) * WH_PER_MTOK);
+    // Last-updated date, from the data fetch's `generated` timestamp — ISO YYYY-MM-DD
+    // (en-CA gives that format) in Montreal time, language-neutral.
+    const updated = generated
+      ? new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(generated))
+      : null;
+    bodyHtml = `
+      <div class="cr-body">
+        ${updated ? `<span class="lg-updated">${tr.lastUpdated(updated)}</span><br>` : ''}${tr.creditBy} <a href="https://github.com/maphouse" target="_blank" rel="noopener">@maphouse</a><br>
+        ${tr.builtBy} · <span class="lg-transp">${tr.transparency(tokM, usd, wh)}</span><br>
+        ${tr.dataAttr}<br>${tr.mapAttr}<br>
+        <a href="https://github.com/maphouse/la-piscine-municipale/issues" target="_blank" rel="noopener">${tr.reportIssue}</a>
+      </div>`;
+  }
+  el.innerHTML = `${bodyHtml}<button id="creditstoggle" class="cr-chip" type="button">${tr.credits}</button>`;
+  document.getElementById('creditstoggle').addEventListener('click', () => { creditsCollapsed = !creditsCollapsed; renderCredits(); });
 }
 
 function escapeHtml(s) {
