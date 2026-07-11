@@ -20,6 +20,7 @@ const WH_PER_MTOK = 2.15; // rough energy estimate
 let lang = (navigator.language || 'en').toLowerCase().startsWith('fr') ? 'fr' : 'en';
 let pools = [];
 let generated = null; // ISO timestamp of the last data refresh, from pools.json
+let adultOnly = true; // experimental toggle: false also counts "open for all" hours
 let map;
 let hoverPopup = null;
 let hoverSlug = null;
@@ -118,7 +119,7 @@ async function init() {
 function featureCollection() {
   const features = [];
   for (const p of pools) {
-    const st = poolState(p);
+    const st = poolState(p, undefined, !adultOnly);
     const rings = st.rings; // outer (soonest) → inner (latest); radius descending
     const geometry = { type: 'Point', coordinates: [p.lng, p.lat] };
     // Invisible full-size disc: the interaction target for the whole symbol.
@@ -158,7 +159,7 @@ function refresh() {
 
 // Build the popup DOM for a pool (shared by hover preview and click).
 function buildPopupEl(pool) {
-  const st = poolState(pool);
+  const st = poolState(pool, undefined, !adultOnly);
   const tr = t();
 
   let line = '';
@@ -293,6 +294,7 @@ function renderLegend() {
         ${sw(COLORS.open, 0.95, tr.open)}
         ${sw(COLORS.upcoming, 0.7, tr.upcoming)}
         ${sw(COLORS.none, 0.45, tr.none)}
+        <label class="lg-toggle" title="${tr.adultOnlyHint}"><input type="checkbox" id="adultonly"${adultOnly ? ' checked' : ''}> ${tr.adultOnly}</label>
         <div class="lg-attr">
           ${updated ? `<span class="lg-updated">${tr.lastUpdated(updated)}</span><br>` : ''}${tr.creditBy} <a href="https://github.com/maphouse" target="_blank" rel="noopener">@maphouse</a><br>
           ${tr.builtBy} · <span class="lg-transp">${tr.transparency(tokM, usd, wh)}</span><br>
@@ -321,6 +323,12 @@ function renderLegend() {
   document.getElementById('mintoggle').addEventListener('click', () => {
     legendCollapsed = !legendCollapsed;
     renderLegend();
+  });
+  const adultOnlyBox = document.getElementById('adultonly');
+  if (adultOnlyBox) adultOnlyBox.addEventListener('change', (e) => {
+    adultOnly = e.target.checked;
+    refresh();               // redraw the ring symbols with the new filter
+    if (hoverPopup) hoverPopup.remove(); // drop any open hover popup so it re-reads on next hover
   });
 }
 

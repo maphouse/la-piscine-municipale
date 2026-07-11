@@ -31,15 +31,21 @@ const UA = 'la-piscine-municipale data bot (+https://github.com/maphouse/la-pisc
 const DAYS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
 const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
-// Section headings that count as "free adult swim" for this project:
-//  - "Pour les adultes (18 ans et plus)" → adult open swim
-//  - "Pour la nage en couloir" / "Couloirs de natation" → adult lane swim
-// Excluded: "Pour toutes et tous", "Pour la famille", "Pour les enfants", etc.
+// Section headings we harvest, in priority order:
+//  - "Pour les adultes (18 ans et plus)"                → 'adult'  (adult open swim)
+//  - "Pour la nage en couloir" / "Couloirs de natation" → 'lane'   (adult lap swim,
+//    incl. "Nage en longueur lors des périodes de baignade libre")
+//  - "Pour toutes et tous" / "Grand public"             → 'public' (open for all —
+//    lap swimmers can use part of the pool; shown only when the front-end "adult
+//    swim only" toggle is off). A pool still needs an adult/lane session to appear
+//    at all (see extractSchedule), so 'public' is purely additive.
+// Excluded: family / kids / adapted swim.
 function classifyHeading(h) {
   const t = h.toLowerCase();
-  if (/toutes\s+et\s+tous|famille|enfant|parent|p[ée]riode\s+libre\s+famil/.test(t)) return null;
+  if (/famille|enfant|parent|p[ée]riode\s+libre\s+famil|handicap|adapt/.test(t)) return null;
   if (/adulte/.test(t)) return 'adult';
   if (/nage\s+en\s+couloir|couloirs?\s+de\s+natation|nage\s+en\s+longueur/.test(t)) return 'lane';
+  if (/toutes\s+et\s+tous|grand\s+public/.test(t)) return 'public';
   return null;
 }
 
@@ -187,7 +193,9 @@ function extractSchedule(html) {
     for (let d = 0; d < DAY_KEYS.length; d++) {
       for (const r of wk[DAY_KEYS[d]]) {
         week[DAY_KEYS[d]].push([r[0], r[1], type]);
-        found = true;
+        // Only adult/lane sessions qualify a pool for the map; a page with just
+        // "open for all" hours stays skipped (public sessions are additive).
+        if (type !== 'public') found = true;
       }
     }
   }

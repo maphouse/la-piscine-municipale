@@ -86,6 +86,7 @@ export function buildICS(pool, t) {
     const { y, m, d } = nextDateForDow(dow, pool.periodStart);
     const dateStr = `${y}${pad(m)}${pad(d)}`;
     for (const [start, end, type] of sessions) {
+      if (type === 'public') continue; // .ics is the adult/lane swim schedule only
       const [sh, sm] = hhmmToParts(start);
       const [eh, em] = hhmmToParts(end);
       const label = type === 'lane' ? (t.lane || 'Adult lane swim') : (t.adult || 'Adult swim');
