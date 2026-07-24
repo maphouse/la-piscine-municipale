@@ -190,7 +190,14 @@ function buildPopupEl(pool) {
   if (st.status === 'open') {
     line = `${tr.open} · ${tr.closesIn} ${fmtMinutes(st.closesInMin)}`;
   } else if (st.status === 'upcoming') {
-    line = `${tr.nextIn} ${fmtCountdown(st.minutesUntilNext)}<br><span class="status-when">${nextSessionLabel(pool)}</span>`;
+    const sessions = upcomingSessions(pool);
+    // Countdown + the next open hours are bold; any further shifts that day list
+    // below, not bold.
+    line = `${tr.nextIn} ${fmtCountdown(st.minutesUntilNext)}`;
+    if (sessions.length) {
+      line += `<br><span class="status-next">${sessions[0]}</span>`;
+      for (const s of sessions.slice(1)) line += `<br><span class="status-when">${s}</span>`;
+    }
   } else if (!pool.scheduleUnavailable) {
     line = `${tr.noToday}`;
   }
@@ -309,24 +316,27 @@ function fmtCountdown(min) {
   return h ? `${h}h ${String(m).padStart(2, '0')}m` : `${m}m`;
 }
 
-function nextSessionLabel(pool) {
+// Upcoming free-swim sessions for the popup: today's remaining ones, or — if today
+// has none left — the next day that has any. Returns an array of time-range labels
+// (the first carries a day name when it's a future day). Respects the adult-swim
+// toggle, so it never lists an "open for all" session the countdown ignored.
+function upcomingSessions(pool) {
   const now = montrealNow();
   const tr = t();
-  const todayRemaining = (pool.schedule[now.dayKey] || [])
+  const keep = (r) => !adultOnly || r[2] !== 'public';
+  const forDay = (key) => (pool.schedule[key] || [])
+    .filter(keep)
     .map((r) => ({ s: toMin(r[0]), txt: `${r[0]}–${r[1]}` }))
-    .filter((x) => x.s > now.minutes)
     .sort((a, b) => a.s - b.s);
-  if (todayRemaining.length) return todayRemaining[0].txt;
+  const today = forDay(now.dayKey).filter((x) => x.s > now.minutes);
+  if (today.length) return today.map((x) => x.txt);
   const todayIndex = DAY_KEYS.indexOf(now.dayKey);
   for (let d = 1; d <= 6; d++) {
-    const nextDayIndex = (todayIndex + d) % 7;
-    const nextKey = DAY_KEYS[nextDayIndex];
-    const nextSessions = (pool.schedule[nextKey] || [])
-      .map((r) => ({ s: toMin(r[0]), txt: `${r[0]}–${r[1]}` }))
-      .sort((a, b) => a.s - b.s);
-    if (nextSessions.length) return `${tr.days[nextDayIndex]} ${nextSessions[0].txt}`;
+    const di = (todayIndex + d) % 7;
+    const sessions = forDay(DAY_KEYS[di]);
+    if (sessions.length) return sessions.map((x, i) => (i === 0 ? `${tr.days[di]} ${x.txt}` : x.txt));
   }
-  return '—';
+  return [];
 }
 
 const toMin = (hhmm) => { const [h, m] = hhmm.split(':').map(Number); return h * 60 + m; };
