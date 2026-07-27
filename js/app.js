@@ -139,9 +139,17 @@ async function init() {
   setInterval(refresh, 60 * 1000);
 }
 
+// A pool with a schedule but no dedicated adult/lane session (only "open for all"
+// hours) — e.g. the YMCA. Hidden while "adult swim only" is on.
+function isPublicOnly(pool) {
+  return !pool.scheduleUnavailable &&
+    !Object.values(pool.schedule).some((day) => day.some((r) => r[2] !== 'public'));
+}
+
 function featureCollection() {
   const features = [];
   for (const p of pools) {
+    if (adultOnly && isPublicOnly(p)) continue; // open-swim-only pools: only in "show all"
     const st = poolState(p, undefined, !adultOnly);
     const rings = st.rings; // outer (soonest) → inner (latest); radius descending
     const geometry = { type: 'Point', coordinates: [p.lng, p.lat] };

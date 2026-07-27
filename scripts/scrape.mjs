@@ -37,8 +37,8 @@ const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 //    incl. "Nage en longueur lors des périodes de baignade libre")
 //  - "Pour toutes et tous" / "Grand public"             → 'public' (open for all —
 //    lap swimmers can use part of the pool; shown only when the front-end "adult
-//    swim only" toggle is off). A pool still needs an adult/lane session to appear
-//    at all (see extractSchedule), so 'public' is purely additive.
+//    swim only" toggle is off). A pool with ONLY open-for-all hours still appears,
+//    but the front-end hides it while "adult swim only" is on.
 // Excluded: family / kids / adapted swim.
 function classifyHeading(h) {
   const t = h.toLowerCase();
@@ -193,9 +193,10 @@ function extractSchedule(html) {
     for (let d = 0; d < DAY_KEYS.length; d++) {
       for (const r of wk[DAY_KEYS[d]]) {
         week[DAY_KEYS[d]].push([r[0], r[1], type]);
-        // Only adult/lane sessions qualify a pool for the map; a page with just
-        // "open for all" hours stays skipped (public sessions are additive).
-        if (type !== 'public') found = true;
+        // Any session — adult/lane OR "open for all" — puts the pool on the map. A
+        // pool with only open-for-all hours (no dedicated adult/lane) is shown only
+        // when the front-end "adult swim only" toggle is off (see app.js).
+        found = true;
       }
     }
   }

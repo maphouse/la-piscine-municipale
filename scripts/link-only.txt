@@ -10,3 +10,6 @@ piscine-du-centre-sportif-de-la-petite-bourgogne
 # (Piscine communautaire NDG / Décarie omitted — closed for renovations to 2026.)
 piscine-du-centre-sportif-cote-des-neiges
 piscine-du-centre-sportif-de-notre-dame-de-grace
+# Patro Villeray (NPO running the city's Piscine Villeray): posts its bain-libre
+# hours on its own site, not in the montreal.ca page table.
+piscine-villeray

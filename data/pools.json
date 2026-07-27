@@ -3,7 +3,7 @@
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
   "nextScrapeDate": "2026-07-20",
-  "count": 28,
+  "count": 31,
   "pools": [
     {
       "slug": "bain-emard",
@@ -1084,6 +1084,91 @@
         "sat": []
       },
       "scheduleUnavailable": true
+    },
+    {
+      "slug": "piscine-du-complexe-sportif-claude-robillard",
+      "name": "Piscine du complexe sportif Claude-Robillard",
+      "url": "https://montreal.ca/lieux/piscine-du-complexe-sportif-claude-robillard",
+      "lat": 45.55142388962415,
+      "lng": -73.63323879772682,
+      "schedule": {
+        "sun": [
+          [
+            "11:00",
+            "16:25",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "13:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "19:00",
+            "20:55",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "13:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "19:00",
+            "20:55",
+            "public"
+          ]
+        ],
+        "wed": [
+          [
+            "13:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "19:00",
+            "20:55",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "13:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "19:00",
+            "20:55",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "13:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "19:00",
+            "20:55",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "11:00",
+            "16:25",
+            "public"
+          ]
+        ]
+      },
+      "periodStart": "2026-07-06",
+      "periodEnd": "2026-08-21"
     },
     {
       "slug": "piscine-du-complexe-sportif-du-college-sainte-anne",
@@ -2458,6 +2543,23 @@
       "periodEnd": "2026-08-23"
     },
     {
+      "slug": "piscine-villeray",
+      "name": "Piscine Villeray",
+      "url": "https://montreal.ca/lieux/piscine-villeray",
+      "lat": 45.544008708807,
+      "lng": -73.614610433578,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true
+    },
+    {
       "slug": "piscines-du-complexe-sportif-de-saint-laurent",
       "name": "Piscines du Complexe sportif de Saint-Laurent",
       "url": "https://montreal.ca/lieux/piscines-du-complexe-sportif-de-saint-laurent",
@@ -2524,6 +2626,116 @@
       },
       "periodStart": "2026-04-24",
       "periodEnd": "2026-06-21"
+    },
+    {
+      "slug": "ymca-cartierville",
+      "name": "YMCA Cartierville",
+      "url": "https://montreal.ca/lieux/ymca-cartierville",
+      "lat": 45.525394,
+      "lng": -73.711066,
+      "schedule": {
+        "sun": [
+          [
+            "14:15",
+            "15:45",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "13:00",
+            "14:00",
+            "public"
+          ],
+          [
+            "15:00",
+            "15:55",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "06:30",
+            "09:25",
+            "public"
+          ],
+          [
+            "12:00",
+            "12:55",
+            "public"
+          ],
+          [
+            "16:00",
+            "17:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "20:55",
+            "public"
+          ]
+        ],
+        "wed": [
+          [
+            "13:00",
+            "14:00",
+            "public"
+          ],
+          [
+            "15:00",
+            "15:55",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "06:30",
+            "09:25",
+            "public"
+          ],
+          [
+            "12:00",
+            "12:55",
+            "public"
+          ],
+          [
+            "16:00",
+            "17:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "20:55",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "15:30",
+            "16:25",
+            "public"
+          ],
+          [
+            "19:30",
+            "20:55",
+            "public"
+          ],
+          [
+            "19:35",
+            "21:10",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "07:45",
+            "08:55",
+            "public"
+          ]
+        ]
+      },
+      "periodStart": "2026-06-15",
+      "periodEnd": "2026-09-06"
     }
   ]
 }
