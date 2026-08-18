@@ -13,3 +13,20 @@ piscine-du-centre-sportif-de-notre-dame-de-grace
 # Patro Villeray (NPO running the city's Piscine Villeray): posts its bain-libre
 # hours on its own site, not in the montreal.ca page table.
 piscine-villeray
+# Facilities whose montreal.ca page carries no schedule at all, only a link out to
+# where the hours actually live — an operator's site or booking portal. Without this
+# they'd read as red ("no hours posted today"), which is the wrong claim: the hours
+# exist and are published, just not anywhere this scraper can read. Note that linking
+# out is NOT on its own a signal — a dozen pools WITH parsable hours also link to swim
+# clubs and registration portals — so these are listed by hand, deliberately.
+complexe-aquatique-michel-leduc-aquadome
+piscine-du-complexe-sportif-du-college-de-bois-de-boulogne
+complexe-aquatique-de-saint-leonard
+# École secondaire d'Anjou: free for adults (carte citoyen; $1 without) and open for
+# bain libre, but its hours sit in the generic "Heures d'ouverture" block as plain
+# text — "Horaire habituel d'automne, 6 septembre au 2 janvier", no <time> range and
+# no table — so nothing here parses even in season. That block is NOT worth teaching
+# the scraper: it's the facility's opening hours, not swim sessions. Rosemont's says
+# 6 h 30 – 22 h 30 while its actual adult hours are a fraction of it; Danjou only
+# looks readable because this pool's building hours happen to equal its bain libre.
+piscine-du-complexe-sportif-de-lecole-secondaire-danjou

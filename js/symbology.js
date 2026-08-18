@@ -7,7 +7,8 @@ export const DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 export const COLORS = {
   open: '#1a9850',     // currently open — green
   upcoming: '#2c7fb8', // free hours coming up (today or next occurrence) — blue
-  none: '#6b7280',     // no parsable schedule (link-only pools only) — grey
+  none: '#6b7280',     // hours exist but aren't parsable (link-only pools) — grey
+  nohours: '#dc2626',  // no posted hours apply today — red
 };
 
 // "HH:MM" -> minutes since midnight.
@@ -28,9 +29,35 @@ export function montrealNow(date = new Date()) {
   return { dayKey: DAY_KEYS[wd], minutes: hour * 60 + parseInt(get('minute'), 10) };
 }
 
+// Today in Montreal as "YYYY-MM-DD", for comparison against a pool's posted schedule
+// period (periodStart/periodEnd, written by the scraper from the City page's own
+// <time datetime> range). Deliberately evaluated at VIEW time rather than trusted
+// from scrape time: data/pools.json can sit for days between refreshes, so a period
+// that was current when scraped may have lapsed by the time someone loads the map.
+export function montrealToday(date = new Date()) {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit',
+  }).format(date);
+}
+
+// Is a pool's posted schedule outside the validity window the City stated for it?
+// Returns 'past' (the period has ended), 'future' (it hasn't started) or null.
+// Pools whose page carries no machine-readable dates have no periodStart/periodEnd
+// and are never stale — there's nothing to check them against.
+//
+// This is the same test the scraper applies at harvest time, repeated here because
+// the published file outlives the scrape: a period that was current on Wednesday can
+// lapse on Sunday while the same pools.json is still being served.
+export function outOfPeriod(pool, today = montrealToday()) {
+  if (pool.periodEnd && today > pool.periodEnd) return 'past';
+  if (pool.periodStart && today < pool.periodStart) return 'future';
+  return null;
+}
+
 // Merge overlapping/adjacent [start,end] intervals (minutes) into a clean set so a
-// pool that lists overlapping adult + lane sessions isn't double-counted.
-function mergeIntervals(intervals) {
+// pool that lists overlapping adult + lane sessions isn't double-counted. Exported
+// so app.js's popup text can dedupe/merge the same way the rings do.
+export function mergeIntervals(intervals) {
   const sorted = intervals.map((i) => [...i]).sort((a, b) => a[0] - b[0]);
   const out = [];
   for (const [s, e] of sorted) {
@@ -44,6 +71,14 @@ function mergeIntervals(intervals) {
 // Compute the visual state for one pool right now.
 // Returns { status, color, remainingMin, minutesUntilNext, radius, opacity, rings }.
 export function poolState(pool, now = montrealNow(), includePublic = false) {
+  // No posted hours apply today — either the scraper found none (the page's periods
+  // don't cover today, or it posts no schedule at all), or the period it did find has
+  // lapsed since the file was published. Red, independent of the adult-swim toggle and
+  // of time of day. The map says nothing about WHY: a pool shut for renovation, one
+  // closed for the summer and one whose next season simply isn't posted are the same
+  // fact to a swimmer standing outside it.
+  if (pool.noUpcomingHours || outOfPeriod(pool)) return neutralState('nohours', COLORS.nohours);
+
   // "Open for all" (type 'public') sessions are only counted when the "adult swim
   // only" toggle is off; otherwise the state reflects adult/lane sessions alone.
   const keep = (r) => includePublic || r[2] !== 'public';
@@ -98,6 +133,27 @@ export function poolState(pool, now = montrealNow(), includePublic = false) {
   };
 }
 
+// The neutral marker: one small fixed dot, no rings, no size or opacity encoding —
+// the symbol for a pool with nothing to count down to. Red when no posted hours apply
+// today, grey when hours exist but can't be parsed. Same geometry either way, so the
+// two read as one family distinguished only by hue: nothing to show here, and here's
+// whether that's the pool's doing or ours.
+const NEUTRAL_RADIUS = 7;
+const NEUTRAL_OPACITY = 0.45;
+
+function neutralState(status, color) {
+  return {
+    status,
+    color,
+    remainingMin: 0,
+    closesInMin: null,
+    minutesUntilNext: null,
+    radius: NEUTRAL_RADIUS,
+    opacity: NEUTRAL_OPACITY,
+    rings: [{ color, radius: NEUTRAL_RADIUS, opacity: NEUTRAL_OPACITY }],
+  };
+}
+
 // Split a pool's symbol into concentric rings — one per remaining session of the
 // relevant day. The outermost ring is the soonest session, the innermost the last
 // of the day. Each session's RADIAL extent is proportional to its minutes — the
@@ -109,7 +165,7 @@ export function poolState(pool, now = montrealNow(), includePublic = false) {
 // even when an earlier one is imminent. The white outline that gives every marker its
 // figure-ground doubles as the separator between bands. Because the bands are drawn as
 // non-overlapping annuli (see app.js), those per-ring opacities never compound.
-// Grey / link-only pools stay a single small fixed dot.
+// Neutral pools (no hours today, or link-only) stay a single small fixed dot.
 //
 // Floor (px) on the radial spacing between band boundaries. A middle band loses
 // GAP_WIDTH (2px) to the transparent gaps carved on each side (see app.js), so this
@@ -120,7 +176,7 @@ const RING_MIN_GAP = 3;
 
 function ringsFor(status, segments, remainingMin) {
   if (status === 'none') {
-    return [{ color: COLORS.none, radius: radiusFor('none', remainingMin), opacity: 0.45 }];
+    return [{ color: COLORS.none, radius: NEUTRAL_RADIUS, opacity: NEUTRAL_OPACITY }];
   }
   // Per-ring colour + nearness opacity, in schedule order (soonest → latest).
   const vis = segments.map((s) => ({
@@ -153,19 +209,19 @@ function ringsFor(status, segments, remainingMin) {
 }
 
 // Size ∝ minutes of free adult swim remaining today. sqrt keeps it area-proportional
-// (a true proportional-symbol map). Grey pools get a small fixed dot.
+// (a true proportional-symbol map). Neutral pools get a small fixed dot.
 function radiusFor(status, remainingMin) {
-  if (status === 'none') return 7;
+  if (status === 'none') return NEUTRAL_RADIUS;
   return Math.min(26, 7 + 1.05 * Math.sqrt(remainingMin));
 }
 
 // Opacity ∝ nearness in time, looking forward across days.
 //  - open now: full.
 //  - upcoming: starts within 1 h → near-full; 18 h away → faintest; linear.
-//  - none (link-only grey pools): low fixed.
+//  - none / nohours (the neutral dot): low fixed.
 function opacityFor(status, minutesUntilNext) {
   if (status === 'open') return 0.95;
-  if (status === 'none') return 0.45;
+  if (status === 'none') return NEUTRAL_OPACITY;
   const near = 60, far = 1200, hi = 0.95, lo = 0.08;
   const m = Math.max(near, Math.min(far, minutesUntilNext));
   return hi - ((m - near) / (far - near)) * (hi - lo);

@@ -1,8 +1,18 @@
 # Candidate montreal.ca /lieux/ slugs to scrape.
-# Harvested once from montreal.ca place search; the scraper fetches each page,
-# extracts coords + adult/lane-swim schedule, and keeps ONLY those that match an
-# indoor pool in the City open-data dataset (joined by coordinate proximity).
-# Non-pools / outdoor pools harvested here are harmless: they get filtered out.
+#
+# This list IS the map's coverage: every slug here whose page describes an indoor
+# pool gets a marker — green/blue if it posts hours that apply today, red if it
+# doesn't. So a slug that isn't really a free-adult-swim indoor pool no longer sits
+# there harmlessly; it shows up as a red dot claiming a pool has no hours. Outdoor
+# and non-pool pages are still filtered out automatically (the page must say
+# "intérieure"), but keep the list to genuine indoor municipal pools.
+#
+# Facility HUB pages are deliberately absent where a dedicated pool page exists:
+# montreal.ca geocodes "Complexe sportif Claude-Robillard" to the complex's street
+# address and "Piscine du complexe sportif Claude-Robillard" to the pool, ~260 m
+# apart — too far for the 60 m de-duplication — so listing both would put a red dot
+# next to the live pool for the same building.
+#
 # To add a pool: append its /lieux/<slug> slug below, one per line. Lines starting with # are ignored.
 bain-emard
 bain-morgan
@@ -15,9 +25,6 @@ centre-sportif-de-la-petite-bourgogne
 complexe-aquatique-de-rosemont
 complexe-aquatique-de-saint-leonard
 complexe-aquatique-michel-leduc-aquadome
-complexe-sportif-claude-robillard
-complexe-sportif-de-saint-laurent
-complexe-sportif-marie-victorin
 piscine-annie-pelletier
 piscine-communautaire-notre-dame-de-grace
 piscine-de-lacademie-beurling

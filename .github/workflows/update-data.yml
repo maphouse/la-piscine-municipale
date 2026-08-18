@@ -1,10 +1,16 @@
 name: Update pool data
 
 # Scrapes montreal.ca for the current free adult-swim schedules and commits
-# data/pools.json when it changes. Runs daily; the "Check if refresh is due"
-# step exits early unless today >= nextScrapeDate (the day after the earliest
-# period end stored in pools.json), so the full scrape only runs at period
-# boundaries. workflow_dispatch always runs the scraper regardless.
+# data/pools.json when it changes. Runs daily, and now actually scrapes daily:
+# nextScrapeDate is capped at one day out, so the "Check if refresh is due" gate
+# passes every morning. It stays in place as a safeguard — raise the cap in
+# scrape.mjs and it starts skipping again.
+#
+# Daily because a pool whose schedule has lapsed gives no hint of when the next
+# one appears: no future period end, no future start, nothing to schedule against.
+# The scraper spaces its ~45 requests out and leaves data/pools.json untouched when
+# nothing changed, so a quiet day makes no commit and no deploy. A day that DOES
+# change has to ask for the deploy itself — see the last step.
 on:
   schedule:
     - cron: '0 9 * * *' # 09:00 UTC daily ≈ 05:00 EDT, before any pool opens
@@ -12,6 +18,7 @@ on:
 
 permissions:
   contents: write
+  actions: write # to dispatch the Pages deploy below
 
 concurrency:
   group: update-data
@@ -27,23 +34,30 @@ jobs:
         with:
           node-version: 20
 
+      # Done in node, not shell: `[ "$TODAY" \>= "$NEXT" ]` is not a valid test
+      # expression (there is no >= operator), so it errored out and took the else
+      # branch every single day — the job went green while never scraping, and the
+      # published data sat unrefreshed for a month. Node also gives us the same
+      # Montreal-local date the scraper uses, instead of UTC.
       - name: Check if refresh is due
         id: due
         run: |
-          NEXT=$(node -e "try{const d=require('./data/pools.json');process.stdout.write(d.nextScrapeDate||'')}catch(e){process.stdout.write('')}")
-          TODAY=$(date -u +%Y-%m-%d)
-          if [ -z "$NEXT" ] || [ "$TODAY" \>= "$NEXT" ]; then
-            echo "needed=true" >> $GITHUB_OUTPUT
-          else
-            echo "needed=false" >> $GITHUB_OUTPUT
-            echo "Next refresh due $NEXT — skipping today ($TODAY)."
-          fi
+          node -e "
+            const d = require('./data/pools.json');
+            const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto' }).format(new Date());
+            const next = d.nextScrapeDate || '';
+            const needed = !next || today >= next;
+            console.log(needed ? \`Refresh due (today \${today}, scheduled \${next || 'unset'}).\`
+                               : \`Next refresh due \${next} — skipping today (\${today}).\`);
+            require('fs').appendFileSync(process.env.GITHUB_OUTPUT, \`needed=\${needed}\n\`);
+          "
 
       - name: Scrape schedules
         if: steps.due.outputs.needed == 'true' || github.event_name == 'workflow_dispatch'
         run: node scripts/scrape.mjs
 
       - name: Commit if changed
+        id: commit
         if: steps.due.outputs.needed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           if git diff --quiet -- data/pools.json; then
@@ -55,3 +69,19 @@ jobs:
           git add data/pools.json
           git commit -m "data: refresh pool schedules ($(date -u +%Y-%m-%d))"
           git push
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      # A push made with the default GITHUB_TOKEN does not start another workflow
+      # run, so deploy.yml (on: push) never saw the commit above and the site kept
+      # serving whatever data was published by the last HUMAN push. That is how the
+      # cégep du Vieux Montréal sat red on 18 August: the 09:35 run committed its
+      # fall hours correctly and nothing redeployed them.
+      #
+      # workflow_dispatch is the documented exception to that rule — it works with
+      # GITHUB_TOKEN — so we ask for the deploy explicitly. It runs only when the
+      # step above actually committed, which keeps a quiet day silent.
+      - name: Deploy the refreshed data
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main

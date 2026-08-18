@@ -1,11 +1,12 @@
 // FREE ADULT SWIM — map application.
-import { poolState, montrealNow, COLORS, DAY_KEYS } from './symbology.js';
+import { poolState, montrealNow, mergeIntervals, COLORS, DAY_KEYS } from './symbology.js';
 import { STRINGS } from './i18n.js';
 import { downloadICS } from './ics.js';
 
 const MONTREAL = { center: [-73.61, 45.53], zoom: 11 };
 const BASEMAP = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
 const GAP_WIDTH = 2; // px width of the transparent gap carved between a pool's ring bands
+const OUTLINE_WIDTH = 2; // px white halo outside a marker's outer edge (see 'pools-outline')
 
 // Build-session metering shown in the legend. BUILD_TOKENS is the one figure
 // kept by hand — Claude usage isn't visible to the data-refresh Action, so
@@ -97,6 +98,29 @@ async function init() {
       filter: ['==', ['get', 'role'], 'hit'],
       paint: { 'circle-radius': ['get', 'radius'], 'circle-color': '#000', 'circle-opacity': 0 },
     });
+    // White halo hugging each marker's outer edge — the map's counterpart to the
+    // legend dots' `box-shadow: 0 0 0 3px white`. Opacity encodes how soon a session
+    // starts, and a pool whose next swim is eighteen hours away is drawn at 0.08,
+    // which all but vanishes against a pale basemap. The halo is painted at full
+    // strength regardless, so the marker's POSITION always reads even when its fill
+    // barely does — faintness should say "not soon", never "not there".
+    //
+    // Drawn as an outward stroke on a fill-less circle at the outer radius, so it
+    // occupies [R, R + OUTLINE_WIDTH] and never encroaches on the bands' own radial
+    // budget. Sits below 'pools-bands' so overlapping markers stack cleanly.
+    map.addLayer({
+      id: 'pools-outline',
+      type: 'circle',
+      source: 'pools',
+      filter: ['==', ['get', 'role'], 'outline'],
+      paint: {
+        'circle-radius': ['get', 'radius'],
+        'circle-opacity': 0,
+        'circle-stroke-width': OUTLINE_WIDTH,
+        'circle-stroke-color': '#fff',
+        'circle-stroke-opacity': 1,
+      },
+    });
     map.addLayer({
       id: 'pools-bands',
       type: 'circle',
@@ -150,11 +174,16 @@ function featureCollection() {
   const features = [];
   for (const p of pools) {
     if (adultOnly && isPublicOnly(p)) continue; // open-swim-only pools: only in "show all"
+    // Pools with no hours today need no special case here: poolState hands back the
+    // neutral one-ring template for them, which the ring code below draws as a single
+    // small disc — red for no posted hours, grey for hours we can't parse.
     const st = poolState(p, undefined, !adultOnly);
     const rings = st.rings; // outer (soonest) → inner (latest); radius descending
     const geometry = { type: 'Point', coordinates: [p.lng, p.lat] };
     // Invisible full-size disc: the interaction target for the whole symbol.
     features.push({ type: 'Feature', geometry, properties: { role: 'hit', slug: p.slug, radius: rings[0].radius } });
+    // White halo at the symbol's outer edge (see the 'pools-outline' layer).
+    features.push({ type: 'Feature', geometry, properties: { role: 'outline', slug: p.slug, radius: rings[0].radius } });
     rings.forEach((ring, i) => {
       const outer = ring.radius;
       const inner = i < rings.length - 1 ? rings[i + 1].radius : 0;
@@ -194,9 +223,22 @@ function buildPopupEl(pool) {
   const st = poolState(pool, undefined, !adultOnly);
   const tr = t();
 
+  // A pool with no hours today has no countdown to report, and the map says nothing
+  // more than that. It once printed the last posted period's dates underneath, which
+  // parsed cleanly but read as a fuller account than it was: Saint-Laurent's page
+  // announces a 21 septembre reopening in the banner prose we deliberately don't
+  // parse, so the popup was quoting a June end date while the page held the useful
+  // fact. Better to state the one thing the schedule proves and let the title link
+  // carry the reader to the page that explains it.
   let line = '';
-  if (st.status === 'open') {
+  if (st.status === 'nohours') {
+    line = tr.noHours;
+  } else if (st.status === 'open') {
     line = `${tr.open} · ${tr.closesIn} ${fmtMinutes(st.closesInMin)}`;
+    // The pool can have further same-day sessions after the current one — each
+    // gets its own (fainter) ring, so list them here too rather than only the
+    // one that's open right now.
+    for (const s of todayRemaining(pool)) line += `<br><span class="status-when">${s}</span>`;
   } else if (st.status === 'upcoming') {
     const sessions = upcomingSessions(pool);
     // Countdown + the next open hours are bold; any further shifts that day list
@@ -211,25 +253,30 @@ function buildPopupEl(pool) {
   }
 
   const directions = `https://www.google.com/maps/dir/?api=1&destination=${pool.lat},${pool.lng}&travelmode=walking`;
-  // Link-only pools have no parsable schedule — no dropdown, no .ics.
-  const schedule = pool.scheduleUnavailable ? '' : `
+  // The week dropdown and .ics export are offered only for hours that apply today.
+  // Link-only pools have nothing to list; a pool whose period lapsed after publication
+  // has a table, but exporting expired hours into someone's calendar — where no caveat
+  // travels with them — is worse than not exporting at all.
+  const schedule = (pool.scheduleUnavailable || st.status === 'nohours') ? '' : `
       <details class="week-dd">
         <summary>${tr.weekHeading}</summary>
         <div class="week">${weekSummary(pool)}</div>
       </details>
       <button class="btn btn-ics" type="button">${tr.popupIcs}</button>`;
-  // Every pool's title links out to its montreal.ca page (with ↗). Link-only pools
-  // (no parsable schedule) simply omit the status line.
+  // Every pool's title links out to its montreal.ca page (with ↗), coloured by the
+  // marker's own colour. That link is the answer to "but WHY is it red?" — the City's
+  // page carries the notice, in prose, for a human to read. Link-only pools are the
+  // one case with nothing to say, so they omit the status line.
   const title = `<h2 style="color:${st.color}"><a class="pool-link" href="${pool.url}" target="_blank" rel="noopener" title="${tr.popupVisit}">${escapeHtml(pool.name)} ↗</a></h2>`;
-  const status = pool.scheduleUnavailable ? '' : `<div class="status">${line}</div>`;
+  const status = line ? `<div class="status">${line}</div>` : '';
   const el = document.createElement('div');
   el.className = 'popup';
   el.innerHTML = `
     ${title}
     ${status}
     <div class="actions">
-      <a class="btn" href="${directions}" target="_blank" rel="noopener">${tr.popupDirections}</a>
       ${schedule}
+      <a class="btn" href="${directions}" target="_blank" rel="noopener">${tr.popupDirections}</a>
     </div>`;
   const ics = el.querySelector('.btn-ics');
   if (ics) ics.addEventListener('click', () => downloadICS(pool, t()));
@@ -324,6 +371,27 @@ function fmtCountdown(min) {
   return h ? `${h}h ${String(m).padStart(2, '0')}m` : `${m}m`;
 }
 
+const toMin = (hhmm) => { const [h, m] = hhmm.split(':').map(Number); return h * 60 + m; };
+const fmtHM = (min) => `${String(Math.floor(min / 60)).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`;
+
+// A day's schedule as merged/deduped [start,end] ranges (respects the adult-swim
+// toggle) — the same merge poolState uses for rings, so a pool that lists the same
+// slot twice under two session types (e.g. "public" and "lane" at the same time)
+// doesn't show as two separate lines here while rendering as one ring.
+function sessionsForDay(pool, key) {
+  const keep = (r) => !adultOnly || r[2] !== 'public';
+  const raw = (pool.schedule[key] || []).filter(keep).map((r) => [toMin(r[0]), toMin(r[1])]);
+  return mergeIntervals(raw).map(([s, e]) => ({ s, txt: `${fmtHM(s)}–${fmtHM(e)}` }));
+}
+
+// Today's remaining merged sessions after `now` — used both to list further shifts
+// once the pool is already open (each of which still gets its own ring), and as the
+// base case below for looking ahead to future days.
+function todayRemaining(pool) {
+  const now = montrealNow();
+  return sessionsForDay(pool, now.dayKey).filter((x) => x.s > now.minutes).map((x) => x.txt);
+}
+
 // Upcoming free-swim sessions for the popup: today's remaining ones, or — if today
 // has none left — the next day that has any. Returns an array of time-range labels
 // (the first carries a day name when it's a future day). Respects the adult-swim
@@ -331,23 +399,16 @@ function fmtCountdown(min) {
 function upcomingSessions(pool) {
   const now = montrealNow();
   const tr = t();
-  const keep = (r) => !adultOnly || r[2] !== 'public';
-  const forDay = (key) => (pool.schedule[key] || [])
-    .filter(keep)
-    .map((r) => ({ s: toMin(r[0]), txt: `${r[0]}–${r[1]}` }))
-    .sort((a, b) => a.s - b.s);
-  const today = forDay(now.dayKey).filter((x) => x.s > now.minutes);
-  if (today.length) return today.map((x) => x.txt);
+  const today = todayRemaining(pool);
+  if (today.length) return today;
   const todayIndex = DAY_KEYS.indexOf(now.dayKey);
   for (let d = 1; d <= 6; d++) {
     const di = (todayIndex + d) % 7;
-    const sessions = forDay(DAY_KEYS[di]);
+    const sessions = sessionsForDay(pool, DAY_KEYS[di]);
     if (sessions.length) return sessions.map((x, i) => (i === 0 ? `${tr.days[di]} ${x.txt}` : x.txt));
   }
   return [];
 }
-
-const toMin = (hhmm) => { const [h, m] = hhmm.split(':').map(Number); return h * 60 + m; };
 
 // Compact weekly schedule (today highlighted), shown inside the popup.
 function weekSummary(pool) {
@@ -399,6 +460,7 @@ function renderLegend() {
         <div class="lg-heading">${tr.legendHeading} ${SWIMMER_ICON}</div>
         ${sw(COLORS.open, 0.95, tr.open)}
         ${sw(COLORS.upcoming, 1, tr.upcoming)}
+        ${sw(COLORS.nohours, 0.45, tr.noHours)}
         ${sw(COLORS.none, 0.45, tr.none)}
         <label class="lg-toggle" title="${tr.adultOnlyHint}"><input type="checkbox" id="adultonly"${adultOnly ? ' checked' : ''}> ${tr.adultOnly}</label>
       </div>`;

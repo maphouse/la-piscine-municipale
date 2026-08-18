@@ -34,7 +34,25 @@ Live: https://maphouse.github.io/la-piscine-municipale/
 4. extracts the **adult** (*Pour les adultes*) and **adult lane-swim** (*Nage en
    couloir*) sessions from that period's tables.
 
-Pools that are closed / off-season (no current adult schedule) are omitted.
+Every indoor pool it finds lands in one of three states, decided by the posted
+dates alone:
+
+| Marker | Meaning |
+|---|---|
+| green / blue rings | a posted period covers today and lists adult or lane-swim hours |
+| **red** dot | no posted hours apply today — the periods have lapsed, or the page says *Horaire : Non indiqué* |
+| **grey** dot | listed in `scripts/link-only.txt`: a pool known to run free adult swim whose hours never appear in machine-readable form |
+
+The map does not try to explain *why* a pool has no hours. The City's *Fermé
+temporairement* banners are free text typed by facility staff — one announces a
+season-long closure, another is a leftover notice for a single holiday months ago —
+and parsing that prose to sort renovation from summer break from lapsed data buys a
+swimmer nothing. Red means "no hours posted for today", which is a fact about the
+schedule rather than a guess about the building; the popup links to the pool's own
+page, where the reason is written out for a human to read.
+
+Pools with no hours stay **on** the map rather than being dropped: a municipal pool
+sitting dark is exactly what someone looking for a swim needs to see.
 
 The City's open-data pool dataset is **not** used to classify pools: its 2023
 snapshot miscategorises several real indoor pools. The pages' own wording is the

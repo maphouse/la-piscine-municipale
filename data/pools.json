@@ -1,9 +1,9 @@
 {
-  "generated": "2026-07-11T16:37:19.900Z",
+  "generated": "2026-08-18T09:35:23.222Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-07-20",
-  "count": 31,
+  "nextScrapeDate": "2026-08-19",
+  "count": 40,
   "pools": [
     {
       "slug": "bain-emard",
@@ -12,45 +12,8 @@
       "lat": 45.457854199708,
       "lng": -73.58887732029,
       "schedule": {
-        "sun": [
-          [
-            "10:00",
-            "19:00",
-            "public"
-          ],
-          [
-            "19:00",
-            "20:00",
-            "adult"
-          ]
-        ],
-        "mon": [
-          [
-            "06:30",
-            "09:30",
-            "adult"
-          ],
-          [
-            "10:00",
-            "12:00",
-            "public"
-          ],
-          [
-            "12:00",
-            "13:00",
-            "adult"
-          ],
-          [
-            "13:00",
-            "20:00",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:00",
-            "adult"
-          ]
-        ],
+        "sun": [],
+        "mon": [],
         "tue": [
           [
             "12:00",
@@ -74,16 +37,6 @@
           ]
         ],
         "wed": [
-          [
-            "06:30",
-            "09:30",
-            "adult"
-          ],
-          [
-            "10:00",
-            "12:00",
-            "public"
-          ],
           [
             "12:00",
             "13:00",
@@ -127,48 +80,11 @@
             "adult"
           ]
         ],
-        "fri": [
-          [
-            "06:30",
-            "09:30",
-            "adult"
-          ],
-          [
-            "10:00",
-            "12:00",
-            "public"
-          ],
-          [
-            "12:00",
-            "13:00",
-            "adult"
-          ],
-          [
-            "13:00",
-            "20:00",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:00",
-            "adult"
-          ]
-        ],
-        "sat": [
-          [
-            "13:00",
-            "19:00",
-            "public"
-          ],
-          [
-            "19:00",
-            "20:00",
-            "adult"
-          ]
-        ]
+        "fri": [],
+        "sat": []
       },
-      "periodStart": "2026-06-20",
-      "periodEnd": "2026-07-19"
+      "periodStart": "2026-07-17",
+      "periodEnd": "2026-08-27"
     },
     {
       "slug": "bain-morgan",
@@ -177,91 +93,16 @@
       "lat": 45.553457,
       "lng": -73.538288,
       "schedule": {
-        "sun": [
-          [
-            "13:00",
-            "14:55",
-            "public"
-          ],
-          [
-            "15:00",
-            "15:55",
-            "adult"
-          ]
-        ],
-        "mon": [
-          [
-            "14:00",
-            "15:55",
-            "adult"
-          ],
-          [
-            "16:00",
-            "18:55",
-            "public"
-          ]
-        ],
-        "tue": [
-          [
-            "09:00",
-            "10:55",
-            "public"
-          ],
-          [
-            "11:00",
-            "11:55",
-            "adult"
-          ]
-        ],
-        "wed": [
-          [
-            "14:00",
-            "15:55",
-            "adult"
-          ],
-          [
-            "16:00",
-            "18:55",
-            "public"
-          ]
-        ],
-        "thu": [
-          [
-            "09:00",
-            "10:55",
-            "public"
-          ],
-          [
-            "11:00",
-            "11:55",
-            "adult"
-          ]
-        ],
-        "fri": [
-          [
-            "14:00",
-            "15:55",
-            "adult"
-          ],
-          [
-            "16:00",
-            "18:55",
-            "public"
-          ]
-        ],
-        "sat": [
-          [
-            "13:00",
-            "14:55",
-            "public"
-          ],
-          [
-            "15:00",
-            "15:55",
-            "adult"
-          ]
-        ]
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
       },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
       "periodStart": "2026-03-07",
       "periodEnd": "2026-06-19"
     },
@@ -272,131 +113,16 @@
       "lat": 45.651076762963,
       "lng": -73.579088029757,
       "schedule": {
-        "sun": [
-          [
-            "12:00",
-            "16:00",
-            "public"
-          ],
-          [
-            "16:00",
-            "17:00",
-            "adult"
-          ]
-        ],
-        "mon": [
-          [
-            "12:00",
-            "16:00",
-            "public"
-          ],
-          [
-            "16:00",
-            "17:00",
-            "adult"
-          ]
-        ],
-        "tue": [
-          [
-            "12:00",
-            "16:00",
-            "public"
-          ],
-          [
-            "16:00",
-            "17:00",
-            "adult"
-          ],
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:00",
-            "adult"
-          ]
-        ],
-        "wed": [
-          [
-            "12:00",
-            "16:00",
-            "public"
-          ],
-          [
-            "16:00",
-            "17:00",
-            "adult"
-          ],
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:00",
-            "adult"
-          ]
-        ],
-        "thu": [
-          [
-            "12:00",
-            "16:00",
-            "public"
-          ],
-          [
-            "16:00",
-            "17:00",
-            "adult"
-          ],
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:00",
-            "adult"
-          ]
-        ],
-        "fri": [
-          [
-            "12:00",
-            "16:00",
-            "public"
-          ],
-          [
-            "16:00",
-            "17:00",
-            "adult"
-          ],
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:00",
-            "adult"
-          ]
-        ],
-        "sat": [
-          [
-            "12:00",
-            "16:00",
-            "public"
-          ],
-          [
-            "16:00",
-            "17:00",
-            "adult"
-          ]
-        ]
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
       },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
       "periodStart": "2026-06-20",
       "periodEnd": "2026-08-16"
     },
@@ -641,6 +367,40 @@
       "periodEnd": "2026-08-28"
     },
     {
+      "slug": "complexe-aquatique-de-saint-leonard",
+      "name": "Complexe aquatique de Saint-Léonard",
+      "url": "https://montreal.ca/lieux/complexe-aquatique-de-saint-leonard",
+      "lat": 45.584951462821,
+      "lng": -73.599611577091,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true
+    },
+    {
+      "slug": "complexe-aquatique-michel-leduc-aquadome",
+      "name": "Complexe aquatique Michel-Leduc (Aquadôme)",
+      "url": "https://montreal.ca/lieux/complexe-aquatique-michel-leduc-aquadome",
+      "lat": 45.436564,
+      "lng": -73.608226,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true
+    },
+    {
       "slug": "piscine-annie-pelletier",
       "name": "Piscine Annie-Pelletier",
       "url": "https://montreal.ca/lieux/piscine-annie-pelletier",
@@ -751,102 +511,40 @@
       "periodEnd": "2026-08-21"
     },
     {
+      "slug": "piscine-communautaire-notre-dame-de-grace",
+      "name": "Piscine communautaire Notre-Dame-de-Grâce",
+      "url": "https://montreal.ca/lieux/piscine-communautaire-notre-dame-de-grace",
+      "lat": 45.476338181712,
+      "lng": -73.613939146181,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
       "slug": "piscine-de-lacademie-beurling",
       "name": "Piscine de l'Académie Beurling",
       "url": "https://montreal.ca/lieux/piscine-de-lacademie-beurling",
       "lat": 45.448186779684,
       "lng": -73.586382865906,
       "schedule": {
-        "sun": [
-          [
-            "08:30",
-            "09:25",
-            "lane"
-          ],
-          [
-            "17:15",
-            "18:10",
-            "lane"
-          ],
-          [
-            "18:15",
-            "19:30",
-            "public"
-          ]
-        ],
-        "mon": [
-          [
-            "17:05",
-            "18:25",
-            "public"
-          ],
-          [
-            "20:35",
-            "21:30",
-            "lane"
-          ]
-        ],
-        "tue": [
-          [
-            "17:05",
-            "18:25",
-            "public"
-          ],
-          [
-            "20:40",
-            "21:30",
-            "lane"
-          ]
-        ],
-        "wed": [
-          [
-            "17:05",
-            "18:25",
-            "public"
-          ],
-          [
-            "19:35",
-            "21:30",
-            "lane"
-          ]
-        ],
-        "thu": [
-          [
-            "18:05",
-            "19:05",
-            "public"
-          ],
-          [
-            "20:15",
-            "21:30",
-            "lane"
-          ]
-        ],
-        "fri": [
-          [
-            "17:05",
-            "19:20",
-            "public"
-          ],
-          [
-            "19:30",
-            "21:30",
-            "lane"
-          ]
-        ],
-        "sat": [
-          [
-            "08:30",
-            "09:25",
-            "lane"
-          ],
-          [
-            "18:00",
-            "19:30",
-            "public"
-          ]
-        ]
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
       },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
       "periodStart": "2026-04-30",
       "periodEnd": "2026-05-25"
     },
@@ -861,56 +559,103 @@
         "mon": [],
         "tue": [
           [
-            "13:00",
-            "19:00",
+            "17:30",
+            "21:00",
             "adult"
           ],
           [
-            "13:00",
-            "16:00",
+            "19:00",
+            "20:00",
             "public"
           ]
         ],
         "wed": [
           [
-            "13:00",
-            "19:00",
+            "17:30",
+            "21:00",
             "adult"
           ],
           [
-            "13:00",
-            "16:00",
+            "19:00",
+            "20:00",
             "public"
           ]
         ],
         "thu": [
           [
-            "13:00",
-            "19:00",
+            "17:30",
+            "21:00",
             "adult"
           ],
           [
-            "13:00",
-            "16:00",
+            "19:00",
+            "20:00",
             "public"
           ]
         ],
         "fri": [
           [
-            "13:00",
+            "17:30",
+            "21:00",
+            "adult"
+          ],
+          [
             "19:00",
+            "20:00",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "13:00",
+            "16:30",
             "adult"
           ],
           [
             "13:00",
-            "16:00",
+            "15:00",
             "public"
           ]
-        ],
+        ]
+      },
+      "periodStart": "2026-08-18",
+      "periodEnd": "2026-12-12"
+    },
+    {
+      "slug": "piscine-du-centre-du-plateau",
+      "name": "Piscine du Centre du Plateau",
+      "url": "https://montreal.ca/lieux/piscine-du-centre-du-plateau",
+      "lat": 45.539769,
+      "lng": -73.575971,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
         "sat": []
       },
-      "periodStart": "2026-06-23",
-      "periodEnd": "2026-08-14"
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-centre-gadbois",
+      "name": "Piscine du Centre Gadbois",
+      "url": "https://montreal.ca/lieux/piscine-du-centre-gadbois",
+      "lat": 45.466285967574,
+      "lng": -73.595298528671,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
     },
     {
       "slug": "piscine-du-centre-jean-claude-malepart",
@@ -1015,7 +760,7 @@
         ]
       },
       "periodStart": "2026-06-24",
-      "periodEnd": "2026-08-23"
+      "periodEnd": "2026-08-30"
     },
     {
       "slug": "piscine-du-centre-sportif-cote-des-neiges",
@@ -1159,16 +904,44 @@
             "public"
           ]
         ],
-        "sat": [
-          [
-            "11:00",
-            "16:25",
-            "public"
-          ]
-        ]
+        "sat": []
       },
       "periodStart": "2026-07-06",
       "periodEnd": "2026-08-21"
+    },
+    {
+      "slug": "piscine-du-complexe-sportif-de-lecole-secondaire-danjou",
+      "name": "Piscine du Complexe sportif de l'école secondaire d'Anjou",
+      "url": "https://montreal.ca/lieux/piscine-du-complexe-sportif-de-lecole-secondaire-danjou",
+      "lat": 45.602617349317,
+      "lng": -73.540687986112,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true
+    },
+    {
+      "slug": "piscine-du-complexe-sportif-du-college-de-bois-de-boulogne",
+      "name": "Piscine du Complexe sportif du collège de Bois-de-Boulogne",
+      "url": "https://montreal.ca/lieux/piscine-du-complexe-sportif-du-college-de-bois-de-boulogne",
+      "lat": 45.536462746586,
+      "lng": -73.673053509407,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true
     },
     {
       "slug": "piscine-du-complexe-sportif-du-college-sainte-anne",
@@ -1177,46 +950,18 @@
       "lat": 45.4322365646,
       "lng": -73.674253830427,
       "schedule": {
-        "sun": [
-          [
-            "18:30",
-            "20:45",
-            "lane"
-          ]
-        ],
+        "sun": [],
         "mon": [],
-        "tue": [
-          [
-            "20:30",
-            "21:45",
-            "lane"
-          ]
-        ],
-        "wed": [
-          [
-            "20:30",
-            "21:45",
-            "lane"
-          ]
-        ],
-        "thu": [
-          [
-            "20:30",
-            "21:45",
-            "lane"
-          ]
-        ],
-        "fri": [
-          [
-            "20:30",
-            "21:45",
-            "lane"
-          ]
-        ],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
         "sat": []
       },
-      "periodStart": "2026-03-07",
-      "periodEnd": "2026-05-29"
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
+      "periodStart": "2026-09-13",
+      "periodEnd": "2026-12-23"
     },
     {
       "slug": "piscine-du-complexe-sportif-marie-victorin",
@@ -1226,61 +971,17 @@
       "lng": -73.608935336737,
       "schedule": {
         "sun": [],
-        "mon": [
-          [
-            "13:30",
-            "17:30",
-            "public"
-          ]
-        ],
-        "tue": [
-          [
-            "12:30",
-            "13:30",
-            "adult"
-          ],
-          [
-            "13:30",
-            "17:30",
-            "public"
-          ]
-        ],
-        "wed": [
-          [
-            "13:30",
-            "16:30",
-            "public"
-          ]
-        ],
-        "thu": [
-          [
-            "12:30",
-            "13:30",
-            "adult"
-          ],
-          [
-            "13:30",
-            "16:30",
-            "public"
-          ]
-        ],
-        "fri": [
-          [
-            "12:00",
-            "13:30",
-            "adult"
-          ]
-        ],
-        "sat": [
-          [
-            "14:30",
-            "16:45",
-            "public"
-          ]
-        ]
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
       },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
       "periodStart": "2026-06-29",
-      "periodEnd": "2026-07-19"
+      "periodEnd": "2026-08-15"
     },
     {
       "slug": "piscine-edouard-montpetit",
@@ -1398,6 +1099,24 @@
       "periodEnd": "2026-08-21"
     },
     {
+      "slug": "piscine-interieure-calixa-lavallee",
+      "name": "Piscine intérieure Calixa-Lavallée",
+      "url": "https://montreal.ca/lieux/piscine-interieure-calixa-lavallee",
+      "lat": 45.597588460599,
+      "lng": -73.637763261795,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
       "slug": "piscine-interieure-henri-bourassa",
       "name": "Piscine intérieure Henri-Bourassa",
       "url": "https://montreal.ca/lieux/piscine-interieure-henri-bourassa",
@@ -1405,31 +1124,15 @@
       "lng": -73.622956627306,
       "schedule": {
         "sun": [],
-        "mon": [
-          [
-            "18:30",
-            "20:00",
-            "adult"
-          ]
-        ],
-        "tue": [
-          [
-            "18:30",
-            "20:00",
-            "adult"
-          ]
-        ],
-        "wed": [
-          [
-            "18:30",
-            "20:00",
-            "adult"
-          ]
-        ],
+        "mon": [],
+        "tue": [],
+        "wed": [],
         "thu": [],
         "fri": [],
         "sat": []
       },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
       "periodStart": "2026-06-22",
       "periodEnd": "2026-08-16"
     },
@@ -1625,7 +1328,7 @@
         ],
         "mon": [
           [
-            "13:30",
+            "13:00",
             "14:55",
             "public"
           ],
@@ -1633,11 +1336,6 @@
             "15:00",
             "16:30",
             "adult"
-          ],
-          [
-            "19:00",
-            "20:25",
-            "public"
           ],
           [
             "20:30",
@@ -1647,7 +1345,7 @@
         ],
         "tue": [
           [
-            "13:30",
+            "13:00",
             "14:55",
             "public"
           ],
@@ -1655,11 +1353,6 @@
             "15:00",
             "16:30",
             "adult"
-          ],
-          [
-            "19:00",
-            "20:25",
-            "public"
           ],
           [
             "20:30",
@@ -1669,7 +1362,7 @@
         ],
         "wed": [
           [
-            "13:30",
+            "13:00",
             "14:55",
             "public"
           ],
@@ -1677,11 +1370,6 @@
             "15:00",
             "16:30",
             "adult"
-          ],
-          [
-            "19:00",
-            "20:25",
-            "public"
           ],
           [
             "20:30",
@@ -1691,7 +1379,7 @@
         ],
         "thu": [
           [
-            "13:30",
+            "13:00",
             "14:55",
             "public"
           ],
@@ -1701,11 +1389,6 @@
             "adult"
           ],
           [
-            "19:00",
-            "20:25",
-            "public"
-          ],
-          [
             "20:30",
             "21:25",
             "adult"
@@ -1713,14 +1396,14 @@
         ],
         "fri": [
           [
+            "13:00",
+            "14:55",
+            "public"
+          ],
+          [
             "15:00",
             "16:30",
             "adult"
-          ],
-          [
-            "19:30",
-            "20:25",
-            "public"
           ],
           [
             "20:30",
@@ -1941,7 +1624,7 @@
         ]
       },
       "periodStart": "2026-06-24",
-      "periodEnd": "2026-08-23"
+      "periodEnd": "2026-08-30"
     },
     {
       "slug": "piscine-rene-goupil",
@@ -2015,6 +1698,24 @@
       },
       "periodStart": "2026-06-20",
       "periodEnd": "2026-08-23"
+    },
+    {
+      "slug": "piscine-roussin",
+      "name": "Piscine Roussin",
+      "url": "https://montreal.ca/lieux/piscine-roussin",
+      "lat": 45.640308944549,
+      "lng": -73.490509986877,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
     },
     {
       "slug": "piscine-saint-charles",
@@ -2144,67 +1845,14 @@
       "schedule": {
         "sun": [],
         "mon": [],
-        "tue": [
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ],
-          [
-            "20:00",
-            "22:00",
-            "adult"
-          ]
-        ],
-        "wed": [
-          [
-            "19:30",
-            "20:30",
-            "public"
-          ],
-          [
-            "20:30",
-            "22:00",
-            "adult"
-          ]
-        ],
-        "thu": [
-          [
-            "19:30",
-            "20:30",
-            "public"
-          ],
-          [
-            "20:30",
-            "22:00",
-            "adult"
-          ]
-        ],
-        "fri": [
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:00",
-            "adult"
-          ]
-        ],
-        "sat": [
-          [
-            "13:00",
-            "14:00",
-            "adult"
-          ],
-          [
-            "14:00",
-            "17:00",
-            "public"
-          ]
-        ]
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
       },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
       "periodStart": "2026-03-07",
       "periodEnd": "2026-06-19"
     },
@@ -2411,8 +2059,8 @@
       "slug": "piscine-sophie-barat",
       "name": "Piscine Sophie-Barat",
       "url": "https://montreal.ca/lieux/piscine-sophie-barat",
-      "lat": 45.561243,
-      "lng": -73.668061,
+      "lat": 45.56160359559911,
+      "lng": -73.66797539759733,
       "schedule": {
         "sun": [
           [
@@ -2566,64 +2214,16 @@
       "lat": 45.507608,
       "lng": -73.703017,
       "schedule": {
-        "sun": [
-          [
-            "13:00",
-            "14:30",
-            "lane"
-          ]
-        ],
+        "sun": [],
         "mon": [],
-        "tue": [
-          [
-            "09:45",
-            "10:25",
-            "lane"
-          ],
-          [
-            "11:30",
-            "12:00",
-            "lane"
-          ],
-          [
-            "18:30",
-            "21:00",
-            "lane"
-          ]
-        ],
+        "tue": [],
         "wed": [],
-        "thu": [
-          [
-            "09:45",
-            "10:10",
-            "lane"
-          ],
-          [
-            "11:05",
-            "11:55",
-            "lane"
-          ],
-          [
-            "17:00",
-            "19:50",
-            "lane"
-          ]
-        ],
-        "fri": [
-          [
-            "09:45",
-            "11:55",
-            "lane"
-          ]
-        ],
-        "sat": [
-          [
-            "17:30",
-            "19:30",
-            "lane"
-          ]
-        ]
+        "thu": [],
+        "fri": [],
+        "sat": []
       },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
       "periodStart": "2026-04-24",
       "periodEnd": "2026-06-21"
     },
