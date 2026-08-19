@@ -176,7 +176,8 @@ function featureCollection() {
     if (adultOnly && isPublicOnly(p)) continue; // open-swim-only pools: only in "show all"
     // Pools with no hours today need no special case here: poolState hands back the
     // neutral one-ring template for them, which the ring code below draws as a single
-    // small disc — red for no posted hours, grey for hours we can't parse.
+    // small disc — opaque white for no posted hours, translucent grey for hours we
+    // can't parse.
     const st = poolState(p, undefined, !adultOnly);
     const rings = st.rings; // outer (soonest) → inner (latest); radius descending
     const geometry = { type: 'Point', coordinates: [p.lng, p.lat] };
@@ -460,7 +461,6 @@ function renderLegend() {
         <div class="lg-heading">${tr.legendHeading} ${SWIMMER_ICON}</div>
         ${sw(COLORS.open, 0.95, tr.open)}
         ${sw(COLORS.upcoming, 1, tr.upcoming)}
-        ${sw(COLORS.nohours, 0.45, tr.noHours)}
         ${sw(COLORS.none, 0.45, tr.none)}
         <label class="lg-toggle" title="${tr.adultOnlyHint}"><input type="checkbox" id="adultonly"${adultOnly ? ' checked' : ''}> ${tr.adultOnly}</label>
       </div>`;
