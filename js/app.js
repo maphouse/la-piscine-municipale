@@ -4,7 +4,7 @@ import { STRINGS } from './i18n.js';
 import { downloadICS } from './ics.js';
 
 const MONTREAL = { center: [-73.61, 45.53], zoom: 11 };
-const BASEMAP = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
+const BASEMAP = 'https://basemaps.maphouse.ca/latest/style/survey-quiet.json';
 const GAP_WIDTH = 2; // px width of the transparent gap carved between a pool's ring bands
 const OUTLINE_WIDTH = 2; // px white halo outside a marker's outer edge (see 'pools-outline')
 

@@ -11,11 +11,11 @@ export const COLORS = {
   nohours: '#dc2626',  // no posted hours apply today — red (popup accent only; see below)
 };
 
-// The on-map marker for 'nohours' pools renders opaque white rather than the status's
-// red accent colour — red drew too much attention on the map itself for pools that
-// simply have nothing posted. The popup title keeps COLORS.nohours (red), so "why is
-// it red?" still has an answer once you open it.
-const NOHOURS_MARKER_COLOR = '#ffffff';
+// The on-map marker for 'nohours' pools renders transparent rather than the status's
+// red accent — the pool has nothing posted, so it should recede into the basemap.
+// The white halo outline (pools-outline layer) still marks the position. The popup
+// title keeps COLORS.nohours (red), so "why is it red?" still has an answer.
+const NOHOURS_MARKER_OPACITY = 0;
 
 // "HH:MM" -> minutes since midnight.
 const toMin = (hhmm) => {
@@ -79,12 +79,11 @@ export function mergeIntervals(intervals) {
 export function poolState(pool, now = montrealNow(), includePublic = false) {
   // No posted hours apply today — either the scraper found none (the page's periods
   // don't cover today, or it posts no schedule at all), or the period it did find has
-  // lapsed since the file was published. Marker is opaque white on the map, independent
-  // of the adult-swim toggle and of time of day. The map says nothing about WHY: a pool
-  // shut for renovation, one closed for the summer and one whose next season simply
-  // isn't posted are the same fact to a swimmer standing outside it.
+  // lapsed since the file was published. Marker is transparent on the map (the white
+  // halo outline still marks the position), independent of the adult-swim toggle and
+  // of time of day.
   if (pool.noUpcomingHours || outOfPeriod(pool)) {
-    return neutralState('nohours', COLORS.nohours, 1, NOHOURS_MARKER_COLOR);
+    return neutralState('nohours', COLORS.nohours, NOHOURS_MARKER_OPACITY);
   }
 
   // "Open for all" (type 'public') sessions are only counted when the "adult swim
@@ -142,10 +141,9 @@ export function poolState(pool, now = montrealNow(), includePublic = false) {
 }
 
 // The neutral marker: one small fixed dot, no rings, no size encoding — the symbol for
-// a pool with nothing to count down to. Opaque white when no posted hours apply today,
-// translucent grey when hours exist but can't be parsed. Same geometry either way, so
-// the two read as one family distinguished only by hue: nothing to show here, and
-// here's whether that's the pool's doing or ours.
+// a pool with nothing to count down to. Transparent when no posted hours apply today
+// (the white halo outline still marks the position), translucent grey when hours exist
+// but can't be parsed.
 const NEUTRAL_RADIUS = 7;
 const NEUTRAL_OPACITY = 0.45;
 

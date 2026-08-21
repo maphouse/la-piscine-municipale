@@ -1,8 +1,8 @@
 {
-  "generated": "2026-08-18T09:35:23.222Z",
+  "generated": "2026-08-21T09:38:18.530Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-08-19",
+  "nextScrapeDate": "2026-08-22",
   "count": 40,
   "pools": [
     {
@@ -508,7 +508,7 @@
         ]
       },
       "periodStart": "2026-06-20",
-      "periodEnd": "2026-08-21"
+      "periodEnd": "2026-08-23"
     },
     {
       "slug": "piscine-communautaire-notre-dame-de-grace",
@@ -1096,7 +1096,7 @@
         ]
       },
       "periodStart": "2026-06-20",
-      "periodEnd": "2026-08-21"
+      "periodEnd": "2026-08-23"
     },
     {
       "slug": "piscine-interieure-calixa-lavallee",
@@ -1550,7 +1550,7 @@
         ]
       },
       "periodStart": "2026-06-20",
-      "periodEnd": "2026-08-21"
+      "periodEnd": "2026-08-23"
     },
     {
       "slug": "piscine-quintal",
@@ -1853,8 +1853,8 @@
       },
       "scheduleUnavailable": true,
       "noUpcomingHours": true,
-      "periodStart": "2026-03-07",
-      "periodEnd": "2026-06-19"
+      "periodStart": "2026-09-08",
+      "periodEnd": "2026-12-20"
     },
     {
       "slug": "piscine-saint-roch",
@@ -1954,7 +1954,7 @@
         ]
       },
       "periodStart": "2026-06-28",
-      "periodEnd": "2026-08-22"
+      "periodEnd": "2026-08-23"
     },
     {
       "slug": "piscine-schubert",
@@ -2322,6 +2322,11 @@
           ],
           [
             "19:35",
+            "21:10",
+            "public"
+          ],
+          [
+            "19:40",
             "21:10",
             "public"
           ]
