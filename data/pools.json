@@ -1,8 +1,8 @@
 {
-  "generated": "2026-08-24T09:49:49.406Z",
+  "generated": "2026-08-26T09:43:23.790Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-08-25",
+  "nextScrapeDate": "2026-08-27",
   "count": 40,
   "pools": [
     {
@@ -364,7 +364,7 @@
         ]
       },
       "periodStart": "2026-06-20",
-      "periodEnd": "2026-08-28"
+      "periodEnd": "2026-08-30"
     },
     {
       "slug": "complexe-aquatique-de-saint-leonard",
@@ -1693,11 +1693,6 @@
           ],
           [
             "19:35",
-            "21:10",
-            "public"
-          ],
-          [
-            "19:40",
             "21:10",
             "public"
           ]
