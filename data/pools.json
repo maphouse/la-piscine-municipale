@@ -1,8 +1,8 @@
 {
-  "generated": "2026-08-27T19:39:54.555Z",
+  "generated": "2026-08-28T20:45:11.629Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-08-28",
+  "nextScrapeDate": "2026-08-29",
   "count": 40,
   "pools": [
     {
@@ -14,77 +14,16 @@
       "schedule": {
         "sun": [],
         "mon": [],
-        "tue": [
-          [
-            "12:00",
-            "13:00",
-            "adult"
-          ],
-          [
-            "13:00",
-            "17:00",
-            "public"
-          ],
-          [
-            "18:00",
-            "20:00",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:00",
-            "adult"
-          ]
-        ],
-        "wed": [
-          [
-            "12:00",
-            "13:00",
-            "adult"
-          ],
-          [
-            "13:00",
-            "17:00",
-            "public"
-          ],
-          [
-            "18:00",
-            "20:00",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:00",
-            "adult"
-          ]
-        ],
-        "thu": [
-          [
-            "12:00",
-            "13:00",
-            "adult"
-          ],
-          [
-            "13:00",
-            "17:00",
-            "public"
-          ],
-          [
-            "18:00",
-            "20:00",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:00",
-            "adult"
-          ]
-        ],
+        "tue": [],
+        "wed": [],
+        "thu": [],
         "fri": [],
         "sat": []
       },
-      "periodStart": "2026-07-17",
-      "periodEnd": "2026-08-27"
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
+      "periodStart": "2026-08-29",
+      "periodEnd": "2026-12-20"
     },
     {
       "slug": "bain-morgan",
@@ -123,8 +62,8 @@
       },
       "scheduleUnavailable": true,
       "noUpcomingHours": true,
-      "periodStart": "2026-06-20",
-      "periodEnd": "2026-08-16"
+      "periodStart": "2026-08-31",
+      "periodEnd": "2026-12-20"
     },
     {
       "slug": "complexe-aquatique-de-rosemont",
@@ -1558,8 +1497,8 @@
       },
       "scheduleUnavailable": true,
       "noUpcomingHours": true,
-      "periodStart": "2026-06-20",
-      "periodEnd": "2026-08-23"
+      "periodStart": "2026-09-01",
+      "periodEnd": "2026-12-18"
     },
     {
       "slug": "piscine-villeray",
