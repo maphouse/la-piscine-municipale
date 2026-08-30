@@ -1,8 +1,8 @@
 {
-  "generated": "2026-08-29T14:13:07.791Z",
+  "generated": "2026-08-30T14:19:10.214Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-08-30",
+  "nextScrapeDate": "2026-08-31",
   "count": 40,
   "pools": [
     {
@@ -684,13 +684,7 @@
             "public"
           ]
         ],
-        "sat": [
-          [
-            "13:00",
-            "14:25",
-            "public"
-          ]
-        ]
+        "sat": []
       },
       "periodStart": "2026-06-24",
       "periodEnd": "2026-08-30"
@@ -1019,8 +1013,8 @@
       },
       "scheduleUnavailable": true,
       "noUpcomingHours": true,
-      "periodStart": "2026-06-19",
-      "periodEnd": "2026-08-28"
+      "periodStart": "2026-08-31",
+      "periodEnd": "2026-12-23"
     },
     {
       "slug": "piscine-pierre-lorange",
