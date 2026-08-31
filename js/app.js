@@ -7,6 +7,7 @@ const MONTREAL = { center: [-73.61, 45.53], zoom: 11 };
 const BASEMAP = 'https://basemaps.maphouse.ca/latest/style/survey-quiet.json';
 const GAP_WIDTH = 2; // px width of the transparent gap carved between a pool's ring bands
 const OUTLINE_WIDTH = 2; // px white halo outside a marker's outer edge (see 'pools-outline')
+const NOHOURS_TINT = '#c09090';
 
 // Build-session metering shown in the legend. BUILD_TOKENS is the one figure
 // kept by hand — Claude usage isn't visible to the data-refresh Action, so
@@ -44,8 +45,11 @@ let previewSuppressed = false;
 
 const t = () => STRINGS[lang];
 
-// Crosshair icon for the custom geolocate button that lives in the legend.
-const LOCATE_ICON = '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/></svg>';
+const CHEVRON_UP = '<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M6 15l6-6 6 6"/></svg>';
+const CHEVRON_DOWN = '<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>';
+
+// Crosshair-with-filled-dot icon for the custom geolocate button in the legend.
+const LOCATE_ICON = '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>';
 
 // Swimmer (Material "pool" glyph) appended to the legend title.
 const SWIMMER_ICON = '<svg class="title-swimmer" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22 21c-1.11 0-1.73-.37-2.18-.64-.37-.22-.6-.36-1.15-.36-.56 0-.78.13-1.15.36-.46.27-1.07.64-2.18.64s-1.73-.37-2.18-.64c-.37-.22-.6-.36-1.15-.36-.56 0-.78.13-1.15.36-.46.27-1.08.64-2.19.64s-1.73-.37-2.18-.64c-.37-.23-.6-.36-1.15-.36s-.78.13-1.15.36c-.46.27-1.08.64-2.19.64v-2c.56 0 .78-.13 1.15-.36.46-.27 1.08-.64 2.19-.64s1.73.37 2.18.64c.37.23.59.36 1.15.36.56 0 .78-.13 1.15-.36.46-.27 1.08-.64 2.19-.64s1.73.37 2.18.64c.37.23.6.36 1.15.36s.78-.13 1.15-.36c.46-.27 1.08-.64 2.19-.64s1.73.37 2.18.64c.37.23.59.36 1.15.36v2zm0-4.5c-1.11 0-1.73-.37-2.18-.64-.37-.22-.6-.36-1.15-.36-.56 0-.78.13-1.15.36-.46.27-1.07.64-2.18.64s-1.73-.37-2.18-.64c-.37-.22-.6-.36-1.15-.36-.56 0-.78.13-1.15.36-.46.27-1.08.64-2.19.64s-1.73-.37-2.18-.64c-.37-.23-.6-.36-1.15-.36s-.78.13-1.15.36c-.46.27-1.08.64-2.19.64v-2c.56 0 .78-.13 1.15-.36.46-.27 1.08-.64 2.19-.64s1.73.37 2.18.64c.37.23.59.36 1.15.36.56 0 .78-.13 1.15-.36.46-.27 1.08-.64 2.19-.64s1.73.37 2.18.64c.37.23.6.36 1.15.36s.78-.13 1.15-.36c.46-.27 1.08-.64 2.19-.64s1.73.37 2.18.64c.37.23.59.36 1.15.36v2zM8.67 12c.55-.34 1.24-.6 2.16-.6 1.11 0 1.73.37 2.18.64.37.23.6.36 1.15.36.56 0 .78-.13 1.15-.36.4-.24.91-.51 1.67-.6L8.4 5.71c-.45.27-.71.75-.71 1.29 0 .57.31 1.07.78 1.34l1.7.98c-.49.1-.94.31-1.32.54-.37.22-.59.35-1.15.35-.56 0-.78-.13-1.15-.36-.45-.27-1.07-.64-2.18-.64v2c.56 0 .78.13 1.15.36.27.16.6.34 1.07.46zm6.83-4.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>';
@@ -84,6 +88,26 @@ async function init() {
   map.addControl(geolocate, 'bottom-right');
 
   map.on('load', () => {
+    // Diagonal slash icon for nohours markers — a prohibition/blocked visual cue
+    // drawn over the neutral dot to distinguish "no posted hours" from "hours
+    // exist but don't match filter".
+    const pr = window.devicePixelRatio || 1;
+    const sz = 16;
+    const slashCanvas = document.createElement('canvas');
+    slashCanvas.width = sz * pr;
+    slashCanvas.height = sz * pr;
+    const ctx = slashCanvas.getContext('2d');
+    ctx.scale(pr, pr);
+    ctx.strokeStyle = NOHOURS_TINT;
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(13, 3);
+    ctx.lineTo(3, 13);
+    ctx.stroke();
+    const imgData = ctx.getImageData(0, 0, slashCanvas.width, slashCanvas.height);
+    map.addImage('nohours-slash', { width: slashCanvas.width, height: slashCanvas.height, data: imgData.data }, { pixelRatio: pr });
+
     map.addSource('pools', { type: 'geojson', data: featureCollection() });
 
     // Each pool is drawn as two kinds of feature (see featureCollection): an invisible
@@ -117,7 +141,7 @@ async function init() {
         'circle-radius': ['get', 'radius'],
         'circle-opacity': 0,
         'circle-stroke-width': OUTLINE_WIDTH,
-        'circle-stroke-color': '#fff',
+        'circle-stroke-color': ['case', ['get', 'nohours'], NOHOURS_TINT, '#fff'],
         'circle-stroke-opacity': 1,
       },
     });
@@ -138,6 +162,18 @@ async function init() {
         'circle-stroke-width': ['get', 'strokeWidth'],
         'circle-stroke-color': ['get', 'strokeColor'],
         'circle-stroke-opacity': ['get', 'strokeOpacity'],
+      },
+    });
+
+    map.addLayer({
+      id: 'pools-slash',
+      type: 'symbol',
+      source: 'pools',
+      filter: ['==', ['get', 'role'], 'slash'],
+      layout: {
+        'icon-image': 'nohours-slash',
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
       },
     });
 
@@ -164,27 +200,30 @@ async function init() {
 }
 
 // A pool with a schedule but no dedicated adult/lane session (only "open for all"
-// hours) — e.g. the YMCA. Hidden while "adult swim only" is on.
+// hours) — e.g. the YMCA. Shown as a neutral dot (same look as nohours, minus the
+// slash) while "adult swim only" is on; clicking still reveals its actual hours.
 function isPublicOnly(pool) {
   return !pool.scheduleUnavailable &&
     !Object.values(pool.schedule).some((day) => day.some((r) => r[2] !== 'public'));
 }
 
+const NEUTRAL_RADIUS = 7;
+
 function featureCollection() {
   const features = [];
   for (const p of pools) {
-    if (adultOnly && isPublicOnly(p)) continue; // open-swim-only pools: only in "show all"
-    // Pools with no hours today need no special case here: poolState hands back the
-    // neutral one-ring template for them, which the ring code below draws as a single
-    // small disc — opaque white for no posted hours, translucent grey for hours we
-    // can't parse.
+    const filteredOut = adultOnly && isPublicOnly(p);
     const st = poolState(p, undefined, !adultOnly);
-    const rings = st.rings; // outer (soonest) → inner (latest); radius descending
+    // Filtered-out pools render as the same neutral dot as nohours (transparent,
+    // white outline only) — visible but clearly not matching the current filter.
+    const rings = filteredOut
+      ? [{ color: COLORS.nohours, radius: NEUTRAL_RADIUS, opacity: 0 }]
+      : st.rings;
     const geometry = { type: 'Point', coordinates: [p.lng, p.lat] };
     // Invisible full-size disc: the interaction target for the whole symbol.
     features.push({ type: 'Feature', geometry, properties: { role: 'hit', slug: p.slug, radius: rings[0].radius } });
     // White halo at the symbol's outer edge (see the 'pools-outline' layer).
-    features.push({ type: 'Feature', geometry, properties: { role: 'outline', slug: p.slug, radius: rings[0].radius } });
+    features.push({ type: 'Feature', geometry, properties: { role: 'outline', slug: p.slug, radius: rings[0].radius, nohours: st.status === 'nohours' } });
     rings.forEach((ring, i) => {
       const outer = ring.radius;
       const inner = i < rings.length - 1 ? rings[i + 1].radius : 0;
@@ -210,6 +249,9 @@ function featureCollection() {
         } });
       }
     });
+    if (st.status === 'nohours') {
+      features.push({ type: 'Feature', geometry, properties: { role: 'slash', slug: p.slug } });
+    }
   }
   return { type: 'FeatureCollection', features };
 }
@@ -221,7 +263,8 @@ function refresh() {
 
 // Build the popup DOM for a pool (shared by hover preview and click).
 function buildPopupEl(pool) {
-  const st = poolState(pool, undefined, !adultOnly);
+  const includePublic = !adultOnly || isPublicOnly(pool);
+  const st = poolState(pool, undefined, includePublic);
   const tr = t();
 
   // A pool with no hours today has no countdown to report, and the map says nothing
@@ -239,9 +282,9 @@ function buildPopupEl(pool) {
     // The pool can have further same-day sessions after the current one — each
     // gets its own (fainter) ring, so list them here too rather than only the
     // one that's open right now.
-    for (const s of todayRemaining(pool)) line += `<br><span class="status-when">${s}</span>`;
+    for (const s of todayRemaining(pool, includePublic)) line += `<br><span class="status-when">${s}</span>`;
   } else if (st.status === 'upcoming') {
-    const sessions = upcomingSessions(pool);
+    const sessions = upcomingSessions(pool, includePublic);
     // Countdown + the next open hours are bold; any further shifts that day list
     // below, not bold.
     line = `${tr.nextIn} ${fmtCountdown(st.minutesUntilNext)}`;
@@ -268,7 +311,8 @@ function buildPopupEl(pool) {
   // marker's own colour. That link is the answer to "but WHY is it red?" — the City's
   // page carries the notice, in prose, for a human to read. Link-only pools are the
   // one case with nothing to say, so they omit the status line.
-  const title = `<h2 style="color:${st.color}"><a class="pool-link" href="${pool.url}" target="_blank" rel="noopener" title="${tr.popupVisit}">${escapeHtml(pool.name)} ↗</a></h2>`;
+  const titleColor = st.status === 'nohours' ? NOHOURS_TINT : st.color;
+  const title = `<h2 style="color:${titleColor}"><a class="pool-link" href="${pool.url}" target="_blank" rel="noopener" title="${tr.popupVisit}">${escapeHtml(pool.name)} ↗</a></h2>`;
   const status = line ? `<div class="status">${line}</div>` : '';
   const el = document.createElement('div');
   el.className = 'popup';
@@ -330,7 +374,8 @@ function nearestPoolToCenter() {
 
 // Pixels the popup tip should sit above the point so it clears the pool's ring.
 function popupOffsetFor(pool) {
-  const r = poolState(pool, undefined, !adultOnly).radius || 8;
+  const filteredOut = adultOnly && isPublicOnly(pool);
+  const r = filteredOut ? NEUTRAL_RADIUS : (poolState(pool, undefined, !adultOnly).radius || 8);
   return Math.round(r) + 10;
 }
 
@@ -379,8 +424,8 @@ const fmtHM = (min) => `${String(Math.floor(min / 60)).padStart(2, '0')}:${Strin
 // toggle) — the same merge poolState uses for rings, so a pool that lists the same
 // slot twice under two session types (e.g. "public" and "lane" at the same time)
 // doesn't show as two separate lines here while rendering as one ring.
-function sessionsForDay(pool, key) {
-  const keep = (r) => !adultOnly || r[2] !== 'public';
+function sessionsForDay(pool, key, includePublic = false) {
+  const keep = (r) => includePublic || !adultOnly || r[2] !== 'public';
   const raw = (pool.schedule[key] || []).filter(keep).map((r) => [toMin(r[0]), toMin(r[1])]);
   return mergeIntervals(raw).map(([s, e]) => ({ s, txt: `${fmtHM(s)}–${fmtHM(e)}` }));
 }
@@ -388,24 +433,24 @@ function sessionsForDay(pool, key) {
 // Today's remaining merged sessions after `now` — used both to list further shifts
 // once the pool is already open (each of which still gets its own ring), and as the
 // base case below for looking ahead to future days.
-function todayRemaining(pool) {
+function todayRemaining(pool, includePublic = false) {
   const now = montrealNow();
-  return sessionsForDay(pool, now.dayKey).filter((x) => x.s > now.minutes).map((x) => x.txt);
+  return sessionsForDay(pool, now.dayKey, includePublic).filter((x) => x.s > now.minutes).map((x) => x.txt);
 }
 
 // Upcoming free-swim sessions for the popup: today's remaining ones, or — if today
 // has none left — the next day that has any. Returns an array of time-range labels
 // (the first carries a day name when it's a future day). Respects the adult-swim
 // toggle, so it never lists an "open for all" session the countdown ignored.
-function upcomingSessions(pool) {
+function upcomingSessions(pool, includePublic = false) {
   const now = montrealNow();
   const tr = t();
-  const today = todayRemaining(pool);
+  const today = todayRemaining(pool, includePublic);
   if (today.length) return today;
   const todayIndex = DAY_KEYS.indexOf(now.dayKey);
   for (let d = 1; d <= 6; d++) {
     const di = (todayIndex + d) % 7;
-    const sessions = sessionsForDay(pool, DAY_KEYS[di]);
+    const sessions = sessionsForDay(pool, DAY_KEYS[di], includePublic);
     if (sessions.length) return sessions.map((x, i) => (i === 0 ? `${tr.days[di]} ${x.txt}` : x.txt));
   }
   return [];
@@ -471,7 +516,7 @@ function renderLegend() {
         <div class="lg-btns">
           <button id="langtoggle" type="button" title="${tr.other}">${tr.other}</button>
           <button id="geoloc" type="button" title="${tr.locate}">${LOCATE_ICON}</button>
-          <button id="mintoggle" type="button" title="${legendCollapsed ? '+' : '–'}">${legendCollapsed ? '+' : '–'}</button>
+          <button id="mintoggle" type="button" title="${legendCollapsed ? '+' : '–'}">${legendCollapsed ? CHEVRON_DOWN : CHEVRON_UP}</button>
         </div>
       </div>${body}
     </div>`;
