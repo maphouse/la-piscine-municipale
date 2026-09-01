@@ -1,0 +1,110 @@
+# Outdoor municipal pool slugs to scrape.
+#
+# These are free outdoor pools run by the City of Montreal. Unlike indoor
+# candidates, these pages pass without the "intérieure" keyword check —
+# the scraper knows they're outdoor from being listed here. Each gets
+# indoor:false in the output so the frontend can filter/style them.
+#
+# Outdoor pools are summer-only (~mid-June to early September). Outside
+# their season every entry here shows as a neutral empty circle.
+#
+# Source: La Presse 2026-06-25 outdoor pool list, verified against
+# montreal.ca /lieux/ pages.
+
+# Ahuntsic-Cartierville
+piscine-du-parc-gabriel-lalemant
+piscine-du-parc-marcelin-wilson
+
+# Anjou
+piscine-du-parc-chenier
+piscine-du-parc-de-verdelles
+piscine-du-parc-des-roseraies
+piscine-du-parc-lucie-bruneau
+piscine-du-parc-roger-rousseau
+
+# CDN-NDG
+piscine-du-parc-de-la-confederation
+piscine-du-parc-martin-luther-king
+
+# L'Île-Bizard–Sainte-Geneviève
+piscine-du-parc-eugene-dostie
+piscine-du-parc-robert-sauve
+
+# Lachine
+piscine-du-parc-kirkland
+piscine-du-parc-lasalle
+piscine-du-parc-michel-menard
+
+# LaSalle
+piscine-du-parc-hayward
+piscine-du-parc-lacharite
+piscine-du-parc-lefebvre
+piscine-du-parc-leroux
+piscine-du-parc-menard-lasalle
+piscine-du-parc-ouellette
+piscine-du-parc-riverside
+
+# Le Plateau-Mont-Royal
+piscine-du-parc-sir-wilfrid-laurier
+
+# Le Sud-Ouest
+piscine-exterieure-du-parc-ignace-bourget
+piscine-exterieure-du-square-sir-george-etienne-cartier
+
+# Mercier–Hochelaga-Maisonneuve
+piscine-maisonneuve-du-parc-francine-leger
+piscine-paul-emile-sauvageau-du-parc-l-o-taillon
+
+# Montréal-Nord
+piscine-du-parc-charleroi
+piscine-du-parc-ottawa
+piscine-du-parc-primeau
+piscine-exterieure-du-parc-saint-laurent
+
+# Outremont
+piscine-du-parc-john-f-kennedy
+
+# Pierrefonds-Roxboro
+piscine-valleycrest-du-parc-grier
+piscine-municipale-versailles
+
+# Rivière-des-Prairies–Pointe-aux-Trembles
+piscine-du-parc-don-bosco
+piscine-du-parc-hans-selye
+piscine-du-parc-maria-goretti
+piscine-du-parc-richelieu
+piscine-du-parc-saint-georges
+
+# Rosemont–La Petite-Patrie
+piscine-du-parc-du-pelican
+piscine-du-parc-joseph-pare
+
+# Saint-Laurent
+piscine-du-parc-bourbonniere
+piscine-du-parc-chamberland
+piscine-du-parc-decelles
+piscine-du-parc-hartenstein
+piscine-du-parc-marlborough
+piscine-du-parc-noel-nord
+piscine-du-parc-painter
+piscine-du-parc-saint-laurent-arr-saint-laurent
+
+# Saint-Léonard
+piscine-du-parc-ferland
+piscine-du-parc-giuseppe-garibaldi
+piscine-du-parc-hebert
+piscine-du-parc-ladauversiere
+piscine-du-parc-pie-xii
+
+# Verdun
+natatorium-de-verdun
+piscine-du-parc-arthur-therrien
+piscine-du-parc-dan-hanganu-elgar
+
+# Ville-Marie
+piscine-du-parc-de-la-fontaine
+
+# Villeray–Saint-Michel–Parc-Extension
+piscine-du-parc-francois-perrault
+piscine-du-parc-jarry
+piscine-du-parc-sainte-lucie

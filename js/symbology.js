@@ -144,7 +144,7 @@ export function poolState(pool, now = montrealNow(), includePublic = false) {
 // a pool with nothing to count down to. Transparent when no posted hours apply today
 // (the white halo outline still marks the position), translucent grey when hours exist
 // but can't be parsed.
-const NEUTRAL_RADIUS = 7;
+export const NEUTRAL_RADIUS = 7;
 const NEUTRAL_OPACITY = 0.45;
 
 // `color` is what callers get back as `.color` (used for e.g. the popup title accent);
@@ -186,7 +186,7 @@ const RING_MIN_GAP = 3;
 
 function ringsFor(status, segments, remainingMin) {
   if (status === 'none') {
-    return [{ color: COLORS.none, radius: NEUTRAL_RADIUS, opacity: NEUTRAL_OPACITY }];
+    return [{ color: COLORS.none, radius: NEUTRAL_RADIUS, opacity: 0 }];
   }
   // Per-ring colour + nearness opacity, in schedule order (soonest → latest).
   const vis = segments.map((s) => ({

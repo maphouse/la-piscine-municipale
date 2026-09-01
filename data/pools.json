@@ -1,9 +1,9 @@
 {
-  "generated": "2026-08-31T16:48:51.932Z",
+  "generated": "2026-09-01T04:22:31.786Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-09-01",
-  "count": 40,
+  "nextScrapeDate": "2026-09-02",
+  "count": 100,
   "pools": [
     {
       "slug": "bain-emard",
@@ -11,6 +11,7 @@
       "url": "https://montreal.ca/lieux/bain-emard",
       "lat": 45.457854199708,
       "lng": -73.58887732029,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [
@@ -115,6 +116,7 @@
       "url": "https://montreal.ca/lieux/bain-morgan",
       "lat": 45.553457,
       "lng": -73.538288,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -126,8 +128,8 @@
       },
       "scheduleUnavailable": true,
       "noUpcomingHours": true,
-      "periodStart": "2026-03-07",
-      "periodEnd": "2026-06-19"
+      "periodStart": "2026-09-12",
+      "periodEnd": "2027-06-18"
     },
     {
       "slug": "centre-aquatique-de-riviere-des-prairies",
@@ -135,6 +137,7 @@
       "url": "https://montreal.ca/lieux/centre-aquatique-de-riviere-des-prairies",
       "lat": 45.651076762963,
       "lng": -73.579088029757,
+      "indoor": true,
       "schedule": {
         "sun": [
           [
@@ -285,6 +288,7 @@
       "url": "https://montreal.ca/lieux/complexe-aquatique-de-rosemont",
       "lat": 45.55239,
       "lng": -73.58232,
+      "indoor": true,
       "schedule": {
         "sun": [
           [
@@ -490,6 +494,7 @@
       "url": "https://montreal.ca/lieux/complexe-aquatique-de-saint-leonard",
       "lat": 45.584951462821,
       "lng": -73.599611577091,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -507,6 +512,7 @@
       "url": "https://montreal.ca/lieux/complexe-aquatique-michel-leduc-aquadome",
       "lat": 45.436564,
       "lng": -73.608226,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -519,11 +525,12 @@
       "scheduleUnavailable": true
     },
     {
-      "slug": "piscine-annie-pelletier",
-      "name": "Piscine Annie-Pelletier",
-      "url": "https://montreal.ca/lieux/piscine-annie-pelletier",
-      "lat": 45.602298840057,
-      "lng": -73.51544380188,
+      "slug": "piscine-du-parc-chenier",
+      "name": "Parc Chénier",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-chenier",
+      "lat": 45.602861,
+      "lng": -73.543303,
+      "indoor": false,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -534,9 +541,181 @@
         "sat": []
       },
       "scheduleUnavailable": true,
-      "noUpcomingHours": true,
-      "periodStart": "2026-06-20",
-      "periodEnd": "2026-08-23"
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-lucie-bruneau",
+      "name": "Parc Lucie-Bruneau",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-lucie-bruneau",
+      "lat": 45.604072,
+      "lng": -73.583457,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "natatorium-de-verdun",
+      "name": "Piscine - Natatorium de Verdun",
+      "url": "https://montreal.ca/lieux/natatorium-de-verdun",
+      "lat": 45.443701,
+      "lng": -73.576101,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-annie-pelletier",
+      "name": "Piscine Annie-Pelletier",
+      "url": "https://montreal.ca/lieux/piscine-annie-pelletier",
+      "lat": 45.602298840057,
+      "lng": -73.51544380188,
+      "indoor": true,
+      "schedule": {
+        "sun": [
+          [
+            "08:00",
+            "08:55",
+            "adult"
+          ],
+          [
+            "13:00",
+            "16:55",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "07:00",
+            "07:55",
+            "adult"
+          ],
+          [
+            "12:00",
+            "13:25",
+            "adult"
+          ],
+          [
+            "13:30",
+            "15:55",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "13:00",
+            "13:55",
+            "adult"
+          ],
+          [
+            "14:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "19:00",
+            "20:25",
+            "public"
+          ],
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "12:00",
+            "13:25",
+            "adult"
+          ],
+          [
+            "13:30",
+            "15:25",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "13:00",
+            "13:55",
+            "adult"
+          ],
+          [
+            "14:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "19:00",
+            "20:25",
+            "public"
+          ],
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "07:00",
+            "07:55",
+            "adult"
+          ],
+          [
+            "12:00",
+            "13:25",
+            "adult"
+          ],
+          [
+            "13:30",
+            "15:25",
+            "public"
+          ],
+          [
+            "18:30",
+            "20:25",
+            "public"
+          ],
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "08:00",
+            "08:55",
+            "adult"
+          ],
+          [
+            "13:00",
+            "16:55",
+            "public"
+          ]
+        ]
+      },
+      "periodStart": "2026-08-12",
+      "periodEnd": "2027-06-18"
     },
     {
       "slug": "piscine-communautaire-notre-dame-de-grace",
@@ -544,6 +723,7 @@
       "url": "https://montreal.ca/lieux/piscine-communautaire-notre-dame-de-grace",
       "lat": 45.476338181712,
       "lng": -73.613939146181,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -562,6 +742,7 @@
       "url": "https://montreal.ca/lieux/piscine-de-lacademie-beurling",
       "lat": 45.448186779684,
       "lng": -73.586382865906,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -582,6 +763,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-cegep-du-vieux-montreal",
       "lat": 45.514598500625,
       "lng": -73.566368222237,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -655,6 +837,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-centre-du-plateau",
       "lat": 45.539769,
       "lng": -73.575971,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -673,6 +856,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-centre-gadbois",
       "lat": 45.466285967574,
       "lng": -73.595298528671,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -691,6 +875,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-centre-jean-claude-malepart",
       "lat": 45.534002846799,
       "lng": -73.552098870277,
+      "indoor": true,
       "schedule": {
         "sun": [
           [
@@ -806,6 +991,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-centre-sportif-cote-des-neiges",
       "lat": 45.492818895307,
       "lng": -73.63831624118,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -823,6 +1009,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-centre-sportif-de-la-petite-bourgogne",
       "lat": 45.488222970601,
       "lng": -73.569152355194,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -840,6 +1027,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-centre-sportif-de-notre-dame-de-grace",
       "lat": 45.46651,
       "lng": -73.632712,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -857,6 +1045,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-centre-yvon-deschamps-asccs",
       "lat": 45.522792513738,
       "lng": -73.562672138214,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -874,6 +1063,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-complexe-sportif-claude-robillard",
       "lat": 45.55142388962415,
       "lng": -73.63323879772682,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -894,6 +1084,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-complexe-sportif-de-lecole-secondaire-danjou",
       "lat": 45.602617349317,
       "lng": -73.540687986112,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -911,6 +1102,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-complexe-sportif-du-college-de-bois-de-boulogne",
       "lat": 45.536462746586,
       "lng": -73.673053509407,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -928,6 +1120,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-complexe-sportif-du-college-sainte-anne",
       "lat": 45.4322365646,
       "lng": -73.674253830427,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -948,6 +1141,7 @@
       "url": "https://montreal.ca/lieux/piscine-du-complexe-sportif-marie-victorin",
       "lat": 45.619547954978,
       "lng": -73.608935336737,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -963,11 +1157,1291 @@
       "periodEnd": "2026-12-20"
     },
     {
+      "slug": "piscine-du-parc-arthur-therrien",
+      "name": "Piscine du parc Arthur-Therrien",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-arthur-therrien",
+      "lat": 45.464243988975,
+      "lng": -73.561462204896,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-bourbonniere",
+      "name": "Piscine du parc Bourbonnière",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-bourbonniere",
+      "lat": 45.501956523396,
+      "lng": -73.702777069054,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
+      "periodStart": "2026-06-15",
+      "periodEnd": "2026-08-22"
+    },
+    {
+      "slug": "piscine-du-parc-chamberland",
+      "name": "Piscine du parc Chamberland",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-chamberland",
+      "lat": 45.503107047417,
+      "lng": -73.689763378931,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
+      "periodStart": "2026-06-15",
+      "periodEnd": "2026-08-22"
+    },
+    {
+      "slug": "piscine-du-parc-dan-hanganu-elgar",
+      "name": "Piscine du parc Dan-Hanganu (Elgar)",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-dan-hanganu-elgar",
+      "lat": 45.457322465204,
+      "lng": -73.547878234869,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-de-la-confederation",
+      "name": "Piscine du parc de la Confédération",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-de-la-confederation",
+      "lat": 45.471899866214,
+      "lng": -73.637867610894,
+      "indoor": false,
+      "schedule": {
+        "sun": [
+          [
+            "11:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "16:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "16:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "wed": [
+          [
+            "16:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "16:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "16:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "11:00",
+            "19:00",
+            "public"
+          ]
+        ]
+      },
+      "periodStart": "2026-08-22",
+      "periodEnd": "2026-09-04"
+    },
+    {
+      "slug": "piscine-du-parc-de-la-fontaine",
+      "name": "Piscine du parc de la Fontaine",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-de-la-fontaine",
+      "lat": 45.463453076654,
+      "lng": -73.544669423744,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-de-verdelles",
+      "name": "Piscine du parc de Verdelles",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-de-verdelles",
+      "lat": 45.608694755961,
+      "lng": -73.549622934304,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-decelles",
+      "name": "Piscine du parc Decelles",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-decelles",
+      "lat": 45.513430384566,
+      "lng": -73.677306812249,
+      "indoor": false,
+      "schedule": {
+        "sun": [
+          [
+            "11:45",
+            "12:45",
+            "lane"
+          ],
+          [
+            "18:15",
+            "19:15",
+            "lane"
+          ],
+          [
+            "18:15",
+            "19:15",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "18:15",
+            "19:15",
+            "lane"
+          ],
+          [
+            "18:15",
+            "19:15",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "18:15",
+            "19:15",
+            "lane"
+          ],
+          [
+            "18:15",
+            "19:15",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "18:15",
+            "19:15",
+            "lane"
+          ],
+          [
+            "18:15",
+            "19:15",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "18:15",
+            "19:15",
+            "lane"
+          ],
+          [
+            "18:15",
+            "19:15",
+            "adult"
+          ]
+        ],
+        "fri": [],
+        "sat": [
+          [
+            "11:45",
+            "12:45",
+            "lane"
+          ],
+          [
+            "18:15",
+            "19:15",
+            "lane"
+          ],
+          [
+            "18:15",
+            "19:15",
+            "adult"
+          ]
+        ]
+      },
+      "periodStart": "2026-08-31",
+      "periodEnd": "2026-09-06"
+    },
+    {
+      "slug": "piscine-du-parc-des-roseraies",
+      "name": "Piscine du parc des Roseraies",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-des-roseraies",
+      "lat": 45.592781030061,
+      "lng": -73.556285541497,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-don-bosco",
+      "name": "Piscine du parc Don-Bosco",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-don-bosco",
+      "lat": 45.644109104113,
+      "lng": -73.588879745446,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-du-pelican",
+      "name": "Piscine du parc du Pélican",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-du-pelican",
+      "lat": 45.544464250737,
+      "lng": -73.576402109109,
+      "indoor": false,
+      "schedule": {
+        "sun": [
+          [
+            "10:30",
+            "11:30",
+            "adult"
+          ],
+          [
+            "11:30",
+            "18:55",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "13:00",
+            "17:55",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "13:00",
+            "17:55",
+            "public"
+          ]
+        ],
+        "wed": [],
+        "thu": [
+          [
+            "13:00",
+            "17:55",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "13:00",
+            "17:55",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "10:30",
+            "11:30",
+            "adult"
+          ],
+          [
+            "11:30",
+            "18:55",
+            "public"
+          ]
+        ]
+      },
+      "periodStart": "2026-08-31",
+      "periodEnd": "2026-09-07"
+    },
+    {
+      "slug": "piscine-du-parc-eugene-dostie",
+      "name": "Piscine du parc Eugène-Dostie",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-eugene-dostie",
+      "lat": 45.487202361781,
+      "lng": -73.882828395806,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-ferland",
+      "name": "Piscine du parc Ferland",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-ferland",
+      "lat": 45.595844022394,
+      "lng": -73.598063629113,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-francois-perrault",
+      "name": "Piscine du parc François-Perrault",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-francois-perrault",
+      "lat": 45.562483887035,
+      "lng": -73.600105074477,
+      "indoor": false,
+      "schedule": {
+        "sun": [
+          [
+            "12:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "15:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "07:00",
+            "09:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "wed": [],
+        "thu": [
+          [
+            "07:00",
+            "09:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "15:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "12:00",
+            "19:00",
+            "public"
+          ]
+        ]
+      },
+      "periodStart": "2026-08-31",
+      "periodEnd": "2026-09-04"
+    },
+    {
+      "slug": "piscine-du-parc-gabriel-lalemant",
+      "name": "Piscine du parc Gabriel-Lalemant",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-gabriel-lalemant",
+      "lat": 45.571107366644,
+      "lng": -73.642418311802,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
+      "periodStart": "2026-08-24",
+      "periodEnd": "2026-08-30"
+    },
+    {
+      "slug": "piscine-du-parc-giuseppe-garibaldi",
+      "name": "Piscine du parc Giuseppe-Garibaldi",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-giuseppe-garibaldi",
+      "lat": 45.586624510417,
+      "lng": -73.571992557488,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-hans-selye",
+      "name": "Piscine du parc Hans-Selye",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-hans-selye",
+      "lat": 45.63077132583,
+      "lng": -73.602312248192,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-hartenstein",
+      "name": "Piscine du parc Hartenstein",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-hartenstein",
+      "lat": 45.517535142925,
+      "lng": -73.691468875847,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-hayward",
+      "name": "Piscine du parc Hayward",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-hayward",
+      "lat": 45.422398397653,
+      "lng": -73.648054640732,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-hebert",
+      "name": "Piscine du parc Hébert",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-hebert",
+      "lat": 45.572489490723,
+      "lng": -73.592723356203,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-jarry",
+      "name": "Piscine du parc Jarry",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-jarry",
+      "lat": 45.532808829134,
+      "lng": -73.625958602868,
+      "indoor": false,
+      "schedule": {
+        "sun": [
+          [
+            "12:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "07:00",
+            "09:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "15:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "wed": [
+          [
+            "07:00",
+            "09:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "15:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "07:00",
+            "09:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "12:00",
+            "19:00",
+            "public"
+          ]
+        ]
+      },
+      "periodStart": "2026-08-31",
+      "periodEnd": "2026-09-04"
+    },
+    {
+      "slug": "piscine-du-parc-john-f-kennedy",
+      "name": "Piscine du parc John-F.-Kennedy",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-john-f-kennedy",
+      "lat": 45.521233679716,
+      "lng": -73.615873496972,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-joseph-pare",
+      "name": "Piscine du parc Joseph-Paré",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-joseph-pare",
+      "lat": 45.574114184671,
+      "lng": -73.570318859063,
+      "indoor": false,
+      "schedule": {
+        "sun": [
+          [
+            "10:30",
+            "11:30",
+            "adult"
+          ],
+          [
+            "11:30",
+            "19:00",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "13:00",
+            "18:00",
+            "public"
+          ]
+        ],
+        "tue": [],
+        "wed": [
+          [
+            "13:00",
+            "18:00",
+            "public"
+          ]
+        ],
+        "thu": [],
+        "fri": [
+          [
+            "13:00",
+            "18:00",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "10:30",
+            "11:30",
+            "adult"
+          ],
+          [
+            "11:30",
+            "19:00",
+            "public"
+          ]
+        ]
+      },
+      "periodStart": "2026-08-24",
+      "periodEnd": "2026-09-07"
+    },
+    {
+      "slug": "piscine-du-parc-kirkland",
+      "name": "Piscine du parc Kirkland",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-kirkland",
+      "lat": 45.445692599859,
+      "lng": -73.649256270371,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-lacharite",
+      "name": "Piscine du parc Lacharité",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-lacharite",
+      "lat": 45.416275,
+      "lng": -73.623767,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-ladauversiere",
+      "name": "Piscine du parc Ladauversière",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-ladauversiere",
+      "lat": 45.581736486346,
+      "lng": -73.58237385546,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-lasalle",
+      "name": "Piscine du parc LaSalle",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-lasalle",
+      "lat": 45.437890043534,
+      "lng": -73.674356382332,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-lefebvre",
+      "name": "Piscine du parc Lefebvre",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-lefebvre",
+      "lat": 45.433484862185,
+      "lng": -73.636263649903,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-leroux",
+      "name": "Piscine du parc Leroux",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-leroux",
+      "lat": 45.434502237668,
+      "lng": -73.596186082802,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-marcelin-wilson",
+      "name": "Piscine du parc Marcelin-Wilson",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-marcelin-wilson",
+      "lat": 45.53912,
+      "lng": -73.688452,
+      "indoor": false,
+      "schedule": {
+        "sun": [
+          [
+            "10:00",
+            "19:30",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "15:30",
+            "19:30",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "15:30",
+            "19:30",
+            "public"
+          ]
+        ],
+        "wed": [
+          [
+            "15:30",
+            "19:30",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "15:30",
+            "19:30",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "15:30",
+            "19:30",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "10:00",
+            "19:30",
+            "public"
+          ]
+        ]
+      },
+      "periodStart": "2026-08-31",
+      "periodEnd": "2026-09-04"
+    },
+    {
+      "slug": "piscine-du-parc-maria-goretti",
+      "name": "Piscine du parc Maria-Goretti",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-maria-goretti",
+      "lat": 45.69144831546,
+      "lng": -73.487578075371,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-marlborough",
+      "name": "Piscine du parc Marlborough",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-marlborough",
+      "lat": 45.52235129809,
+      "lng": -73.720928456419,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
+      "periodStart": "2026-06-15",
+      "periodEnd": "2026-08-22"
+    },
+    {
+      "slug": "piscine-du-parc-martin-luther-king",
+      "name": "Piscine du parc Martin-Luther-King",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-martin-luther-king",
+      "lat": 45.505385392725,
+      "lng": -73.630164306603,
+      "indoor": false,
+      "schedule": {
+        "sun": [
+          [
+            "11:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "16:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "16:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "wed": [
+          [
+            "16:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "16:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "16:00",
+            "19:00",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "11:00",
+            "19:00",
+            "public"
+          ]
+        ]
+      },
+      "periodStart": "2026-08-22",
+      "periodEnd": "2026-09-04"
+    },
+    {
+      "slug": "piscine-du-parc-menard-lasalle",
+      "name": "Piscine du parc Ménard - LaSalle",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-menard-lasalle",
+      "lat": 45.433553615578,
+      "lng": -73.652512472115,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-michel-menard",
+      "name": "Piscine du parc Michel-Ménard",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-michel-menard",
+      "lat": 45.446968360304,
+      "lng": -73.680428903542,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-noel-nord",
+      "name": "Piscine du parc Noël-Nord",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-noel-nord",
+      "lat": 45.517399825994,
+      "lng": -73.72835461422,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
+      "periodStart": "2026-06-15",
+      "periodEnd": "2026-08-22"
+    },
+    {
+      "slug": "piscine-du-parc-ouellette",
+      "name": "Piscine du parc Ouellette",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-ouellette",
+      "lat": 45.432589919668,
+      "lng": -73.621216457329,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-painter",
+      "name": "Piscine du parc Painter",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-painter",
+      "lat": 45.528885571311,
+      "lng": -73.675890605889,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
+      "periodStart": "2026-06-15",
+      "periodEnd": "2026-08-22"
+    },
+    {
+      "slug": "piscine-du-parc-pie-xii",
+      "name": "Piscine du parc Pie-XII",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-pie-xii",
+      "lat": 45.589087199309,
+      "lng": -73.606689613305,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-richelieu",
+      "name": "Piscine du parc Richelieu",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-richelieu",
+      "lat": 45.663838949497,
+      "lng": -73.50471496582,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-riverside",
+      "name": "Piscine du parc Riverside",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-riverside",
+      "lat": 45.420128150785,
+      "lng": -73.613169830285,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-robert-sauve",
+      "name": "Piscine du parc Robert-Sauvé",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-robert-sauve",
+      "lat": 45.481304480335,
+      "lng": -73.8663435392,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-roger-rousseau",
+      "name": "Piscine du parc Roger-Rousseau",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-roger-rousseau",
+      "lat": 45.616387273591,
+      "lng": -73.550942581139,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-saint-georges",
+      "name": "Piscine du parc Saint-Georges",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-saint-georges",
+      "lat": 45.653889123719,
+      "lng": -73.49232022091,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-saint-laurent-arr-saint-laurent",
+      "name": "Piscine du parc Saint-Laurent - Arr. Saint-Laurent",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-saint-laurent-arr-saint-laurent",
+      "lat": 45.527637887909,
+      "lng": -73.687627952538,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-sainte-lucie",
+      "name": "Piscine du parc Sainte-Lucie",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-sainte-lucie",
+      "lat": 45.574914455998,
+      "lng": -73.625323177416,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
+      "periodStart": "2026-06-23",
+      "periodEnd": "2026-08-23"
+    },
+    {
       "slug": "piscine-edouard-montpetit",
       "name": "Piscine Édouard-Montpetit",
       "url": "https://montreal.ca/lieux/piscine-edouard-montpetit",
       "lat": 45.575585,
       "lng": -73.537389,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -983,11 +2457,229 @@
       "periodEnd": "2026-08-23"
     },
     {
+      "slug": "piscine-du-parc-sir-wilfrid-laurier",
+      "name": "Piscine et pataugeoire du parc Sir-Wilfrid-Laurier",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-sir-wilfrid-laurier",
+      "lat": 45.532620235299305,
+      "lng": -73.58628403767284,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-charleroi",
+      "name": "Piscine extérieure du parc Charleroi",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-charleroi",
+      "lat": 45.59893687442,
+      "lng": -73.622568290673,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-exterieure-du-parc-ignace-bourget",
+      "name": "Piscine extérieure du parc Ignace-Bourget",
+      "url": "https://montreal.ca/lieux/piscine-exterieure-du-parc-ignace-bourget",
+      "lat": 45.457182258515,
+      "lng": -73.604552047929,
+      "indoor": false,
+      "schedule": {
+        "sun": [
+          [
+            "13:00",
+            "17:00",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "17:00",
+            "20:00",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "17:00",
+            "20:00",
+            "public"
+          ]
+        ],
+        "wed": [
+          [
+            "17:00",
+            "20:00",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "17:00",
+            "20:00",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "17:00",
+            "20:00",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "13:00",
+            "17:00",
+            "public"
+          ]
+        ]
+      },
+      "periodStart": "2026-08-31",
+      "periodEnd": "2026-09-06"
+    },
+    {
+      "slug": "piscine-du-parc-ottawa",
+      "name": "Piscine extérieure du parc Ottawa",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-ottawa",
+      "lat": 45.581578664023,
+      "lng": -73.64188019558,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-du-parc-primeau",
+      "name": "Piscine extérieure du parc Primeau",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-primeau",
+      "lat": 45.593088838317,
+      "lng": -73.635228317223,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-exterieure-du-parc-saint-laurent",
+      "name": "Piscine extérieure du parc Saint-Laurent",
+      "url": "https://montreal.ca/lieux/piscine-exterieure-du-parc-saint-laurent",
+      "lat": 45.605851484489,
+      "lng": -73.629071820488,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-exterieure-du-square-sir-george-etienne-cartier",
+      "name": "Piscine extérieure du square Sir-George-Étienne-Cartier",
+      "url": "https://montreal.ca/lieux/piscine-exterieure-du-square-sir-george-etienne-cartier",
+      "lat": 45.472819545022,
+      "lng": -73.584893146721,
+      "indoor": false,
+      "schedule": {
+        "sun": [
+          [
+            "13:00",
+            "17:00",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "17:00",
+            "20:00",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "17:00",
+            "20:00",
+            "public"
+          ]
+        ],
+        "wed": [
+          [
+            "17:00",
+            "20:00",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "17:00",
+            "20:00",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "17:00",
+            "20:00",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "13:00",
+            "17:00",
+            "public"
+          ]
+        ]
+      },
+      "periodStart": "2026-08-31",
+      "periodEnd": "2026-09-06"
+    },
+    {
       "slug": "piscine-interieure-calixa-lavallee",
       "name": "Piscine intérieure Calixa-Lavallée",
       "url": "https://montreal.ca/lieux/piscine-interieure-calixa-lavallee",
       "lat": 45.597588460599,
       "lng": -73.637763261795,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -1006,6 +2698,7 @@
       "url": "https://montreal.ca/lieux/piscine-interieure-henri-bourassa",
       "lat": 45.614010721791,
       "lng": -73.622956627306,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -1026,6 +2719,7 @@
       "url": "https://montreal.ca/lieux/piscine-joseph-charbonneau",
       "lat": 45.55121,
       "lng": -73.622632,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -1093,6 +2787,7 @@
       "url": "https://montreal.ca/lieux/piscine-levesque",
       "lat": 45.526249,
       "lng": -73.577898,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -1108,11 +2803,88 @@
       "periodEnd": "2026-08-23"
     },
     {
+      "slug": "piscine-maisonneuve-du-parc-francine-leger",
+      "name": "Piscine Maisonneuve du parc Francine-Léger",
+      "url": "https://montreal.ca/lieux/piscine-maisonneuve-du-parc-francine-leger",
+      "lat": 45.554543267111,
+      "lng": -73.541887443505,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-valleycrest-du-parc-grier",
+      "name": "Piscine municipale Valleycrest du parc Grier",
+      "url": "https://montreal.ca/lieux/piscine-valleycrest-du-parc-grier",
+      "lat": 45.457746181308,
+      "lng": -73.881054615399,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-municipale-versailles",
+      "name": "Piscine municipale Versailles",
+      "url": "https://montreal.ca/lieux/piscine-municipale-versailles",
+      "lat": 45.511798923099,
+      "lng": -73.848710697137,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
+      "slug": "piscine-paul-emile-sauvageau-du-parc-l-o-taillon",
+      "name": "Piscine Paul-Émile Sauvageau du parc L.-O.-Taillon",
+      "url": "https://montreal.ca/lieux/piscine-paul-emile-sauvageau-du-parc-l-o-taillon",
+      "lat": 45.605637349586,
+      "lng": -73.51140682026,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
+    },
+    {
       "slug": "piscine-pere-marquette",
       "name": "Piscine Père-Marquette",
       "url": "https://montreal.ca/lieux/piscine-pere-marquette",
       "lat": 45.541125,
       "lng": -73.595401,
+      "indoor": true,
       "schedule": {
         "sun": [
           [
@@ -1203,6 +2975,7 @@
       "url": "https://montreal.ca/lieux/piscine-pierre-lorange",
       "lat": 45.542153,
       "lng": -73.544566,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -1223,6 +2996,7 @@
       "url": "https://montreal.ca/lieux/piscine-quintal",
       "lat": 45.528937240499,
       "lng": -73.548730015755,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -1281,6 +3055,7 @@
       "url": "https://montreal.ca/lieux/piscine-rene-goupil",
       "lat": 45.577962003542,
       "lng": -73.611402511597,
+      "indoor": true,
       "schedule": {
         "sun": [
           [
@@ -1343,6 +3118,7 @@
       "url": "https://montreal.ca/lieux/piscine-roussin",
       "lat": 45.640308944549,
       "lng": -73.490509986877,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -1361,6 +3137,7 @@
       "url": "https://montreal.ca/lieux/piscine-saint-charles",
       "lat": 45.479387915098,
       "lng": -73.563361929067,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -1381,6 +3158,7 @@
       "url": "https://montreal.ca/lieux/piscine-saint-henri",
       "lat": 45.477763335319,
       "lng": -73.58574450016,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -1401,6 +3179,7 @@
       "url": "https://montreal.ca/lieux/piscine-saint-roch",
       "lat": 45.531984926263,
       "lng": -73.63075196743,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -1421,6 +3200,7 @@
       "url": "https://montreal.ca/lieux/piscine-schubert",
       "lat": 45.516453,
       "lng": -73.578789,
+      "indoor": true,
       "schedule": {
         "sun": [
           [
@@ -1530,17 +3310,87 @@
       "url": "https://montreal.ca/lieux/piscine-sophie-barat",
       "lat": 45.56160359559911,
       "lng": -73.66797539759733,
+      "indoor": true,
       "schedule": {
-        "sun": [],
+        "sun": [
+          [
+            "15:00",
+            "16:30",
+            "public"
+          ],
+          [
+            "16:30",
+            "17:25",
+            "lane"
+          ]
+        ],
         "mon": [],
-        "tue": [],
-        "wed": [],
-        "thu": [],
-        "fri": [],
-        "sat": []
+        "tue": [
+          [
+            "19:30",
+            "21:00",
+            "public"
+          ],
+          [
+            "21:00",
+            "21:55",
+            "lane"
+          ]
+        ],
+        "wed": [
+          [
+            "16:45",
+            "18:00",
+            "lane"
+          ],
+          [
+            "18:00",
+            "19:30",
+            "public"
+          ],
+          [
+            "19:30",
+            "20:25",
+            "lane"
+          ]
+        ],
+        "thu": [
+          [
+            "19:30",
+            "21:00",
+            "public"
+          ],
+          [
+            "21:00",
+            "21:55",
+            "lane"
+          ]
+        ],
+        "fri": [
+          [
+            "19:30",
+            "21:00",
+            "public"
+          ],
+          [
+            "21:00",
+            "21:55",
+            "lane"
+          ]
+        ],
+        "sat": [
+          [
+            "15:00",
+            "17:00",
+            "public"
+          ],
+          [
+            "17:00",
+            "17:55",
+            "lane"
+          ]
+        ]
       },
-      "scheduleUnavailable": true,
-      "noUpcomingHours": true,
       "periodStart": "2026-09-01",
       "periodEnd": "2026-12-18"
     },
@@ -1550,6 +3400,7 @@
       "url": "https://montreal.ca/lieux/piscine-villeray",
       "lat": 45.544008708807,
       "lng": -73.614610433578,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -1567,6 +3418,7 @@
       "url": "https://montreal.ca/lieux/piscines-du-complexe-sportif-de-saint-laurent",
       "lat": 45.507608,
       "lng": -73.703017,
+      "indoor": true,
       "schedule": {
         "sun": [],
         "mon": [],
@@ -1587,6 +3439,7 @@
       "url": "https://montreal.ca/lieux/ymca-cartierville",
       "lat": 45.525394,
       "lng": -73.711066,
+      "indoor": true,
       "schedule": {
         "sun": [
           [

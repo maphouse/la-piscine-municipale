@@ -82,6 +82,7 @@ html, body {
 }
 #langtoggle:hover, #geoloc:hover, #mintoggle:hover { background: #e9e9eb; }
 .lg-row { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
+.lg-sep { border: none; border-top: 1px solid var(--hair); margin: 6px 0 2px; }
 .lg-toggle { display: flex; align-items: center; gap: 8px; margin: 6px 0 2px; cursor: pointer; }
 .lg-toggle input { cursor: pointer; margin: 0; }
 .lg-dot {

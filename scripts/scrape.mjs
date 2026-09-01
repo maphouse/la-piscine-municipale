@@ -6,11 +6,12 @@
 // name, and the "Pour les adultes" / lane-swim ("Nage en couloir") free-swim
 // schedules.
 //
-// A page is kept if it describes an INDOOR pool — the page body mentions a "piscine
-// intérieure" and is not an outdoor-only pool. The City's 2023 open dataset is NOT
-// used to classify indoor/outdoor: it miscategorises several real indoor pools
-// (Annie-Pelletier, Henri-Bourassa, …). The page's own "intérieure/extérieure"
-// wording is the reliable signal.
+// Indoor candidates (candidates.txt) are kept if the page body mentions a "piscine
+// intérieure"; outdoor candidates (outdoor-candidates.txt) bypass that check — they
+// are known outdoor pools and get `indoor: false` in the output. The City's 2023
+// open dataset is NOT used to classify indoor/outdoor: it miscategorises several
+// real indoor pools (Annie-Pelletier, Henri-Bourassa, …). The page's own
+// "intérieure/extérieure" wording is the reliable signal for indoor.
 //
 // Every indoor pool then lands in exactly one of three states, decided by dates and
 // nothing else:
@@ -283,27 +284,32 @@ const readList = async (file) =>
 const emptyWeek = () => Object.fromEntries(DAY_KEYS.map((k) => [k, []]));
 
 async function main() {
-  const slugs = await readList('candidates.txt');
+  const indoorSlugs = await readList('candidates.txt');
+  const outdoorSlugs = await readList('outdoor-candidates.txt');
+  const slugs = [...indoorSlugs, ...outdoorSlugs];
+  const outdoorSet = new Set(outdoorSlugs);
   // Pools known to offer free adult swim but without a parsable schedule on their
   // City page — shown as grey "link-only" markers.
   const linkOnly = new Set(await readList('link-only.txt'));
 
+  console.log(`Scraping ${indoorSlugs.length} indoor + ${outdoorSlugs.length} outdoor candidates…\n`);
   const pools = [];
   let first = true;
   for (const slug of slugs) {
     const url = PAGE_BASE + slug;
     if (!first) await sleep(FETCH_DELAY_MS);
     first = false;
+    const isOutdoor = outdoorSet.has(slug);
     let html;
     try { html = await fetchText(url, slug); }
     catch (e) { console.log(`  skip ${slug}: ${e.message}`); continue; }
 
-    if (!isIndoor(html)) { console.log(`  skip ${slug}: not an indoor pool`); continue; }
+    if (!isOutdoor && !isIndoor(html)) { console.log(`  skip ${slug}: not an indoor pool`); continue; }
 
     const coords = extractCoords(html);
     if (!coords) { console.log(`  skip ${slug}: no coordinates`); continue; }
 
-    const base = { slug, name: extractName(html), url, lat: coords.lat, lng: coords.lng };
+    const base = { slug, name: extractName(html), url, lat: coords.lat, lng: coords.lng, indoor: !isOutdoor };
     const { html: scheduleHtml, periodStart, periodEnd } = selectScheduleHtml(html);
     const schedule = scheduleHtml ? extractSchedule(scheduleHtml) : null;
 
@@ -313,7 +319,7 @@ async function main() {
       if (periodStart) poolEntry.periodStart = periodStart;
       if (periodEnd) poolEntry.periodEnd = periodEnd;
       pools.push(poolEntry);
-      console.log(`  ✓ ${slug} (${total} sessions${periodStart ? ` [${periodStart} → ${periodEnd}]` : ''} — ${base.name})`);
+      console.log(`  ✓ ${slug} (${total} sessions${periodStart ? ` [${periodStart} → ${periodEnd}]` : ''}${isOutdoor ? ' outdoor' : ''} — ${base.name})`);
     } else if (linkOnly.has(slug)) {
       // Known to run free adult swim, but its hours never appear in a parsable form —
       // grey. Checked before the red case: absent hours here mean "we can't read them",
@@ -322,14 +328,14 @@ async function main() {
       pools.push({ ...base, schedule: emptyWeek(), scheduleUnavailable: true });
       console.log(`  ◐ ${slug}: link-only grey marker (no parsable schedule)`);
     } else {
-      // No hours apply today. The pool still goes on the map, in red: an indoor
-      // municipal pool with nothing posted is exactly what a swimmer needs to see,
-      // and a pool that has been dark for months is worth showing as dark rather
-      // than quietly dropping. The nearest posted period rides along for the popup.
+      // No hours apply today. The pool still goes on the map: an indoor pool with
+      // nothing posted is exactly what a swimmer needs to see; an outdoor pool out
+      // of season naturally has no hours. The nearest posted period rides along for
+      // the popup.
       const poolEntry = { ...base, schedule: emptyWeek(), scheduleUnavailable: true, noUpcomingHours: true };
       if (periodStart) { poolEntry.periodStart = periodStart; poolEntry.periodEnd = periodEnd; }
       pools.push(poolEntry);
-      console.log(`  ✕ ${slug}: no hours posted for today${periodStart ? ` (nearest period ${periodStart} → ${periodEnd})` : ' (no schedule on page)'}`);
+      console.log(`  ✕ ${slug}: no hours posted for today${periodStart ? ` (nearest period ${periodStart} → ${periodEnd})` : ' (no schedule on page)'}${isOutdoor ? ' (outdoor)' : ''}`);
     }
   }
 

@@ -1,10 +1,10 @@
 // FREE ADULT SWIM — map application.
-import { poolState, montrealNow, mergeIntervals, COLORS, DAY_KEYS } from './symbology.js';
+import { poolState, montrealNow, mergeIntervals, COLORS, DAY_KEYS, NEUTRAL_RADIUS } from './symbology.js';
 import { STRINGS } from './i18n.js';
 import { downloadICS } from './ics.js';
 
 const MONTREAL = { center: [-73.61, 45.53], zoom: 11 };
-const BASEMAP = 'https://basemaps.maphouse.ca/latest/style/survey-quiet.json';
+const BASEMAP = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
 const GAP_WIDTH = 2; // px width of the transparent gap carved between a pool's ring bands
 const OUTLINE_WIDTH = 2; // px white halo outside a marker's outer edge (see 'pools-outline')
 const NOHOURS_TINT = '#c09090';
@@ -33,6 +33,7 @@ let lang = (navigator.language || 'en').toLowerCase().startsWith('fr') ? 'fr' : 
 let pools = [];
 let generated = null; // ISO timestamp of the last data refresh, from pools.json
 let adultOnly = true; // experimental toggle: false also counts "open for all" hours
+let indoorOnly = true; // hide outdoor pools by default
 let map;
 let geolocate = null;
 let clickPopup = null;  // the currently-open click/tap popup
@@ -88,25 +89,19 @@ async function init() {
   map.addControl(geolocate, 'bottom-right');
 
   map.on('load', () => {
-    // Diagonal slash icon for nohours markers — a prohibition/blocked visual cue
-    // drawn over the neutral dot to distinguish "no posted hours" from "hours
-    // exist but don't match filter".
-    const pr = window.devicePixelRatio || 1;
-    const sz = 16;
+    const slashSize = NEUTRAL_RADIUS * 2;
     const slashCanvas = document.createElement('canvas');
-    slashCanvas.width = sz * pr;
-    slashCanvas.height = sz * pr;
-    const ctx = slashCanvas.getContext('2d');
-    ctx.scale(pr, pr);
-    ctx.strokeStyle = NOHOURS_TINT;
-    ctx.lineWidth = 2;
-    ctx.lineCap = 'round';
-    ctx.beginPath();
-    ctx.moveTo(13, 3);
-    ctx.lineTo(3, 13);
-    ctx.stroke();
-    const imgData = ctx.getImageData(0, 0, slashCanvas.width, slashCanvas.height);
-    map.addImage('nohours-slash', { width: slashCanvas.width, height: slashCanvas.height, data: imgData.data }, { pixelRatio: pr });
+    slashCanvas.width = slashSize;
+    slashCanvas.height = slashSize;
+    const slashCtx = slashCanvas.getContext('2d');
+    slashCtx.strokeStyle = '#fff';
+    slashCtx.lineWidth = 2.2;
+    slashCtx.lineCap = 'round';
+    slashCtx.beginPath();
+    slashCtx.moveTo(slashSize * 0.2, slashSize * 0.8);
+    slashCtx.lineTo(slashSize * 0.8, slashSize * 0.2);
+    slashCtx.stroke();
+    map.addImage('slash', slashCtx.getImageData(0, 0, slashSize, slashSize), { pixelRatio: 1 });
 
     map.addSource('pools', { type: 'geojson', data: featureCollection() });
 
@@ -141,7 +136,7 @@ async function init() {
         'circle-radius': ['get', 'radius'],
         'circle-opacity': 0,
         'circle-stroke-width': OUTLINE_WIDTH,
-        'circle-stroke-color': ['case', ['get', 'nohours'], NOHOURS_TINT, '#fff'],
+        'circle-stroke-color': '#fff',
         'circle-stroke-opacity': 1,
       },
     });
@@ -170,11 +165,7 @@ async function init() {
       type: 'symbol',
       source: 'pools',
       filter: ['==', ['get', 'role'], 'slash'],
-      layout: {
-        'icon-image': 'nohours-slash',
-        'icon-allow-overlap': true,
-        'icon-ignore-placement': true,
-      },
+      layout: { 'icon-image': 'slash', 'icon-allow-overlap': true, 'icon-ignore-placement': true },
     });
 
     map.on('click', 'pools-hit', onMarkerClick);
@@ -207,12 +198,11 @@ function isPublicOnly(pool) {
     !Object.values(pool.schedule).some((day) => day.some((r) => r[2] !== 'public'));
 }
 
-const NEUTRAL_RADIUS = 7;
-
 function featureCollection() {
   const features = [];
   for (const p of pools) {
-    const filteredOut = adultOnly && isPublicOnly(p);
+    if (indoorOnly && p.indoor === false) continue;
+    const filteredOut = adultOnly && (isPublicOnly(p) || p.indoor === false);
     const st = poolState(p, undefined, !adultOnly);
     // Filtered-out pools render as the same neutral dot as nohours (transparent,
     // white outline only) — visible but clearly not matching the current filter.
@@ -223,7 +213,10 @@ function featureCollection() {
     // Invisible full-size disc: the interaction target for the whole symbol.
     features.push({ type: 'Feature', geometry, properties: { role: 'hit', slug: p.slug, radius: rings[0].radius } });
     // White halo at the symbol's outer edge (see the 'pools-outline' layer).
-    features.push({ type: 'Feature', geometry, properties: { role: 'outline', slug: p.slug, radius: rings[0].radius, nohours: st.status === 'nohours' } });
+    features.push({ type: 'Feature', geometry, properties: { role: 'outline', slug: p.slug, radius: rings[0].radius } });
+    if (rings[0].opacity === 0) {
+      features.push({ type: 'Feature', geometry, properties: { role: 'slash', slug: p.slug } });
+    }
     rings.forEach((ring, i) => {
       const outer = ring.radius;
       const inner = i < rings.length - 1 ? rings[i + 1].radius : 0;
@@ -249,9 +242,6 @@ function featureCollection() {
         } });
       }
     });
-    if (st.status === 'nohours') {
-      features.push({ type: 'Feature', geometry, properties: { role: 'slash', slug: p.slug } });
-    }
   }
   return { type: 'FeatureCollection', features };
 }
@@ -263,7 +253,7 @@ function refresh() {
 
 // Build the popup DOM for a pool (shared by hover preview and click).
 function buildPopupEl(pool) {
-  const includePublic = !adultOnly || isPublicOnly(pool);
+  const includePublic = !adultOnly || isPublicOnly(pool) || pool.indoor === false;
   const st = poolState(pool, undefined, includePublic);
   const tr = t();
 
@@ -275,7 +265,9 @@ function buildPopupEl(pool) {
   // fact. Better to state the one thing the schedule proves and let the title link
   // carry the reader to the page that explains it.
   let line = '';
-  if (st.status === 'nohours') {
+  if (pool.scheduleUnavailable && !pool.noUpcomingHours) {
+    line = tr.none;
+  } else if (st.status === 'nohours') {
     line = tr.noHours;
   } else if (st.status === 'open') {
     line = `${tr.open} · ${tr.closesIn} ${fmtMinutes(st.closesInMin)}`;
@@ -374,7 +366,7 @@ function nearestPoolToCenter() {
 
 // Pixels the popup tip should sit above the point so it clears the pool's ring.
 function popupOffsetFor(pool) {
-  const filteredOut = adultOnly && isPublicOnly(pool);
+  const filteredOut = adultOnly && (isPublicOnly(pool) || pool.indoor === false);
   const r = filteredOut ? NEUTRAL_RADIUS : (poolState(pool, undefined, !adultOnly).radius || 8);
   return Math.round(r) + 10;
 }
@@ -506,8 +498,9 @@ function renderLegend() {
         <div class="lg-heading">${tr.legendHeading} ${SWIMMER_ICON}</div>
         ${sw(COLORS.open, 0.95, tr.open)}
         ${sw(COLORS.upcoming, 1, tr.upcoming)}
-        ${sw(COLORS.none, 0.45, tr.none)}
+        <hr class="lg-sep">
         <label class="lg-toggle" title="${tr.adultOnlyHint}"><input type="checkbox" id="adultonly"${adultOnly ? ' checked' : ''}> ${tr.adultOnly}</label>
+        <label class="lg-toggle" title="${tr.indoorOnlyHint}"><input type="checkbox" id="indooronly"${indoorOnly ? ' checked' : ''}> ${tr.indoorOnly}</label>
       </div>`;
   document.getElementById('legend').innerHTML = `
     <div class="lg-inner">
@@ -536,7 +529,12 @@ function renderLegend() {
   const adultOnlyBox = document.getElementById('adultonly');
   if (adultOnlyBox) adultOnlyBox.addEventListener('change', (e) => {
     adultOnly = e.target.checked;
-    refresh();               // redraw the ring symbols + centre preview with the new filter
+    refresh();
+  });
+  const indoorOnlyBox = document.getElementById('indooronly');
+  if (indoorOnlyBox) indoorOnlyBox.addEventListener('change', (e) => {
+    indoorOnly = e.target.checked;
+    refresh();
   });
 }
 
