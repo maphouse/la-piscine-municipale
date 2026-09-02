@@ -24,6 +24,13 @@ const WH_PER_MTOK = 2.15; // rough energy estimate
 // their point (anchor 'top') instead of above — a thumb is less likely to hide them.
 const IS_TOUCH = window.matchMedia('(pointer: coarse)').matches;
 const POPUP_ANCHOR = IS_TOUCH ? 'top' : 'bottom';
+// Floor on the invisible 'hit' disc's radius — small/neutral markers (radius 7) are
+// otherwise too small a target on a phone, and a missed tap becomes a double-tap
+// zoom instead of opening the popup. Mouse pointers are precise enough not to need
+// this; a fingertip needs a target closer to platform touch-target guidelines
+// (~44px / 22px radius) than our smallest visual marker gives it. Purely an
+// interaction-layer change — the visible circle's own radius is untouched.
+const MIN_HIT_RADIUS = IS_TOUCH ? 20 : 10;
 
 // Ambient centre-of-viewport pan-preview — PARKED for now (needs UX tuning). Flip to
 // true to bring it back; all its code is kept below, gated on this flag. With it off,
@@ -214,7 +221,7 @@ function featureCollection() {
       : st.rings;
     const geometry = { type: 'Point', coordinates: [p.lng, p.lat] };
     // Invisible full-size disc: the interaction target for the whole symbol.
-    features.push({ type: 'Feature', geometry, properties: { role: 'hit', slug: p.slug, radius: rings[0].radius } });
+    features.push({ type: 'Feature', geometry, properties: { role: 'hit', slug: p.slug, radius: Math.max(rings[0].radius, MIN_HIT_RADIUS) } });
     // Halo at the symbol's outer edge (see the 'pools-outline' layer) — white for
     // every coloured marker, light grey to match the slash on empty circles.
     const isEmpty = rings[0].opacity === 0;
