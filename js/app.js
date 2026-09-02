@@ -7,7 +7,7 @@ const MONTREAL = { center: [-73.61, 45.53], zoom: 11 };
 const BASEMAP = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
 const GAP_WIDTH = 2; // px width of the transparent gap carved between a pool's ring bands
 const OUTLINE_WIDTH = 2; // px white halo outside a marker's outer edge (see 'pools-outline')
-const NOHOURS_TINT = '#c09090';
+const NOHOURS_TINT = '#e60000';
 const SLASH_COLOR = '#c7c7c7'; // empty-circle pools: halo + crossbar
 
 // Build-session metering shown in the legend. BUILD_TOKENS is the one figure
