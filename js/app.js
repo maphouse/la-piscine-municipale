@@ -8,6 +8,7 @@ const BASEMAP = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
 const GAP_WIDTH = 2; // px width of the transparent gap carved between a pool's ring bands
 const OUTLINE_WIDTH = 2; // px white halo outside a marker's outer edge (see 'pools-outline')
 const NOHOURS_TINT = '#c09090';
+const SLASH_COLOR = '#c7c7c7'; // empty-circle pools: halo + crossbar
 
 // Build-session metering shown in the legend. BUILD_TOKENS is the one figure
 // kept by hand — Claude usage isn't visible to the data-refresh Action, so
@@ -94,7 +95,7 @@ async function init() {
     slashCanvas.width = slashSize;
     slashCanvas.height = slashSize;
     const slashCtx = slashCanvas.getContext('2d');
-    slashCtx.strokeStyle = '#c7c7c7';
+    slashCtx.strokeStyle = SLASH_COLOR;
     slashCtx.lineWidth = 2.2;
     slashCtx.lineCap = 'round';
     slashCtx.beginPath();
@@ -117,12 +118,14 @@ async function init() {
       filter: ['==', ['get', 'role'], 'hit'],
       paint: { 'circle-radius': ['get', 'radius'], 'circle-color': '#000', 'circle-opacity': 0 },
     });
-    // White halo hugging each marker's outer edge — the map's counterpart to the
-    // legend dots' `box-shadow: 0 0 0 3px white`. Opacity encodes how soon a session
-    // starts, and a pool whose next swim is eighteen hours away is drawn at 0.08,
-    // which all but vanishes against a pale basemap. The halo is painted at full
-    // strength regardless, so the marker's POSITION always reads even when its fill
-    // barely does — faintness should say "not soon", never "not there".
+    // Halo hugging each marker's outer edge — the map's counterpart to the legend
+    // dots' `box-shadow: 0 0 0 3px white`. White for coloured markers, light grey
+    // (SLASH_COLOR) for empty circles so the whole symbol reads as one muted unit.
+    // A coloured marker's ring opacity encodes how soon a session starts, and a pool
+    // whose next swim is eighteen hours away is drawn at 0.08, which all but vanishes
+    // against a pale basemap. The halo is painted at full strength regardless, so the
+    // marker's POSITION always reads even when its fill barely does — faintness
+    // should say "not soon", never "not there".
     //
     // Drawn as an outward stroke on a fill-less circle at the outer radius, so it
     // occupies [R, R + OUTLINE_WIDTH] and never encroaches on the bands' own radial
@@ -136,7 +139,7 @@ async function init() {
         'circle-radius': ['get', 'radius'],
         'circle-opacity': 0,
         'circle-stroke-width': OUTLINE_WIDTH,
-        'circle-stroke-color': '#fff',
+        'circle-stroke-color': ['get', 'color'],
         'circle-stroke-opacity': 1,
       },
     });
@@ -212,9 +215,11 @@ function featureCollection() {
     const geometry = { type: 'Point', coordinates: [p.lng, p.lat] };
     // Invisible full-size disc: the interaction target for the whole symbol.
     features.push({ type: 'Feature', geometry, properties: { role: 'hit', slug: p.slug, radius: rings[0].radius } });
-    // White halo at the symbol's outer edge (see the 'pools-outline' layer).
-    features.push({ type: 'Feature', geometry, properties: { role: 'outline', slug: p.slug, radius: rings[0].radius } });
-    if (rings[0].opacity === 0) {
+    // Halo at the symbol's outer edge (see the 'pools-outline' layer) — white for
+    // every coloured marker, light grey to match the slash on empty circles.
+    const isEmpty = rings[0].opacity === 0;
+    features.push({ type: 'Feature', geometry, properties: { role: 'outline', slug: p.slug, radius: rings[0].radius, color: isEmpty ? SLASH_COLOR : '#fff' } });
+    if (isEmpty) {
       features.push({ type: 'Feature', geometry, properties: { role: 'slash', slug: p.slug } });
     }
     rings.forEach((ring, i) => {
