@@ -94,7 +94,7 @@ async function init() {
     slashCanvas.width = slashSize;
     slashCanvas.height = slashSize;
     const slashCtx = slashCanvas.getContext('2d');
-    slashCtx.strokeStyle = '#fff';
+    slashCtx.strokeStyle = '#c7c7c7';
     slashCtx.lineWidth = 2.2;
     slashCtx.lineCap = 'round';
     slashCtx.beginPath();
