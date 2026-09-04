@@ -30,7 +30,7 @@ html, body {
   top: 14px;
   left: 16px;
   z-index: 2;
-  width: min(92vw, 340px);
+  width: min(calc(100% - 32px), 360px); /* full width (minus the 16px gutter on each side) on mobile, capped wider on desktop */
   font-size: 13px;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 0 3px rgba(255, 255, 255, 0.9);
 }
