@@ -150,6 +150,20 @@ async function init() {
         'circle-stroke-opacity': 1,
       },
     });
+    // Crossbar on empty-circle pools. Sits below 'pools-bands' — a layer is a single
+    // global draw pass, so with it above bands a slash on one (empty) pool would
+    // paint over a genuinely open/upcoming NEIGHBOUR's coloured marker wherever the
+    // two overlap in a dense cluster. Below bands, any real coloured marker wins
+    // that overlap instead, which is the right call: a slash marking "nothing here"
+    // should never obscure a marker saying otherwise.
+    map.addLayer({
+      id: 'pools-slash',
+      type: 'symbol',
+      source: 'pools',
+      filter: ['==', ['get', 'role'], 'slash'],
+      layout: { 'icon-image': 'slash', 'icon-allow-overlap': true, 'icon-ignore-placement': true },
+    });
+
     map.addLayer({
       id: 'pools-bands',
       type: 'circle',
@@ -168,14 +182,6 @@ async function init() {
         'circle-stroke-color': ['get', 'strokeColor'],
         'circle-stroke-opacity': ['get', 'strokeOpacity'],
       },
-    });
-
-    map.addLayer({
-      id: 'pools-slash',
-      type: 'symbol',
-      source: 'pools',
-      filter: ['==', ['get', 'role'], 'slash'],
-      layout: { 'icon-image': 'slash', 'icon-allow-overlap': true, 'icon-ignore-placement': true },
     });
 
     map.on('click', 'pools-hit', onMarkerClick);
