@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-04T13:14:51.258Z",
+  "generated": "2026-09-05T12:29:03.184Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-09-05",
+  "nextScrapeDate": "2026-09-06",
   "count": 100,
   "pools": [
     {
@@ -1125,39 +1125,15 @@
         ],
         "mon": [
           [
-            "16:00",
+            "11:00",
             "19:00",
             "public"
           ]
         ],
-        "tue": [
-          [
-            "16:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "wed": [
-          [
-            "16:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "thu": [
-          [
-            "16:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "fri": [
-          [
-            "16:00",
-            "19:00",
-            "public"
-          ]
-        ],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
         "sat": [
           [
             "11:00",
@@ -1166,8 +1142,8 @@
           ]
         ]
       },
-      "periodStart": "2026-08-22",
-      "periodEnd": "2026-09-04"
+      "periodStart": "2026-09-05",
+      "periodEnd": "2026-09-07"
     },
     {
       "slug": "piscine-du-parc-de-la-fontaine",
@@ -1466,11 +1442,6 @@
         ],
         "tue": [
           [
-            "07:00",
-            "09:00",
-            "adult"
-          ],
-          [
             "15:00",
             "19:00",
             "public"
@@ -1478,11 +1449,6 @@
         ],
         "wed": [],
         "thu": [
-          [
-            "07:00",
-            "09:00",
-            "adult"
-          ],
           [
             "15:00",
             "19:00",
@@ -1505,7 +1471,7 @@
         ]
       },
       "periodStart": "2026-08-31",
-      "periodEnd": "2026-09-04"
+      "periodEnd": "2026-09-06"
     },
     {
       "slug": "piscine-du-parc-gabriel-lalemant",
@@ -1640,11 +1606,6 @@
         ],
         "mon": [
           [
-            "07:00",
-            "09:00",
-            "adult"
-          ],
-          [
             "15:00",
             "19:00",
             "public"
@@ -1658,11 +1619,6 @@
           ]
         ],
         "wed": [
-          [
-            "07:00",
-            "09:00",
-            "adult"
-          ],
           [
             "15:00",
             "19:00",
@@ -1678,11 +1634,6 @@
         ],
         "fri": [
           [
-            "07:00",
-            "09:00",
-            "adult"
-          ],
-          [
             "15:00",
             "19:00",
             "public"
@@ -1697,7 +1648,7 @@
         ]
       },
       "periodStart": "2026-08-31",
-      "periodEnd": "2026-09-04"
+      "periodEnd": "2026-09-06"
     },
     {
       "slug": "piscine-du-parc-john-f-kennedy",
@@ -1901,39 +1852,15 @@
         ],
         "mon": [
           [
-            "15:30",
+            "10:00",
             "19:30",
             "public"
           ]
         ],
-        "tue": [
-          [
-            "15:30",
-            "19:30",
-            "public"
-          ]
-        ],
-        "wed": [
-          [
-            "15:30",
-            "19:30",
-            "public"
-          ]
-        ],
-        "thu": [
-          [
-            "15:30",
-            "19:30",
-            "public"
-          ]
-        ],
-        "fri": [
-          [
-            "15:30",
-            "19:30",
-            "public"
-          ]
-        ],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
         "sat": [
           [
             "10:00",
@@ -1942,8 +1869,8 @@
           ]
         ]
       },
-      "periodStart": "2026-08-31",
-      "periodEnd": "2026-09-04"
+      "periodStart": "2026-09-05",
+      "periodEnd": "2026-09-07"
     },
     {
       "slug": "piscine-du-parc-maria-goretti",
@@ -2002,39 +1929,15 @@
         ],
         "mon": [
           [
-            "16:00",
+            "11:00",
             "19:00",
             "public"
           ]
         ],
-        "tue": [
-          [
-            "16:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "wed": [
-          [
-            "16:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "thu": [
-          [
-            "16:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "fri": [
-          [
-            "16:00",
-            "19:00",
-            "public"
-          ]
-        ],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
         "sat": [
           [
             "11:00",
@@ -2043,8 +1946,8 @@
           ]
         ]
       },
-      "periodStart": "2026-08-22",
-      "periodEnd": "2026-09-04"
+      "periodStart": "2026-09-05",
+      "periodEnd": "2026-09-07"
     },
     {
       "slug": "piscine-du-parc-menard-lasalle",
@@ -2222,25 +2125,6 @@
       "noUpcomingHours": true
     },
     {
-      "slug": "piscine-du-parc-roger-rousseau",
-      "name": "Piscine du parc Roger-Rousseau",
-      "url": "https://montreal.ca/lieux/piscine-du-parc-roger-rousseau",
-      "lat": 45.616387273591,
-      "lng": -73.550942581139,
-      "indoor": false,
-      "schedule": {
-        "sun": [],
-        "mon": [],
-        "tue": [],
-        "wed": [],
-        "thu": [],
-        "fri": [],
-        "sat": []
-      },
-      "scheduleUnavailable": true,
-      "noUpcomingHours": true
-    },
-    {
       "slug": "piscine-du-parc-saint-georges",
       "name": "Piscine du parc Saint-Georges",
       "url": "https://montreal.ca/lieux/piscine-du-parc-saint-georges",
@@ -2295,9 +2179,7 @@
         "sat": []
       },
       "scheduleUnavailable": true,
-      "noUpcomingHours": true,
-      "periodStart": "2026-06-23",
-      "periodEnd": "2026-08-23"
+      "noUpcomingHours": true
     },
     {
       "slug": "piscine-edouard-montpetit",
@@ -2576,6 +2458,25 @@
       "noUpcomingHours": true,
       "periodStart": "2026-09-12",
       "periodEnd": "2026-12-18"
+    },
+    {
+      "slug": "piscine-du-parc-roger-rousseau",
+      "name": "Piscine intérieure Roger-Rousseau",
+      "url": "https://montreal.ca/lieux/piscine-du-parc-roger-rousseau",
+      "lat": 45.616387273591,
+      "lng": -73.550942581139,
+      "indoor": false,
+      "schedule": {
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
+      },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true
     },
     {
       "slug": "piscine-joseph-charbonneau",
@@ -3073,23 +2974,7 @@
             "adult"
           ]
         ],
-        "mon": [
-          [
-            "14:00",
-            "15:00",
-            "adult"
-          ],
-          [
-            "15:00",
-            "16:25",
-            "adult"
-          ],
-          [
-            "16:30",
-            "18:25",
-            "public"
-          ]
-        ],
+        "mon": [],
         "tue": [],
         "wed": [
           [
@@ -3255,7 +3140,7 @@
           ]
         ]
       },
-      "periodStart": "2026-09-01",
+      "periodStart": "2026-01-05",
       "periodEnd": "2026-12-18"
     },
     {
