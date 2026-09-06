@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-05T12:29:03.184Z",
+  "generated": "2026-09-06T12:42:20.417Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-09-06",
+  "nextScrapeDate": "2026-09-07",
   "count": 100,
   "pools": [
     {
@@ -3140,7 +3140,7 @@
           ]
         ]
       },
-      "periodStart": "2026-01-05",
+      "periodStart": "2026-09-01",
       "periodEnd": "2026-12-18"
     },
     {
