@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-06T12:42:20.417Z",
+  "generated": "2026-09-07T14:53:35.511Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-09-07",
+  "nextScrapeDate": "2026-09-08",
   "count": 100,
   "pools": [
     {
@@ -937,18 +937,72 @@
       "lng": -73.63323879772682,
       "indoor": true,
       "schedule": {
-        "sun": [],
+        "sun": [
+          [
+            "12:00",
+            "16:25",
+            "public"
+          ]
+        ],
         "mon": [],
-        "tue": [],
-        "wed": [],
-        "thu": [],
-        "fri": [],
-        "sat": []
+        "tue": [
+          [
+            "09:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "21:55",
+            "public"
+          ]
+        ],
+        "wed": [
+          [
+            "09:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "21:55",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "09:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "21:55",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "09:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "21:55",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "12:00",
+            "16:25",
+            "public"
+          ]
+        ]
       },
-      "scheduleUnavailable": true,
-      "noUpcomingHours": true,
       "periodStart": "2026-08-22",
-      "periodEnd": "2026-09-07"
+      "periodEnd": "2026-10-11"
     },
     {
       "slug": "piscine-du-complexe-sportif-de-lecole-secondaire-danjou",
@@ -1191,90 +1245,16 @@
       "lng": -73.677306812249,
       "indoor": false,
       "schedule": {
-        "sun": [
-          [
-            "11:45",
-            "12:45",
-            "lane"
-          ],
-          [
-            "18:15",
-            "19:15",
-            "lane"
-          ],
-          [
-            "18:15",
-            "19:15",
-            "adult"
-          ]
-        ],
-        "mon": [
-          [
-            "18:15",
-            "19:15",
-            "lane"
-          ],
-          [
-            "18:15",
-            "19:15",
-            "adult"
-          ]
-        ],
-        "tue": [
-          [
-            "18:15",
-            "19:15",
-            "lane"
-          ],
-          [
-            "18:15",
-            "19:15",
-            "adult"
-          ]
-        ],
-        "wed": [
-          [
-            "18:15",
-            "19:15",
-            "lane"
-          ],
-          [
-            "18:15",
-            "19:15",
-            "adult"
-          ]
-        ],
-        "thu": [
-          [
-            "18:15",
-            "19:15",
-            "lane"
-          ],
-          [
-            "18:15",
-            "19:15",
-            "adult"
-          ]
-        ],
+        "sun": [],
+        "mon": [],
+        "tue": [],
+        "wed": [],
+        "thu": [],
         "fri": [],
-        "sat": [
-          [
-            "11:45",
-            "12:45",
-            "lane"
-          ],
-          [
-            "18:15",
-            "19:15",
-            "lane"
-          ],
-          [
-            "18:15",
-            "19:15",
-            "adult"
-          ]
-        ]
+        "sat": []
       },
+      "scheduleUnavailable": true,
+      "noUpcomingHours": true,
       "periodStart": "2026-08-31",
       "periodEnd": "2026-09-06"
     },
@@ -1426,52 +1406,22 @@
       "lng": -73.600105074477,
       "indoor": false,
       "schedule": {
-        "sun": [
-          [
-            "12:00",
-            "19:00",
-            "public"
-          ]
-        ],
+        "sun": [],
         "mon": [
           [
-            "15:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "tue": [
-          [
-            "15:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "wed": [],
-        "thu": [
-          [
-            "15:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "fri": [
-          [
-            "15:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "sat": [
-          [
             "12:00",
             "19:00",
             "public"
           ]
-        ]
+        ],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
       },
-      "periodStart": "2026-08-31",
-      "periodEnd": "2026-09-06"
+      "periodStart": "2026-09-07",
+      "periodEnd": "2026-09-07"
     },
     {
       "slug": "piscine-du-parc-gabriel-lalemant",
@@ -1597,58 +1547,22 @@
       "lng": -73.625958602868,
       "indoor": false,
       "schedule": {
-        "sun": [
-          [
-            "12:00",
-            "19:00",
-            "public"
-          ]
-        ],
+        "sun": [],
         "mon": [
           [
-            "15:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "tue": [
-          [
-            "15:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "wed": [
-          [
-            "15:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "thu": [
-          [
-            "15:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "fri": [
-          [
-            "15:00",
-            "19:00",
-            "public"
-          ]
-        ],
-        "sat": [
-          [
             "12:00",
             "19:00",
             "public"
           ]
-        ]
+        ],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
       },
-      "periodStart": "2026-08-31",
-      "periodEnd": "2026-09-06"
+      "periodStart": "2026-09-07",
+      "periodEnd": "2026-09-07"
     },
     {
       "slug": "piscine-du-parc-john-f-kennedy",
@@ -1846,14 +1760,14 @@
         "sun": [
           [
             "10:00",
-            "19:30",
+            "19:15",
             "public"
           ]
         ],
         "mon": [
           [
             "10:00",
-            "19:30",
+            "19:15",
             "public"
           ]
         ],
@@ -2248,58 +2162,22 @@
       "lng": -73.604552047929,
       "indoor": false,
       "schedule": {
-        "sun": [
-          [
-            "13:00",
-            "17:00",
-            "public"
-          ]
-        ],
+        "sun": [],
         "mon": [
           [
-            "17:00",
-            "20:00",
-            "public"
-          ]
-        ],
-        "tue": [
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ]
-        ],
-        "wed": [
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ]
-        ],
-        "thu": [
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ]
-        ],
-        "fri": [
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ]
-        ],
-        "sat": [
-          [
             "13:00",
             "17:00",
             "public"
           ]
-        ]
+        ],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
       },
-      "periodStart": "2026-08-31",
-      "periodEnd": "2026-09-06"
+      "periodStart": "2026-09-07",
+      "periodEnd": "2026-09-07"
     },
     {
       "slug": "piscine-du-parc-ottawa",
@@ -2366,58 +2244,22 @@
       "lng": -73.584893146721,
       "indoor": false,
       "schedule": {
-        "sun": [
-          [
-            "13:00",
-            "17:00",
-            "public"
-          ]
-        ],
+        "sun": [],
         "mon": [
           [
-            "17:00",
-            "20:00",
-            "public"
-          ]
-        ],
-        "tue": [
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ]
-        ],
-        "wed": [
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ]
-        ],
-        "thu": [
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ]
-        ],
-        "fri": [
-          [
-            "17:00",
-            "20:00",
-            "public"
-          ]
-        ],
-        "sat": [
-          [
             "13:00",
             "17:00",
             "public"
           ]
-        ]
+        ],
+        "tue": [],
+        "wed": [],
+        "thu": [],
+        "fri": [],
+        "sat": []
       },
-      "periodStart": "2026-08-31",
-      "periodEnd": "2026-09-06"
+      "periodStart": "2026-09-07",
+      "periodEnd": "2026-09-07"
     },
     {
       "slug": "piscine-interieure-calixa-lavallee",
@@ -2967,14 +2809,24 @@
       "lng": -73.578789,
       "indoor": true,
       "schedule": {
-        "sun": [
+        "sun": [],
+        "mon": [
           [
-            "12:00",
-            "13:00",
+            "14:00",
+            "15:00",
             "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "adult"
+          ],
+          [
+            "16:30",
+            "18:25",
+            "public"
           ]
         ],
-        "mon": [],
         "tue": [],
         "wed": [
           [
@@ -3267,17 +3119,12 @@
         ],
         "fri": [
           [
-            "15:30",
-            "16:25",
+            "13:00",
+            "14:00",
             "public"
           ],
           [
-            "19:30",
-            "20:55",
-            "public"
-          ],
-          [
-            "19:35",
+            "19:40",
             "21:10",
             "public"
           ]
@@ -3290,8 +3137,8 @@
           ]
         ]
       },
-      "periodStart": "2026-06-15",
-      "periodEnd": "2026-09-06"
+      "periodStart": "2026-09-07",
+      "periodEnd": "2026-12-20"
     }
   ]
 }
