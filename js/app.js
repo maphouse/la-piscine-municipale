@@ -229,9 +229,9 @@ function featureCollection() {
     // Invisible full-size disc: the interaction target for the whole symbol.
     features.push({ type: 'Feature', geometry, properties: { role: 'hit', slug: p.slug, radius: Math.max(rings[0].radius, MIN_HIT_RADIUS) } });
     // Halo at the symbol's outer edge (see the 'pools-outline' layer) — white for
-    // every coloured marker, light grey to match the slash on empty circles.
+    // every marker, including empty circles (the slash inside stays grey).
     const isEmpty = rings[0].opacity === 0;
-    features.push({ type: 'Feature', geometry, properties: { role: 'outline', slug: p.slug, radius: rings[0].radius, color: isEmpty ? SLASH_COLOR : '#fff' } });
+    features.push({ type: 'Feature', geometry, properties: { role: 'outline', slug: p.slug, radius: rings[0].radius, color: '#fff' } });
     if (isEmpty) {
       features.push({ type: 'Feature', geometry, properties: { role: 'slash', slug: p.slug } });
     }
