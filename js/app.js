@@ -8,7 +8,6 @@ const BASEMAP = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json';
 const GAP_WIDTH = 2; // px width of the transparent gap carved between a pool's ring bands
 const OUTLINE_WIDTH = 2; // px white halo outside a marker's outer edge (see 'pools-outline')
 const NOHOURS_TINT = '#e60000';
-const SLASH_COLOR = '#c7c7c7'; // empty-circle pools: halo + crossbar
 
 // Build-session metering shown in the legend. BUILD_TOKENS is the one figure
 // kept by hand — Claude usage isn't visible to the data-refresh Action, so
@@ -102,7 +101,7 @@ async function init() {
     slashCanvas.width = slashSize;
     slashCanvas.height = slashSize;
     const slashCtx = slashCanvas.getContext('2d');
-    slashCtx.strokeStyle = SLASH_COLOR;
+    slashCtx.strokeStyle = '#fff';
     slashCtx.lineWidth = 2.2;
     slashCtx.lineCap = 'round';
     slashCtx.beginPath();
@@ -126,8 +125,7 @@ async function init() {
       paint: { 'circle-radius': ['get', 'radius'], 'circle-color': '#000', 'circle-opacity': 0 },
     });
     // Halo hugging each marker's outer edge — the map's counterpart to the legend
-    // dots' `box-shadow: 0 0 0 3px white`. White for coloured markers, light grey
-    // (SLASH_COLOR) for empty circles so the whole symbol reads as one muted unit.
+    // dots' `box-shadow: 0 0 0 3px white`. White for every marker, coloured or empty.
     // A coloured marker's ring opacity encodes how soon a session starts, and a pool
     // whose next swim is eighteen hours away is drawn at 0.08, which all but vanishes
     // against a pale basemap. The halo is painted at full strength regardless, so the
@@ -229,7 +227,7 @@ function featureCollection() {
     // Invisible full-size disc: the interaction target for the whole symbol.
     features.push({ type: 'Feature', geometry, properties: { role: 'hit', slug: p.slug, radius: Math.max(rings[0].radius, MIN_HIT_RADIUS) } });
     // Halo at the symbol's outer edge (see the 'pools-outline' layer) — white for
-    // every marker, including empty circles (the slash inside stays grey).
+    // every marker, including empty circles (whose crossbar is also white).
     const isEmpty = rings[0].opacity === 0;
     features.push({ type: 'Feature', geometry, properties: { role: 'outline', slug: p.slug, radius: rings[0].radius, color: '#fff' } });
     if (isEmpty) {
@@ -543,6 +541,12 @@ function renderLegend() {
   document.getElementById('mintoggle').addEventListener('click', () => {
     legendCollapsed = !legendCollapsed;
     renderLegend();
+  });
+  // <label> normally forwards a click anywhere inside it (including the text) to its
+  // checkbox. That made the whole legend row misfire as a toggle tap; only the
+  // checkbox itself should activate it.
+  document.querySelectorAll('.lg-toggle').forEach((label) => {
+    label.addEventListener('click', (e) => { if (e.target.tagName !== 'INPUT') e.preventDefault(); });
   });
   const adultOnlyBox = document.getElementById('adultonly');
   if (adultOnlyBox) adultOnlyBox.addEventListener('change', (e) => {
