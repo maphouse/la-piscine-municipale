@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-08T13:24:03.828Z",
+  "generated": "2026-09-09T13:32:30.101Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-09-09",
+  "nextScrapeDate": "2026-09-10",
   "count": 100,
   "pools": [
     {
@@ -290,19 +290,43 @@
       "lng": -73.58232,
       "indoor": true,
       "schedule": {
-        "sun": [],
-        "mon": [
+        "sun": [
           [
-            "19:00",
-            "20:25",
+            "12:30",
+            "13:55",
             "public"
+          ],
+          [
+            "14:00",
+            "15:25",
+            "adult"
+          ],
+          [
+            "15:30",
+            "16:55",
+            "public"
+          ],
+          [
+            "15:30",
+            "16:55",
+            "lane"
           ]
         ],
-        "tue": [
+        "mon": [
           [
-            "10:00",
+            "07:00",
             "11:55",
             "lane"
+          ],
+          [
+            "11:00",
+            "11:55",
+            "public"
+          ],
+          [
+            "13:00",
+            "15:55",
+            "adult"
           ],
           [
             "16:00",
@@ -313,6 +337,38 @@
             "19:00",
             "20:25",
             "public"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "10:00",
+            "11:55",
+            "lane"
+          ],
+          [
+            "13:00",
+            "15:55",
+            "adult"
+          ],
+          [
+            "16:00",
+            "16:55",
+            "public"
+          ],
+          [
+            "19:00",
+            "20:25",
+            "public"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
           ]
         ],
         "wed": [
@@ -327,6 +383,11 @@
             "public"
           ],
           [
+            "13:00",
+            "15:55",
+            "adult"
+          ],
+          [
             "16:00",
             "16:55",
             "public"
@@ -335,6 +396,11 @@
             "19:00",
             "20:25",
             "public"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
           ]
         ],
         "thu": [
@@ -344,6 +410,11 @@
             "lane"
           ],
           [
+            "13:00",
+            "15:55",
+            "adult"
+          ],
+          [
             "16:00",
             "16:55",
             "public"
@@ -352,10 +423,67 @@
             "19:00",
             "20:25",
             "public"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
           ]
         ],
-        "fri": [],
-        "sat": []
+        "fri": [
+          [
+            "07:00",
+            "11:55",
+            "lane"
+          ],
+          [
+            "11:00",
+            "11:55",
+            "public"
+          ],
+          [
+            "13:00",
+            "15:55",
+            "adult"
+          ],
+          [
+            "16:00",
+            "16:55",
+            "public"
+          ],
+          [
+            "19:00",
+            "20:25",
+            "public"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "12:30",
+            "13:55",
+            "public"
+          ],
+          [
+            "14:00",
+            "15:25",
+            "adult"
+          ],
+          [
+            "15:30",
+            "16:55",
+            "public"
+          ],
+          [
+            "15:30",
+            "16:55",
+            "lane"
+          ]
+        ]
       },
       "periodStart": "2026-08-31",
       "periodEnd": "2026-12-23"
@@ -944,7 +1072,18 @@
             "public"
           ]
         ],
-        "mon": [],
+        "mon": [
+          [
+            "09:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "21:55",
+            "public"
+          ]
+        ],
         "tue": [
           [
             "09:00",
@@ -1378,9 +1517,7 @@
         "sat": []
       },
       "scheduleUnavailable": true,
-      "noUpcomingHours": true,
-      "periodStart": "2026-09-07",
-      "periodEnd": "2026-09-07"
+      "noUpcomingHours": true
     },
     {
       "slug": "piscine-du-parc-gabriel-lalemant",
@@ -1515,9 +1652,7 @@
         "sat": []
       },
       "scheduleUnavailable": true,
-      "noUpcomingHours": true,
-      "periodStart": "2026-09-07",
-      "periodEnd": "2026-09-07"
+      "noUpcomingHours": true
     },
     {
       "slug": "piscine-du-parc-john-f-kennedy",
