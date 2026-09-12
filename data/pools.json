@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-11T13:22:42.728Z",
+  "generated": "2026-09-12T12:43:28.372Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-09-12",
+  "nextScrapeDate": "2026-09-13",
   "count": 100,
   "pools": [
     {
@@ -118,16 +118,91 @@
       "lng": -73.538288,
       "indoor": true,
       "schedule": {
-        "sun": [],
-        "mon": [],
-        "tue": [],
-        "wed": [],
-        "thu": [],
-        "fri": [],
-        "sat": []
+        "sun": [
+          [
+            "13:00",
+            "14:55",
+            "public"
+          ],
+          [
+            "15:00",
+            "15:55",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "14:00",
+            "15:55",
+            "adult"
+          ],
+          [
+            "16:00",
+            "18:55",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "09:00",
+            "10:55",
+            "public"
+          ],
+          [
+            "11:00",
+            "11:55",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "14:00",
+            "15:55",
+            "adult"
+          ],
+          [
+            "16:00",
+            "18:55",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "09:00",
+            "10:55",
+            "public"
+          ],
+          [
+            "11:00",
+            "11:55",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "14:00",
+            "15:55",
+            "adult"
+          ],
+          [
+            "16:00",
+            "18:55",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "13:00",
+            "14:55",
+            "public"
+          ],
+          [
+            "15:00",
+            "15:55",
+            "adult"
+          ]
+        ]
       },
-      "scheduleUnavailable": true,
-      "noUpcomingHours": true,
       "periodStart": "2026-09-12",
       "periodEnd": "2027-06-18"
     },
@@ -1151,15 +1226,28 @@
       "lng": -73.540687986112,
       "indoor": true,
       "schedule": {
-        "sun": [],
+        "sun": [
+          [
+            "14:00",
+            "15:00",
+            "public"
+          ]
+        ],
         "mon": [],
         "tue": [],
         "wed": [],
         "thu": [],
         "fri": [],
-        "sat": []
+        "sat": [
+          [
+            "14:00",
+            "15:00",
+            "public"
+          ]
+        ]
       },
-      "scheduleUnavailable": true
+      "periodStart": "2026-09-12",
+      "periodEnd": "2026-12-20"
     },
     {
       "slug": "piscine-du-complexe-sportif-du-college-de-bois-de-boulogne",
@@ -2130,16 +2218,91 @@
       "lng": -73.537389,
       "indoor": true,
       "schedule": {
-        "sun": [],
-        "mon": [],
-        "tue": [],
-        "wed": [],
-        "thu": [],
-        "fri": [],
-        "sat": []
+        "sun": [
+          [
+            "09:00",
+            "11:55",
+            "public"
+          ],
+          [
+            "12:00",
+            "12:55",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "18:30",
+            "20:25",
+            "public"
+          ],
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "17:00",
+            "17:55",
+            "adult"
+          ],
+          [
+            "18:00",
+            "19:55",
+            "public"
+          ]
+        ],
+        "wed": [
+          [
+            "18:30",
+            "20:25",
+            "public"
+          ],
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "17:00",
+            "17:55",
+            "adult"
+          ],
+          [
+            "18:00",
+            "19:55",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "18:30",
+            "20:25",
+            "public"
+          ],
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "13:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "16:00",
+            "16:55",
+            "adult"
+          ]
+        ]
       },
-      "scheduleUnavailable": true,
-      "noUpcomingHours": true,
       "periodStart": "2026-09-12",
       "periodEnd": "2027-06-18"
     },
@@ -2308,15 +2471,31 @@
       "indoor": true,
       "schedule": {
         "sun": [],
-        "mon": [],
+        "mon": [
+          [
+            "20:30",
+            "22:30",
+            "adult"
+          ]
+        ],
         "tue": [],
-        "wed": [],
+        "wed": [
+          [
+            "20:30",
+            "22:30",
+            "adult"
+          ]
+        ],
         "thu": [],
-        "fri": [],
+        "fri": [
+          [
+            "20:30",
+            "22:30",
+            "adult"
+          ]
+        ],
         "sat": []
       },
-      "scheduleUnavailable": true,
-      "noUpcomingHours": true,
       "periodStart": "2026-09-12",
       "periodEnd": "2026-12-18"
     },
@@ -2593,16 +2772,146 @@
       "lng": -73.544566,
       "indoor": true,
       "schedule": {
-        "sun": [],
-        "mon": [],
-        "tue": [],
-        "wed": [],
-        "thu": [],
-        "fri": [],
-        "sat": []
+        "sun": [
+          [
+            "13:00",
+            "14:55",
+            "public"
+          ],
+          [
+            "15:00",
+            "15:55",
+            "adult"
+          ],
+          [
+            "16:00",
+            "16:55",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "10:00",
+            "11:55",
+            "public"
+          ],
+          [
+            "12:00",
+            "12:55",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "13:00",
+            "13:55",
+            "adult"
+          ],
+          [
+            "14:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "18:30",
+            "19:25",
+            "public"
+          ],
+          [
+            "19:30",
+            "20:25",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "wed": [
+          [
+            "10:00",
+            "11:55",
+            "public"
+          ],
+          [
+            "12:00",
+            "12:55",
+            "adult"
+          ],
+          [
+            "18:30",
+            "19:25",
+            "public"
+          ],
+          [
+            "19:30",
+            "20:25",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "13:00",
+            "13:55",
+            "adult"
+          ],
+          [
+            "14:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "18:30",
+            "19:25",
+            "public"
+          ],
+          [
+            "19:30",
+            "20:25",
+            "adult"
+          ],
+          [
+            "20:30",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "fri": [
+          [
+            "10:00",
+            "11:55",
+            "public"
+          ],
+          [
+            "12:00",
+            "12:55",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "09:00",
+            "10:55",
+            "public"
+          ],
+          [
+            "11:00",
+            "11:55",
+            "public"
+          ],
+          [
+            "12:00",
+            "12:55",
+            "adult"
+          ]
+        ]
       },
-      "scheduleUnavailable": true,
-      "noUpcomingHours": true,
       "periodStart": "2026-09-12",
       "periodEnd": "2027-06-18"
     },
