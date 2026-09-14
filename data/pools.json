@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-13T13:43:32.716Z",
+  "generated": "2026-09-14T15:45:19.774Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-09-14",
+  "nextScrapeDate": "2026-09-15",
   "count": 100,
   "pools": [
     {
@@ -1149,13 +1149,13 @@
         ],
         "mon": [
           [
-            "09:00",
+            "13:00",
             "15:55",
             "public"
           ],
           [
-            "20:00",
-            "21:55",
+            "19:00",
+            "20:55",
             "public"
           ]
         ],
@@ -1186,7 +1186,7 @@
         "thu": [
           [
             "09:00",
-            "15:55",
+            "21:55",
             "public"
           ],
           [
@@ -1210,13 +1210,13 @@
         "sat": [
           [
             "12:00",
-            "16:25",
+            "15:00",
             "public"
           ]
         ]
       },
-      "periodStart": "2026-09-07",
-      "periodEnd": "2026-10-11"
+      "periodStart": "2026-09-14",
+      "periodEnd": "2026-09-20"
     },
     {
       "slug": "piscine-du-complexe-sportif-de-lecole-secondaire-danjou",
@@ -1226,28 +1226,15 @@
       "lng": -73.540687986112,
       "indoor": true,
       "schedule": {
-        "sun": [
-          [
-            "14:00",
-            "15:00",
-            "public"
-          ]
-        ],
+        "sun": [],
         "mon": [],
         "tue": [],
         "wed": [],
         "thu": [],
         "fri": [],
-        "sat": [
-          [
-            "14:00",
-            "15:00",
-            "public"
-          ]
-        ]
+        "sat": []
       },
-      "periodStart": "2026-09-12",
-      "periodEnd": "2026-12-20"
+      "scheduleUnavailable": true
     },
     {
       "slug": "piscine-du-complexe-sportif-du-college-de-bois-de-boulogne",
@@ -2632,8 +2619,8 @@
       },
       "scheduleUnavailable": true,
       "noUpcomingHours": true,
-      "periodStart": "2026-09-19",
-      "periodEnd": "2026-12-23"
+      "periodStart": "2026-09-16",
+      "periodEnd": "2026-09-28"
     },
     {
       "slug": "piscine-maisonneuve-du-parc-francine-leger",
@@ -3187,16 +3174,71 @@
       "lng": -73.63075196743,
       "indoor": true,
       "schedule": {
-        "sun": [],
-        "mon": [],
-        "tue": [],
-        "wed": [],
-        "thu": [],
-        "fri": [],
-        "sat": []
+        "sun": [
+          [
+            "14:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "16:00",
+            "16:55",
+            "adult"
+          ]
+        ],
+        "mon": [
+          [
+            "18:30",
+            "19:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "21:25",
+            "adult"
+          ]
+        ],
+        "tue": [
+          [
+            "15:00",
+            "17:55",
+            "public"
+          ]
+        ],
+        "wed": [
+          [
+            "07:00",
+            "10:00",
+            "adult"
+          ]
+        ],
+        "thu": [
+          [
+            "15:00",
+            "17:55",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "17:00",
+            "19:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "20:55",
+            "adult"
+          ]
+        ],
+        "sat": [
+          [
+            "15:00",
+            "16:55",
+            "public"
+          ]
+        ]
       },
-      "scheduleUnavailable": true,
-      "noUpcomingHours": true,
       "periodStart": "2026-09-14",
       "periodEnd": "2026-12-19"
     },
