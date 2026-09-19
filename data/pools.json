@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-17T14:11:07.918Z",
+  "generated": "2026-09-19T12:58:48.442Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-09-18",
+  "nextScrapeDate": "2026-09-20",
   "count": 100,
   "pools": [
     {
@@ -1226,15 +1226,28 @@
       "lng": -73.540687986112,
       "indoor": true,
       "schedule": {
-        "sun": [],
+        "sun": [
+          [
+            "14:00",
+            "15:00",
+            "public"
+          ]
+        ],
         "mon": [],
         "tue": [],
         "wed": [],
         "thu": [],
         "fri": [],
-        "sat": []
+        "sat": [
+          [
+            "14:00",
+            "15:00",
+            "public"
+          ]
+        ]
       },
-      "scheduleUnavailable": true
+      "periodStart": "2026-09-19",
+      "periodEnd": "2026-12-20"
     },
     {
       "slug": "piscine-du-complexe-sportif-du-college-de-bois-de-boulogne",
@@ -3106,8 +3119,8 @@
           ]
         ]
       },
-      "periodStart": "2026-08-31",
-      "periodEnd": "2026-09-18"
+      "periodStart": "2026-09-19",
+      "periodEnd": "2026-12-23"
     },
     {
       "slug": "piscine-rene-goupil",
@@ -3449,6 +3462,16 @@
             "15:00",
             "16:25",
             "lane"
+          ],
+          [
+            "16:30",
+            "18:25",
+            "public"
+          ],
+          [
+            "19:00",
+            "20:00",
+            "lane"
           ]
         ],
         "sat": [
@@ -3465,7 +3488,7 @@
         ]
       },
       "periodStart": "2026-08-31",
-      "periodEnd": "2026-09-18"
+      "periodEnd": "2026-09-25"
     },
     {
       "slug": "piscine-sophie-barat",
