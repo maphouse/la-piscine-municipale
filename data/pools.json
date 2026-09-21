@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-20T13:30:29.853Z",
+  "generated": "2026-09-21T15:44:56.956Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-09-21",
+  "nextScrapeDate": "2026-09-22",
   "count": 100,
   "pools": [
     {
@@ -745,7 +745,7 @@
             "public"
           ],
           [
-            "18:30",
+            "19:00",
             "20:25",
             "public"
           ],
@@ -798,16 +798,86 @@
       "lng": -73.586382865906,
       "indoor": true,
       "schedule": {
-        "sun": [],
-        "mon": [],
-        "tue": [],
-        "wed": [],
-        "thu": [],
-        "fri": [],
-        "sat": []
+        "sun": [
+          [
+            "08:30",
+            "09:25",
+            "lane"
+          ],
+          [
+            "17:10",
+            "18:10",
+            "lane"
+          ],
+          [
+            "18:15",
+            "19:30",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "20:35",
+            "21:30",
+            "lane"
+          ]
+        ],
+        "tue": [
+          [
+            "17:05",
+            "18:25",
+            "public"
+          ],
+          [
+            "20:40",
+            "21:30",
+            "lane"
+          ]
+        ],
+        "wed": [
+          [
+            "17:05",
+            "18:25",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "18:05",
+            "19:05",
+            "public"
+          ],
+          [
+            "20:15",
+            "21:30",
+            "lane"
+          ]
+        ],
+        "fri": [
+          [
+            "18:10",
+            "19:25",
+            "public"
+          ],
+          [
+            "19:30",
+            "21:30",
+            "lane"
+          ]
+        ],
+        "sat": [
+          [
+            "08:30",
+            "09:25",
+            "lane"
+          ],
+          [
+            "18:15",
+            "19:30",
+            "public"
+          ]
+        ]
       },
-      "scheduleUnavailable": true,
-      "noUpcomingHours": true,
       "periodStart": "2026-09-21",
       "periodEnd": "2026-11-30"
     },
@@ -1138,18 +1208,7 @@
             "public"
           ]
         ],
-        "tue": [
-          [
-            "09:00",
-            "15:55",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:55",
-            "public"
-          ]
-        ],
+        "tue": [],
         "wed": [
           [
             "09:00",
@@ -1189,13 +1248,13 @@
         "sat": [
           [
             "12:00",
-            "15:00",
+            "16:25",
             "public"
           ]
         ]
       },
-      "periodStart": "2026-09-14",
-      "periodEnd": "2026-09-20"
+      "periodStart": "2026-09-21",
+      "periodEnd": "2026-09-27"
     },
     {
       "slug": "piscine-du-complexe-sportif-de-lecole-secondaire-danjou",
