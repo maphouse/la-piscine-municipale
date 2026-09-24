@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-23T14:08:08.695Z",
+  "generated": "2026-09-24T14:05:57.109Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-09-24",
+  "nextScrapeDate": "2026-09-25",
   "count": 100,
   "pools": [
     {
@@ -2737,7 +2737,7 @@
             "lane"
           ],
           [
-            "20:00",
+            "20:15",
             "21:30",
             "lane"
           ]
@@ -2781,7 +2781,7 @@
             "lane"
           ],
           [
-            "20:00",
+            "20:15",
             "21:30",
             "lane"
           ]
@@ -2812,7 +2812,7 @@
         ]
       },
       "periodStart": "2026-09-16",
-      "periodEnd": "2026-09-28"
+      "periodEnd": "2026-12-23"
     },
     {
       "slug": "piscine-maisonneuve-du-parc-francine-leger",
@@ -3684,14 +3684,23 @@
         "mon": [],
         "tue": [],
         "wed": [],
-        "thu": [],
+        "thu": [
+          [
+            "07:35",
+            "13:55",
+            "public"
+          ],
+          [
+            "17:00",
+            "18:55",
+            "public"
+          ]
+        ],
         "fri": [],
         "sat": []
       },
-      "scheduleUnavailable": true,
-      "noUpcomingHours": true,
-      "periodStart": "2026-04-24",
-      "periodEnd": "2026-06-21"
+      "periodStart": "2026-09-24",
+      "periodEnd": "2026-09-27"
     },
     {
       "slug": "ymca-cartierville",
