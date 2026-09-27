@@ -11,6 +11,7 @@
   --paper: #ffffff;
   --hair: rgba(0, 0, 0, 0.12);
   --font: 'Libre Franklin', system-ui, sans-serif;
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
