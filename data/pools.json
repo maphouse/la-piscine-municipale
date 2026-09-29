@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-28T17:27:29.335Z",
+  "generated": "2026-09-29T15:28:15.596Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-09-29",
+  "nextScrapeDate": "2026-09-30",
   "count": 100,
   "pools": [
     {
@@ -1230,18 +1230,83 @@
       "lng": -73.63323879772682,
       "indoor": true,
       "schedule": {
-        "sun": [],
-        "mon": [],
-        "tue": [],
-        "wed": [],
-        "thu": [],
-        "fri": [],
-        "sat": []
+        "sun": [
+          [
+            "12:00",
+            "16:25",
+            "public"
+          ]
+        ],
+        "mon": [
+          [
+            "09:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "21:55",
+            "public"
+          ]
+        ],
+        "tue": [
+          [
+            "09:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "21:55",
+            "public"
+          ]
+        ],
+        "wed": [
+          [
+            "09:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "21:55",
+            "public"
+          ]
+        ],
+        "thu": [
+          [
+            "09:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "21:55",
+            "public"
+          ]
+        ],
+        "fri": [
+          [
+            "09:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "20:00",
+            "21:55",
+            "public"
+          ]
+        ],
+        "sat": [
+          [
+            "12:00",
+            "16:25",
+            "public"
+          ]
+        ]
       },
-      "scheduleUnavailable": true,
-      "noUpcomingHours": true,
-      "periodStart": "2026-09-21",
-      "periodEnd": "2026-09-27"
+      "periodStart": "2026-09-28",
+      "periodEnd": "2026-10-11"
     },
     {
       "slug": "piscine-du-complexe-sportif-de-lecole-secondaire-danjou",
@@ -3508,18 +3573,112 @@
       "lng": -73.578789,
       "indoor": true,
       "schedule": {
-        "sun": [],
-        "mon": [],
+        "sun": [
+          [
+            "10:00",
+            "11:55",
+            "public"
+          ],
+          [
+            "12:00",
+            "13:00",
+            "lane"
+          ]
+        ],
+        "mon": [
+          [
+            "14:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ],
+          [
+            "20:00",
+            "21:00",
+            "lane"
+          ]
+        ],
         "tue": [],
-        "wed": [],
-        "thu": [],
-        "fri": [],
-        "sat": []
+        "wed": [
+          [
+            "14:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ],
+          [
+            "20:00",
+            "21:00",
+            "lane"
+          ]
+        ],
+        "thu": [
+          [
+            "14:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ],
+          [
+            "16:30",
+            "18:30",
+            "public"
+          ],
+          [
+            "19:00",
+            "21:00",
+            "lane"
+          ]
+        ],
+        "fri": [
+          [
+            "14:00",
+            "15:00",
+            "adult"
+          ],
+          [
+            "15:00",
+            "16:25",
+            "lane"
+          ],
+          [
+            "16:30",
+            "18:30",
+            "public"
+          ],
+          [
+            "19:00",
+            "21:00",
+            "lane"
+          ]
+        ],
+        "sat": [
+          [
+            "14:00",
+            "15:55",
+            "public"
+          ],
+          [
+            "16:00",
+            "17:00",
+            "lane"
+          ]
+        ]
       },
-      "scheduleUnavailable": true,
-      "noUpcomingHours": true,
-      "periodStart": "2026-08-31",
-      "periodEnd": "2026-09-25"
+      "periodStart": "2026-09-26",
+      "periodEnd": "2026-12-23"
     },
     {
       "slug": "piscine-sophie-barat",
