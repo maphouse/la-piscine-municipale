@@ -1,8 +1,8 @@
 {
-  "generated": "2026-10-14T14:24:23.932Z",
+  "generated": "2026-10-15T14:01:41.116Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-10-15",
+  "nextScrapeDate": "2026-10-16",
   "count": 100,
   "pools": [
     {
@@ -376,7 +376,38 @@
             "lane"
           ]
         ],
-        "mon": [],
+        "mon": [
+          [
+            "07:00",
+            "11:55",
+            "lane"
+          ],
+          [
+            "11:00",
+            "11:55",
+            "public"
+          ],
+          [
+            "13:00",
+            "15:55",
+            "adult"
+          ],
+          [
+            "16:00",
+            "16:55",
+            "public"
+          ],
+          [
+            "19:00",
+            "20:25",
+            "public"
+          ],
+          [
+            "20:30",
+            "21:55",
+            "adult"
+          ]
+        ],
         "tue": [
           [
             "10:00",
@@ -2965,6 +2996,11 @@
           ]
         ],
         "mon": [
+          [
+            "15:00",
+            "16:25",
+            "adult"
+          ],
           [
             "20:30",
             "21:55",
