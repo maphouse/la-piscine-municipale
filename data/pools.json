@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-02T19:16:46.416Z",
+  "generated": "2026-11-03T16:53:28.228Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-11-03",
+  "nextScrapeDate": "2026-11-04",
   "count": 100,
   "pools": [
     {
@@ -3744,13 +3744,7 @@
           ]
         ],
         "tue": [],
-        "wed": [
-          [
-            "20:00",
-            "21:00",
-            "lane"
-          ]
-        ],
+        "wed": [],
         "thu": [
           [
             "14:00",
