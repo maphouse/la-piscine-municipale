@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-12T17:25:59.465Z",
+  "generated": "2026-11-13T17:00:32.091Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-11-13",
+  "nextScrapeDate": "2026-11-14",
   "count": 100,
   "pools": [
     {
@@ -1099,11 +1099,6 @@
         ],
         "fri": [
           [
-            "07:00",
-            "08:55",
-            "adult"
-          ],
-          [
             "12:00",
             "13:25",
             "adult"
@@ -1384,7 +1379,7 @@
         "sat": []
       },
       "periodStart": "2026-09-13",
-      "periodEnd": "2026-12-23"
+      "periodEnd": "2026-12-20"
     },
     {
       "slug": "piscine-du-complexe-sportif-marie-victorin",
@@ -4071,7 +4066,7 @@
         ]
       },
       "periodStart": "2026-09-28",
-      "periodEnd": "2026-12-03"
+      "periodEnd": "2026-12-11"
     },
     {
       "slug": "ymca-cartierville",
