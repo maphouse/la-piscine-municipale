@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-13T17:00:32.091Z",
+  "generated": "2026-11-16T19:23:04.222Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-11-14",
+  "nextScrapeDate": "2026-11-17",
   "count": 100,
   "pools": [
     {
@@ -1224,33 +1224,11 @@
             "public"
           ]
         ],
-        "tue": [
-          [
-            "09:00",
-            "15:55",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:55",
-            "public"
-          ]
-        ],
-        "wed": [
-          [
-            "09:00",
-            "15:55",
-            "public"
-          ],
-          [
-            "20:00",
-            "21:55",
-            "public"
-          ]
-        ],
+        "tue": [],
+        "wed": [],
         "thu": [
           [
-            "09:00",
+            "12:00",
             "15:55",
             "public"
           ],
@@ -1280,8 +1258,8 @@
           ]
         ]
       },
-      "periodStart": "2026-11-09",
-      "periodEnd": "2026-11-15"
+      "periodStart": "2026-11-16",
+      "periodEnd": "2026-11-22"
     },
     {
       "slug": "piscine-du-complexe-sportif-de-lecole-secondaire-danjou",
