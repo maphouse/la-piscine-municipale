@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-18T17:52:31.292Z",
+  "generated": "2026-11-19T18:01:41.001Z",
   "source": "https://montreal.ca (City of Montreal pool pages)",
   "timezone": "America/Toronto",
-  "nextScrapeDate": "2026-11-19",
+  "nextScrapeDate": "2026-11-20",
   "count": 100,
   "pools": [
     {
@@ -2602,22 +2602,12 @@
         "mon": [
           [
             "07:15",
-            "09:00",
+            "11:00",
             "public"
           ],
           [
             "07:15",
             "08:00",
-            "public"
-          ],
-          [
-            "09:00",
-            "10:00",
-            "public"
-          ],
-          [
-            "10:00",
-            "11:00",
             "public"
           ],
           [
@@ -2673,17 +2663,12 @@
         "thu": [
           [
             "07:15",
-            "08:00",
-            "public"
-          ],
-          [
-            "09:00",
-            "10:00",
-            "public"
-          ],
-          [
-            "10:00",
             "11:00",
+            "public"
+          ],
+          [
+            "07:15",
+            "08:00",
             "public"
           ],
           [
@@ -2748,7 +2733,7 @@
         ]
       },
       "periodStart": "2026-10-05",
-      "periodEnd": "2026-12-18"
+      "periodEnd": "2026-12-20"
     },
     {
       "slug": "piscine-joseph-charbonneau",
